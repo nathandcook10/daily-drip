@@ -25,14 +25,31 @@ graph TD
 
 ## 🏷️ Step 1: Obtain Your Facebook Page ID (`META_PAGE_ID`)
 
-Your automated ads need a Facebook Page to act as the "sender" of the advertisement on both Facebook and Instagram.
+Your automated ads need a Facebook Page to act as the "sender" of the advertisement on both Facebook and Instagram. Because Facebook frequently updates its layout, here are the four easiest ways to find your Page ID:
 
-### How to Find it:
-1. Go to your **Facebook Page**.
-2. Click on the **About** tab.
-3. Scroll down and click on **Page Transparency** or **Details**.
-4. You will see a section showing your **Page ID** (a long string of digits, e.g., `104839281729384`).
-5. *Alternative:* Go to [Meta Business Suite Settings](https://business.facebook.com/latest/settings) -> **Business assets** -> **Pages**, select your Page, and copy the ID from the panel.
+### Option A: Via Meta Business Suite (Easiest & Most Reliable)
+If you are already logged into your business account:
+1. Go to [Meta Business Suite Settings](https://business.facebook.com/latest/settings).
+2. Click **Business assets** in the left sidebar, then click the **Pages** tab.
+3. Select your Page. The **Page ID** will be displayed in the detail panel on the right side of the screen.
+
+### Option B: Via Your Page's URL
+If your page is relatively new or hasn't had a vanity username set up yet:
+1. Go to your page on Facebook.
+2. Look at the address bar in your browser.
+3. If the URL looks like `facebook.com/profile.php?id=1000XXXXXXXXXXX` or `facebook.com/Page-Name-1000XXXXXXXXXXX`, the long string of digits at the end is your **Page ID**.
+
+### Option C: Via Page Settings
+If you are logged into Facebook as the Page itself:
+1. Click your Page's profile picture in the top-right corner.
+2. Select **Settings & privacy** -> **Settings**.
+3. Under **General Page settings** (or **New Pages Experience** in the left menu), look for **Page ID** listed on the main panel.
+
+### Option D: Via Page Source Code
+If you are viewing the page from a normal desktop browser:
+1. Right-click anywhere on your Facebook Page background and click **View Page Source** (or press `Cmd + Option + U` on Mac).
+2. Press `Cmd + F` to search the page source.
+3. Search for `"pageID"` or `"delegate_page_id"`. The numeric sequence associated with that key is your Page ID (e.g., `"pageID":"104839281729384"`).
 
 Copy this number and paste it in `scripts/.env`:
 ```env

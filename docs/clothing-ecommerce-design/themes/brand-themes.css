@@ -1,0 +1,251 @@
+/* ==========================================================================
+   💧 CLOTHING E-COMMERCE DESIGN SYSTEM - CODIED BRAND THEMES
+   ==========================================================================
+   This stylesheet contains ready-to-use variables and aesthetic patches for
+   five distinct brand DNA models. Apply these classes to the root <html>
+   or <body> element to instantly hot-swap the entire visual identity of the storefront.
+   ========================================================================== */
+
+/* --- Import Variable Fonts via Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;700;900&display=swap');
+
+/* ==========================================================================
+   1. AIMÉ LEON DORE (Warm Heritage Prep / Nostalgic Editorial)
+   ========================================================================== */
+.theme-aime-leon-dore {
+  /* Color Palette */
+  --bg-base: #fdfbf7;                   /* Warm Antique Cream */
+  --bg-surface: #f7f4eb;                /* Slightly deeper parchment */
+  --bg-surface-elevated: #efebe0;       /* Vintage shadow cream */
+  --bg-glass: rgba(253, 251, 247, 0.82);
+  
+  --color-text-primary: #121614;        /* Rich Ink Black */
+  --color-text-secondary: #222d25;      /* Deep Forest Slate */
+  --color-text-muted: #5e6660;          /* Muted brass-grey */
+  
+  --color-accent: #142c1d;              /* Signature Rich Forest Green */
+  --color-accent-rgb: 20, 44, 29;
+  --color-accent-secondary: #d4af37;    /* Brass Gold Highlight */
+  
+  --border-glass: rgba(20, 44, 29, 0.06);
+  --border-light: rgba(20, 44, 29, 0.15);
+  
+  /* Typography */
+  --font-display: 'Playfair Display', 'Garamond', Georgia, serif;
+  --font-accent: 'Playfair Display', serif;
+  
+  /* Spatial/Sizing overrides (Optional but adds character) */
+  --border-radius-card: 0px;            /* Stark crisp boxes */
+  --border-radius-button: 0px;          /* No rounded buttons */
+}
+.theme-aime-leon-dore .btn-primary {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+}
+.theme-aime-leon-dore .product-card {
+  border-radius: 0px;
+}
+.theme-aime-leon-dore .timer-box {
+  border-radius: 0px;
+}
+
+/* ==========================================================================
+   2. FEAR OF GOD (Minimal Luxury / The Quiet Monochromatic Canvas)
+   ========================================================================== */
+.theme-fear-of-god {
+  /* Color Palette */
+  --bg-base: #eae6df;                   /* Warm Oatmeal Clay */
+  --bg-surface: #e2ded6;                /* Earth sand shadow */
+  --bg-surface-elevated: #d5d0c7;       /* Deep clay shadow */
+  --bg-glass: rgba(234, 230, 223, 0.80);
+  
+  --color-text-primary: #1c1b18;        /* Off-Black Charcoal */
+  --color-text-secondary: #3c3a34;      /* Oatmeal Charcoal */
+  --color-text-muted: #7c776d;          /* Soft Sand Grey */
+  
+  --color-accent: #1c1b18;              /* stark off-black accent */
+  --color-accent-rgb: 28, 27, 24;
+  --color-accent-secondary: #a8a296;    /* Soft Oatmeal Grey */
+  
+  --border-glass: rgba(28, 27, 24, 0.05);
+  --border-light: rgba(28, 27, 24, 0.12);
+  
+  /* Typography */
+  --font-display: 'Outfit', 'Inter', -apple-system, sans-serif;
+  --font-accent: 'Outfit', sans-serif;
+  
+  /* Style Adjustments */
+  --border-radius-card: 0px;
+  --border-radius-button: 0px;
+}
+.theme-fear-of-god .btn-primary {
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 300;
+  box-shadow: none;
+}
+.theme-fear-of-god .btn-primary:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+.theme-fear-of-god .product-card {
+  border-radius: 0px;
+  box-shadow: none !important;
+  background: transparent;
+  border: none;
+}
+.theme-fear-of-god .product-card:hover {
+  transform: translateY(-4px);
+}
+.theme-fear-of-god .timer-box {
+  border-radius: 0px;
+  box-shadow: none;
+  border: 1px solid var(--border-light);
+}
+
+/* ==========================================================================
+   3. KITH (Modern Streetwear / Stark Aggressive Grotesque)
+   ========================================================================== */
+.theme-kith {
+  /* Color Palette */
+  --bg-base: #ffffff;                   /* Stark Sterile White */
+  --bg-surface: #f9f9f9;                /* Pure clean grey */
+  --bg-surface-elevated: #f1f1f1;       /* Light stone shadow */
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  
+  --color-text-primary: #000000;        /* Absolute Stark Black */
+  --color-text-secondary: #222222;      /* Deep Charcoal */
+  --color-text-muted: #666666;          /* Charcoal Zinc */
+  
+  --color-accent: #000000;              /* pure black anchor */
+  --color-accent-rgb: 0, 0, 0;
+  --color-accent-secondary: #555555;    /* Stone Grey */
+  
+  --border-glass: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.18);
+  
+  /* Typography */
+  --font-display: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-accent: 'Space Mono', monospace;
+  
+  /* Grid-focused shapes */
+  --border-radius-card: 2px;
+  --border-radius-button: 2px;
+}
+.theme-kith .btn-primary {
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+}
+.theme-kith .product-card {
+  border-radius: 2px;
+}
+.theme-kith .timer-box {
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   4. ARC'TERYX (Technical Outdoors / Utilitarian Gorpcore)
+   ========================================================================== */
+.theme-arcteryx {
+  /* Color Palette */
+  --bg-base: #0e0e0f;                   /* Utilitarian Void Black */
+  --bg-surface: #141416;                /* Slate diagnostic black */
+  --bg-surface-elevated: #1e1e21;       /* Heavy elevated shell slate */
+  --bg-glass: rgba(14, 14, 15, 0.80);
+  
+  --color-text-primary: #f4f4f5;        /* High-visibility Zinc White */
+  --color-text-secondary: #a1a1aa;      /* Technical Grey */
+  --color-text-muted: #71717a;          /* Charcoal Slate */
+  
+  --color-accent: #ff5a00;              /* Safety/Warning Neon Orange */
+  --color-accent-rgb: 255, 90, 0;
+  --color-accent-secondary: #27272a;    /* Muted Carbon Zinc */
+  
+  --border-glass: rgba(244, 244, 245, 0.08);
+  --border-light: rgba(244, 244, 245, 0.18);
+  
+  /* Typography */
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-accent: 'Space Mono', monospace;
+  
+  /* Tech shapes */
+  --border-radius-card: 4px;
+  --border-radius-button: 4px;
+}
+.theme-arcteryx .btn-primary {
+  background: var(--color-accent);
+  color: #141416;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+.theme-arcteryx .btn-primary:hover {
+  background: #ff7728;
+  color: #000;
+}
+.theme-arcteryx .product-card {
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+}
+.theme-arcteryx .timer-box {
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+.theme-arcteryx .accent-text {
+  font-family: var(--font-accent);
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  transform: none;
+}
+.theme-arcteryx .marquee-container {
+  background: #060607;
+}
+
+/* ==========================================================================
+   5. DAILY DRIP (Organic Sage / Original Fluid Streetwear Canvas)
+   ========================================================================== */
+.theme-daily-drip {
+  /* Color Palette */
+  --bg-base: #f8f9f6;                   /* Organic Sage Off-white */
+  --bg-surface: #ffffff;                /* Pure Canvas White */
+  --bg-surface-elevated: #eff1eb;       /* Soft Shadow Sage */
+  --bg-glass: rgba(248, 249, 246, 0.85);
+  
+  --color-text-primary: #171a18;        /* Deep Olive Charcoal */
+  --color-text-secondary: #38423c;      /* Earth-tone Slate Charcoal */
+  --color-text-muted: #6a756f;          /* Muted Sage-zinc */
+  
+  --color-accent: #2d3e33;              /* Deep Organic Sage Green */
+  --color-accent-rgb: 45, 62, 51;
+  --color-accent-secondary: #a8bdae;    /* Soft Sage Green Accent */
+  
+  --border-glass: rgba(45, 62, 51, 0.08);
+  --border-light: rgba(45, 62, 51, 0.18);
+  
+  /* Typography */
+  --font-display: 'Outfit', 'Inter', sans-serif;
+  --font-accent: 'Shadows Into Light', cursive;
+  
+  /* Smooth curves */
+  --border-radius-card: 16px;
+  --border-radius-button: 9999px;
+}
+.theme-daily-drip .btn-primary {
+  border-radius: 9999px;
+  font-weight: 600;
+}
+.theme-daily-drip .product-card {
+  border-radius: 16px;
+}
+.theme-daily-drip .timer-box {
+  border-radius: 16px;
+}
