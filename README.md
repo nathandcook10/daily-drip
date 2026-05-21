@@ -1,68 +1,78 @@
-# 💧 Daily Drip
+# 💧 The Daily Drip Storefront & Automation Suite
 
-> Welcome to **Daily Drip**! This is a collaborative space for Nathan and Alby.
+Welcome to **The Daily Drip** streetwear catalog project. This workspace consists of two integrated components:
+1. **React + Vite Storefront**: Rebuilt from Shopify to feature a highly aesthetic, clean, earth-tone minimal streetwear layout matching our high-end branding (whites, organic sage greens, forest greens, and deep charcoal).
+2. **Python CLI Suite**: Handles automated unisex t-shirt creation via the **Printify API** and programmatically publishes Meta ad campaigns via the **Meta Marketing API**.
 
 ---
 
-## 🚀 Getting Started
+## 🤝 3-Step Access Guide for Alby
 
-This repository has been initialized with a solid foundation. 
+If you want your collaborator **Alby** to jump in, clone this codebase, and manage products, here is exactly what needs to be done:
 
-### 🤝 How to Collaborate
-
-Follow these steps to link this local directory to a GitHub repository so you and Alby can work together:
-
-#### 1. Create a GitHub Repository
-1. Go to [github.com/new](https://github.com/new) (ensure you are logged in).
-2. Name the repository **`daily-drip`** (or another name you prefer).
-3. Set the repository visibility to **Private** (or Public if you want anyone to see it).
-4. **Leave "Add a README", "Add .gitignore", and "Choose a license" UNCHECKED** (since we've already created them for you).
-5. Click **Create repository**.
-
-#### 2. Link This Local Folder to GitHub
-Once the repository is created, copy the commands under **"…or push an existing repository from the command line"** on the GitHub setup page. It will look like this:
-
+### Step 1: Nathan Pushes the Code to a Private GitHub Repository
+Run these commands in your local terminal to link this folder to your GitHub:
 ```bash
-# Add the remote URL pointing to your GitHub repository
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/daily-drip.git
+# Initialize git and stage changes
+git init
+git add .
+git commit -m "feat: initial storefront release with sage earth-tone layout"
 
-# Push your main branch to GitHub
+# Create a repository named "daily-drip" on github.com, then run:
+git remote add origin https://github.com/nathandcook10/daily-drip.git
+git branch -M main
 git push -u origin main
 ```
+*Note: Go to repository **Settings** -> **Collaborators** on GitHub, click **Add People**, and invite Alby.*
 
-#### 3. Share with Alby
-1. On your new GitHub repository page, click on the **Settings** tab.
-2. Select **Collaborators** from the left-hand menu.
-3. Click **Add people** and enter Alby's GitHub username or email address.
-4. Once Alby accepts the invite, he can clone the repository to his computer using:
-   ```bash
-   git clone https://github.com/YOUR_GITHUB_USERNAME/daily-drip.git
-   ```
+### Step 2: Alby Clones the Code & Runs the Dev Storefront
+Once invited, Alby can run these commands on his machine to launch the interactive catalog:
+```bash
+# Clone the private repository
+git clone https://github.com/nathandcook10/daily-drip.git
+cd daily-drip
+
+# Install dependencies and start the local development server
+npm install
+npm run dev
+```
+*The local storefront will now be running on Alby's computer at `http://localhost:5173`!*
+
+### Step 3: Alby Manages Visual Designs & Drops
+Alby can easily sync layouts and assets:
+* **Visual Mockups**: Drop design flat-layups or model mockups into `public/assets/`.
+* **Product Catalog**: Add or edit releases in `src/components/ProductList.jsx` to live-update the storefront.
+* **Auto-Publish to Shopify/Printify**: Setup credentials in `scripts/.env` and drop artwork images into the local machine, then run:
+  ```bash
+  python3 scripts/daily_drip_manager.py --image "your_design.png" --title "Design Name" --price 29.99
+  ```
 
 ---
 
-## 🛠️ Project Structure
+## ⚡ Development & Launch Commands
+
+### Storefront Dev Server
+Starts the React web application with Hot Module Replacement (HMR).
+```bash
+npm run dev
 ```
-Daily Drip/
-├── .gitignore   # Ignores IDE files, OS junk, and dependencies
-└── README.md    # You are here!
+
+### Storefront Production Build
+Compiles static HTML/JS/CSS assets to the `/dist` directory for fast deployment.
+```bash
+npm run build
 ```
 
 ---
 
-## ⚡ Development Workflow
+## 🤖 Python Automation Suite (`/scripts`)
 
-When working together, it's best practice to:
-1. **Pull before starting work:** Always fetch the latest changes Alby made:
-   ```bash
-   git pull origin main
-   ```
-2. **Commit often:** Keep your commits small and descriptive:
-   ```bash
-   git add .
-   git commit -m "Add feature/update detail"
-   ```
-3. **Push to share:** Send your updates back to GitHub:
-   ```bash
-   git push origin main
-   ```
+The daily workflow uses the local script managers in the `/scripts` directory to automate production:
+* `daily_drip_manager.py`: Connects APIs into a unified CLI drop tool.
+* `printify_api.py`: Integrates Unisex Bella+Canvas 3001 product building, mockup uploads, and fulfillment routing.
+* `meta_ads_api.py`: Publishes adsets, sets pixel tracking, and schedules targeted campaigns.
+
+To configure, copy `.env.example` to `.env` and fill out your tokens:
+```bash
+cp scripts/.env.example scripts/.env
+```
