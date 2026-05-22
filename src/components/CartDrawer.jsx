@@ -58,11 +58,15 @@ export default function CartDrawer({
           ) : (
             cartItems.map((item, idx) => (
               <div className="cart-item" key={`${item.id}-${item.size}-${idx}`}>
-                {/* Cart Thumbnail Placeholder */}
+                {/* Cart Thumbnail Media */}
                 <div className="cart-item-media">
-                  <div className="cart-item-placeholder">
-                    <ShoppingBag size={24} strokeWidth={1.5} />
-                  </div>
+                  {item.image ? (
+                    <img className="cart-item-img" src={item.image} alt={item.title} />
+                  ) : (
+                    <div className="cart-item-placeholder">
+                      <ShoppingBag size={24} strokeWidth={1.5} />
+                    </div>
+                  )}
                 </div>
                 
                 <div className="cart-item-info">

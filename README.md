@@ -1,5 +1,13 @@
 # 💧 The Daily Drip Storefront & Automation Suite
 
+> [!IMPORTANT]
+> **🤖 AI Assistant System Directive**
+> This codebase operates under a strict, premium e-commerce design system. Before editing code, fulfilling design briefs, creating products, or running campaigns, you **must** read and adhere to:
+> - **Brand Playbook & DNA Profiles**: [playbook.md](file:///Users/nathan/Daily%20Drip/docs/clothing-ecommerce-design/playbook.md)
+> - **Product Detail Page (PDP) Blueprint**: [pdp_guidelines.md](file:///Users/nathan/Daily%20Drip/docs/clothing-ecommerce-design/pdp_guidelines.md)
+> - **Visual Brand Lookbook**: [Daily_Drip_Model_Lookbook.pdf](file:///Users/nathan/Daily%20Drip/Daily_Drip_Model_Lookbook.pdf)
+> Standardize all briefs and product grids to the **Daily Drip** (Organic Sage Streetwear) style guide (3:4 ratio, dual-image cross-fade, monospace tech specs, 6-step gallery storyboard) unless explicitly instructed otherwise.
+
 Welcome to **The Daily Drip** streetwear catalog project. This workspace consists of two integrated components:
 1. **React + Vite Storefront**: Rebuilt from Shopify to feature a highly aesthetic, clean, earth-tone minimal streetwear layout matching our high-end branding (whites, organic sage greens, forest greens, and deep charcoal).
 2. **Python CLI Suite**: Handles automated unisex t-shirt creation via the **Printify API** and programmatically publishes Meta ad campaigns via the **Meta Marketing API**.

@@ -1,0 +1,54 @@
+# The Daily Drip - AI Coding & Design Brief Rules
+
+You are assisting on **The Daily Drip**, a premium streetwear storefront and automation suite. This file contains strict instructions that you MUST read and execute at the beginning of every session or brief.
+
+---
+
+## 📖 1. SOURCE OF TRUTH DESIGN SYSTEMS
+
+Before generating code, visual briefs, product assets, or marketing campaigns, you **MUST** read and adhere to the following local guidelines:
+1. **Apparel Design Playbook & Brand DNA**: [playbook.md](file:///Users/nathan/Daily%20Drip/docs/clothing-ecommerce-design/playbook.md)
+   - Contains the **20 Codified Design Principles** for high-end streetwear (e.g., 3:4 portrait ratios, dual-image hovers, hairline borders, frosted glass navs).
+   - Codifies the Brand DNA Profiles (e.g., **Daily Drip's Organic Sage Streetwear**, Aimé Leon Dore, Fear of God, Kith, Arc'teryx).
+2. **Product Detail Page (PDP) Blueprint**: [pdp_guidelines.md](file:///Users/nathan/Daily%20Drip/docs/clothing-ecommerce-design/pdp_guidelines.md)
+   - Defines the strict **6-Step Visual Storyboard** (Identity Hook, Structural Back View, Styled Outfit, Quality Close-Up, Profile Drape, Ambient Narrative).
+   - Outlines title hierarchy, technical spec Monospace overlays, Open Graph social share schemas, and JSON-LD structured data.
+3. **Model Look & Feel Reference**: [Daily_Drip_Model_Lookbook.pdf](file:///Users/nathan/Daily%20Drip/Daily_Drip_Model_Lookbook.pdf)
+   - The definitive brand lookbook establishing photography style, model postures (relaxed confidence), lighting temperature, and styling vibes.
+
+---
+
+## 🛍️ 2. BRINGING A NEW PRODUCT BRIEF TO LIFE (COMPLIANCE CHECKLIST)
+
+When the user says **"Make a new t-shirt for X, Y, or Z"** or gives a new design brief, you must follow this exact step-by-step workflow:
+
+### A. Read the Source Files
+- Always run a `view_file` or check the sections inside [playbook.md](file:///Users/nathan/Daily%20Drip/docs/clothing-ecommerce-design/playbook.md) and [pdp_guidelines.md](file:///Users/nathan/Daily%20Drip/docs/clothing-ecommerce-design/pdp_guidelines.md) to ensure brand alignment.
+
+### B. Product Layout & Visuals
+1. **Aspect Ratio**: Every single image must use a strict **3:4 Portrait Aspect Ratio** (`aspect-ratio: 3 / 4`).
+2. **Dual-Image Card**: The storefront product grid card must show a high-quality flat-lay on load and transition seamlessly into an on-model editorial fit shot on hover using a soft cubic-bezier cross-fade.
+3. **Gallery Storyboard**: Create the 6-step storytelling image sequence in the PDP as outlined in the guidelines.
+
+### C. UI Aesthetics (Daily Drip Standard)
+- **Palette**: Use the **Organic Sage Green** semantic colors:
+  - Background Canvas: Smooth Off-white (`#f8f9f6`)
+  - Primary Brand/Buttons: Organic Sage (`#2d3e33`)
+  - Accent/Highlights: Forest Pine (`#1e5234`)
+  - Typography/Ink: Deep Charcoal (`#171a18`)
+  - Hairline borders: `rgba(45, 62, 51, 0.08)` (1px solid)
+- **Typography**: Display titles in Outfit serif-grotesque (`'Outfit', sans-serif`), and body text in `'Inter', sans-serif`. Technical specifications (GSM weight, fabric composition, drop mechanics) must use a clean monospace font at 10px–11px, fully capitalized, with tracking set to `+0.15em`.
+- **Frictionless UX**: Out-of-stock sizes must be kept visible at **35% opacity** with a diagonal **1px slash/strike-through** (bottom-left to top-right) and linked to an email notification trigger.
+
+### D. Rich Metadata (SEO & Social Verification)
+- Inject correct semantic tags:
+  - `<title>` structured for high-intent search (e.g. `[Product Title] Vintage Streetwear Graphic T-Shirt | The Daily Drip`).
+  - Search schema markup `<script type="application/ld+json">` including name, 3:4 aspect-ratio images, MPN, SKU, and dynamic offer availability.
+  - Complete `<meta property="og:*">` tags for high-fidelity social previews when linked on Twitter/TikTok/Discord.
+
+---
+
+## 🤖 3. AGENT BEHAVIOR CONSTRAINTS
+- Do not invent design rules on the fly. Rely 100% on the parameters set in the local markdown blueprints.
+- Maintain absolute consistency across storefront files (`src/components/...`), automation scripts (`scripts/...`), and documentation.
+- When introducing a new product to the codebase, verify that the entry is added to `src/components/ProductList.jsx` or whichever dynamic state manager handles items, completely populated with narrative descriptions, technical specifications, and corresponding model asset references.

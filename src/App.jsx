@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ProductList from './components/ProductList';
+import ArchiveList from './components/ArchiveList';
 import CartDrawer from './components/CartDrawer';
 import Footer from './components/Footer';
 import { ArrowRight, Bell } from 'lucide-react';
 
 export default function App() {
   // --- States ---
+  const [view, setView] = useState('home');
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem('daily_drip_cart_react');
     return saved ? JSON.parse(saved) : [];
@@ -43,7 +45,7 @@ export default function App() {
           title: product.title,
           price: product.price,
           size: size,
-          image: '/assets/logo-icon.png', // Fallback icon since we use placeholders
+          image: product.imageFront || '/assets/logo-icon.png', // Use real product image thumbnail!
           quantity: 1
         }];
       }
@@ -89,52 +91,66 @@ export default function App() {
       <Header 
         cartCount={cartCount} 
         onCartOpen={() => setIsCartOpen(true)} 
+        view={view}
+        setView={setView}
       />
 
-      {/* Streetwear Intro Section */}
-      <Hero />
+      {view === 'archive' ? (
+        <ArchiveList 
+          onAddToCart={handleAddToCart} 
+          onBack={() => setView('home')} 
+        />
+      ) : (
+        <>
+          {/* Streetwear Intro Section */}
+          <Hero />
 
-      {/* Repeating Text Marquee Loop */}
-      <section className="marquee-container">
-        <div className="marquee-content">
-          <span>OUTPERFORMED BY A ROBOT. AGAIN.</span>
-          <span>PUNCH THE MONKEY</span>
-          <span>PEACE SIGN AND HANDS</span>
-          <span>DAILY CAPTURE IN WEARABLE ART</span>
-          <span>OUTPERFORMED BY A ROBOT. AGAIN.</span>
-          <span>PUNCH THE MONKEY</span>
-          <span>PEACE SIGN AND HANDS</span>
-          <span>DAILY CAPTURE IN WEARABLE ART</span>
-        </div>
-      </section>
+          {/* Repeating Text Marquee Loop */}
+          <section className="marquee-container">
+            <div className="marquee-content">
+              <span>DAILY CAPTURE IN WEARABLE ART</span>
+              <span>ZERO EXCESS STOCK</span>
+              <span>OUTPERFORMED BY A ROBOT</span>
+              <span>HUMAN MEANING IN APPAREL</span>
+              <span>DAILY CAPTURE IN WEARABLE ART</span>
+              <span>ZERO EXCESS STOCK</span>
+              <span>OUTPERFORMED BY A ROBOT</span>
+              <span>HUMAN MEANING IN APPAREL</span>
+            </div>
+          </section>
 
-      {/* Dynamic Interactive Product Grid */}
-      <ProductList onAddToCart={handleAddToCart} />
+          {/* Dynamic Interactive Product Grid */}
+          <ProductList 
+            onAddToCart={handleAddToCart} 
+            onShopAllClick={() => setView('archive')} 
+          />
 
-      {/* Narrative Story Section */}
-      <section className="story" id="story">
-        <div className="container story-grid">
-          {/* Brand Visual artwork from Core Art */}
-          <div className="story-media">
-            <img className="story-img" src="/assets/design-element.png" alt="Brand visual artwork" />
-            <div className="story-overlay" />
-          </div>
-          
-          <div className="story-content">
-            <h2 className="story-title">EACH T-SHIRT IS A CANVAS</h2>
-            <p className="story-desc">
-              We believe clothes shouldn’t be billboards for corporations, but canvases for daily meaning. Collaborating with advanced creative intelligences, we design daily t-shirts that encapsulate human emotion, technology shifts, and modern philosophy.
-            </p>
-            <p className="story-desc">
-              By utilizing a zero-waste print-on-demand cycle, we ensure that every single garment has an owner waiting for it. Zero excess stock, maximum human engagement.
-            </p>
-            <a href="#catalog" className="story-cta">
-              VIEW THE RELEASES
-              <ArrowRight size={16} style={{ marginLeft: '8px' }} />
-            </a>
-          </div>
-        </div>
-      </section>
+          {/* Narrative Story Section */}
+          <section className="story" id="story">
+            <div className="container story-grid">
+              {/* Brand Visual artwork from Core Art */}
+              <div className="story-media">
+                <img className="story-img" src="/assets/design-element.png" alt="Brand visual artwork" />
+                <div className="story-overlay" />
+              </div>
+              
+              <div className="story-content">
+                <h2 className="story-title">EACH T-SHIRT IS A CANVAS</h2>
+                <p className="story-desc">
+                  We believe clothes shouldn’t be billboards for corporations, but canvases for daily meaning. Collaborating with advanced creative intelligences, we design daily t-shirts that encapsulate human emotion, technology shifts, and modern philosophy.
+                </p>
+                <p className="story-desc">
+                  By utilizing a zero-waste print-on-demand cycle, we ensure that every single garment has an owner waiting for it. Zero excess stock, maximum human engagement.
+                </p>
+                <a href="#catalog" className="story-cta">
+                  VIEW THE RELEASES
+                  <ArrowRight size={16} style={{ marginLeft: '8px' }} />
+                </a>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* Footer Block */}
       <Footer />

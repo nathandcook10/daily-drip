@@ -1309,6 +1309,640 @@
       font-weight: bold;
     }
 
+    /* ========================================== */
+    /* BRAND PLAYGROUND TAB STYLING               */
+    /* ========================================== */
+    #view-playground {
+      --color-primary: var(--color-sage);
+      --color-accent: var(--color-pine);
+      --color-bg-base: var(--color-offwhite);
+      --color-bg-surface: var(--color-purewhite);
+      --color-text-main: var(--color-charcoal);
+      --color-text-muted: rgba(23, 26, 24, 0.6);
+      --color-accent-light: rgba(30, 82, 52, 0.08);
+      
+      display: none;
+    }
+
+    #view-playground.active {
+      display: block;
+    }
+
+    /* 1. Brand Vision Grid */
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+      margin-bottom: 60px;
+    }
+
+    .vision-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 30px;
+      transition: var(--transition-smooth);
+    }
+
+    .vision-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+      border-color: rgba(30, 82, 52, 0.2);
+    }
+
+    .vision-num {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+      display: block;
+      font-weight: bold;
+    }
+
+    .vision-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .vision-body {
+      font-size: 14px;
+      color: var(--color-text-muted);
+    }
+
+    /* 2. Logo Family Grid */
+    .logo-family-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .logo-box {
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--color-bg-base);
+    }
+
+    .logo-preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      transition: var(--transition-fast);
+      position: relative;
+    }
+
+    .logo-preview.dark-preview {
+      background: var(--color-text-main);
+    }
+
+    .logo-preview.light-preview {
+      background: var(--color-bg-surface);
+    }
+
+    .logo-preview img {
+      max-height: 80px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .logo-preview.dark-preview img {
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .logo-info {
+      padding: 20px;
+      background: var(--color-bg-surface);
+      border-top: 1px solid var(--color-border);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .logo-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .logo-desc {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+    }
+
+    .logo-path-card {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--color-bg-base);
+      padding: 8px 12px;
+      border-radius: var(--border-radius-sm);
+      border: 1px dashed var(--color-border);
+      color: var(--color-text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .copy-path-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--color-accent);
+      font-weight: bold;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition-fast);
+    }
+
+    .copy-path-btn:hover {
+      background: var(--color-accent-light);
+    }
+
+    /* DOs & DONTs Grid */
+    .do-dont-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+      margin-bottom: 60px;
+    }
+
+    .do-card, .dont-card {
+      padding: 30px;
+      border-radius: var(--border-radius-lg);
+      border: 1px solid;
+    }
+
+    .do-card {
+      background: hsl(120, 20%, 98%);
+      border-color: hsl(120, 40%, 80%);
+    }
+
+    .dont-card {
+      background: hsl(0, 20%, 98%);
+      border-color: hsl(0, 40%, 80%);
+    }
+
+    .do-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: hsl(120, 50%, 20%);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dont-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: hsl(0, 50%, 20%);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rule-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rule-list li {
+      font-size: 14px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .do-card .rule-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: hsl(120, 50%, 35%);
+      font-weight: bold;
+    }
+
+    .dont-card .rule-list li::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: hsl(0, 50%, 35%);
+      font-weight: bold;
+    }
+
+    /* 3. Interactive Logo contrast playground */
+    .playground-canvas {
+      height: 320px;
+      border-radius: var(--border-radius-lg);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .playground-logo {
+      height: 48px;
+      width: auto;
+      max-width: 80%;
+      object-fit: contain;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .playground-logo:hover {
+      transform: scale(1.03);
+    }
+
+    .playground-grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: linear-gradient(var(--color-border) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.15;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .playground-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: var(--color-bg-base);
+      padding: 20px 30px;
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .swatch-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .canvas-swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--color-bg-surface);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: var(--transition-fast);
+    }
+
+    .canvas-swatch:hover {
+      transform: scale(1.15);
+    }
+
+    .canvas-swatch.active {
+      transform: scale(1.15);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px var(--color-accent-light);
+    }
+
+    .playground-status {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-text-muted);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .playground-status span strong {
+      color: var(--color-text-main);
+    }
+
+    /* 4. Typography Showcase */
+    .typo-specimen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .typo-specimen-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 280px;
+    }
+
+    .typo-letter {
+      font-size: 72px;
+      line-height: 1;
+      font-weight: 500;
+      color: var(--color-text-main);
+      margin-bottom: 20px;
+    }
+
+    .typo-details {
+      border-top: 1px solid var(--color-border);
+      padding-top: 16px;
+    }
+
+    .typo-family-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .typo-usage {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Interactive Specimen Box */
+    .specimen-sandbox {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      margin-bottom: 60px;
+    }
+
+    .sandbox-preview-box {
+      padding: 60px 40px;
+      border-bottom: 1px solid var(--color-border);
+      min-height: 240px;
+      display: flex;
+      align-items: center;
+      background: var(--color-bg-surface);
+      position: relative;
+    }
+
+    .sandbox-text {
+      width: 100%;
+      color: var(--color-text-main);
+      outline: none;
+      border: 1px dashed transparent;
+      padding: 10px;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition-fast);
+      background: transparent;
+    }
+
+    .sandbox-text:focus {
+      border-color: var(--color-accent);
+      background: var(--color-bg-base);
+    }
+
+    .sandbox-controls {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 24px 30px;
+      background: var(--color-bg-base);
+    }
+
+    .sandbox-slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sandbox-slider-group label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .sandbox-slider-group label span {
+      color: var(--color-text-main);
+      font-weight: bold;
+    }
+
+    .sandbox-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--color-border);
+      outline: none;
+    }
+
+    .sandbox-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .sandbox-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .sandbox-select {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      padding: 8px 12px;
+      border-radius: var(--border-radius-sm);
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-text-main);
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* 5. Color swatches */
+    .color-swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .color-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .color-swatch {
+      height: 140px;
+      width: 100%;
+      position: relative;
+    }
+
+    .color-info-wrap {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .color-name-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+
+    .color-label {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--color-text-main);
+    }
+
+    .color-role {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+    }
+
+    .color-value-tile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--color-bg-base);
+      padding: 6px 10px;
+      border-radius: var(--border-radius-sm);
+      color: var(--color-text-muted);
+    }
+
+    .color-val {
+      color: var(--color-text-main);
+      font-weight: 500;
+    }
+
+    .copy-color-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--color-accent);
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition-fast);
+    }
+
+    .copy-color-btn:hover {
+      background: var(--color-accent-light);
+    }
+
+    .copy-color-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* 6. Layout and Grid Specifications */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .principle-item {
+      display: flex;
+      gap: 20px;
+      padding: 24px;
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+    }
+
+    .principle-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: bold;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .principle-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .principle-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .principle-body {
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+
+    /* Playground Responsive Rules */
+    @media (max-width: 1200px) {
+      .color-swatch-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .vision-grid, .logo-family-grid, .do-dont-grid, .typo-specimen-grid, .principles-grid {
+        grid-template-columns: 1fr;
+      }
+      .color-swatch-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .sandbox-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .color-swatch-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1340,13 +1974,17 @@
         <li class="nav-item" id="nav-prompts">
           <button data-tab="prompts">five // prompt deck</button>
         </li>
-        <li class="nav-item">
-          <button data-external="Brand_Guidelines_System.html">six // brand playground</button>
+        <li class="nav-item" id="nav-playground">
+          <button data-tab="playground">six // brand playground</button>
         </li>
       </ul>
     </nav>
     
     <div class="sidebar-footer">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+        <span id="debug-indicator" style="width: 10px; height: 10px; border-radius: 50%; background-color: #ffd275; box-shadow: 0 0 10px #ffd275; display: inline-block; cursor: pointer; transition: all 0.3s ease;" title="Diagnostic status: loading engine..."></span>
+        <span style="font-size: 10px; font-family: var(--font-mono); opacity: 0.6; text-transform: uppercase; letter-spacing: 0.05em; user-select: none;">Console Status</span>
+      </div>
       <span>Daily Drip V1.0.0</span><br>
       <span>Pairing with <a href="#">Nathan & Team</a></span>
     </div>
@@ -1367,18 +2005,18 @@
       
       <h3 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 20px;">Pack Contents & Duplicated Guides</h3>
       <div class="pack-grid">
-        <a href="Brand_Playbook_v1.0.md" class="pack-card" target="_blank">
-          <span class="pack-card-num">01 / MARKDOWN</span>
+        <a href="Brand_Playbook_v1.0.md" class="pack-card" data-dashboard-tab="playbook">
+          <span class="pack-card-num">01 / BRAND SYSTEM</span>
           <h4 class="pack-card-title">Brand Playbook</h4>
           <p class="pack-card-desc">The 20 Codified Design Principles and the 5 Brand DNA Profiles.</p>
         </a>
-        <a href="PDP_Design_Guidelines.md" class="pack-card" target="_blank">
-          <span class="pack-card-num">02 / MARKDOWN</span>
+        <a href="PDP_Design_Guidelines.md" class="pack-card" data-dashboard-tab="pdp">
+          <span class="pack-card-num">02 / PDP TEMPLATE</span>
           <h4 class="pack-card-title">PDP Guidelines</h4>
           <p class="pack-card-desc">The 6-Step Visual Storyboard, technical spec systems, and SEO schema.</p>
         </a>
-        <a href="Brand_Guidelines_System.html" class="pack-card" target="_blank">
-          <span class="pack-card-num">03 / HTML SYSTEM</span>
+        <a href="Brand_Guidelines_System.html" class="pack-card" data-dashboard-tab="playground">
+          <span class="pack-card-num">03 / INTERACTIVE SANDBOX</span>
           <h4 class="pack-card-title">Brand Playground</h4>
           <p class="pack-card-desc">Interactive sandbox to test layouts, copy hex colors, and check logo contrast.</p>
         </a>
@@ -2826,11 +3464,406 @@ Please convert this basic product listing into our premium design standard:
    - Output the exact React product object structure to merge into `src/components/ProductList.jsx`.
    - Include variables for dynamic UI elements: availableSizes mapped as chips, soft out-of-stock sizes styled at 35% opacity with the slash strike-through, and images mapped in 3:4 ratio.
 3. SOCIAL & SEO SCHEMA GENERATION:
-   - Generate search-optimized `<title>` tag, open-graph tags, and the JSON-LD structured schema block mapped to Google's Product standard.
+   - Generate search-optimized `&lt;title&gt;` tag, open-graph tags, and the JSON-LD structured schema block mapped to Google's Product standard.
 
 Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md` and `docs/clothing-ecommerce-design/pdp_guidelines.md` first.</div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- 6. Brand Playground -->
+    <section class="tab-view" id="view-playground">
+      <span class="eyebrow">Codified Design Language</span>
+      <h1 class="view-title">Daily Drip Identity & Brand Playground</h1>
+      <p class="view-subtitle" style="margin-bottom: 40px; opacity: 0.7; font-size: 16px;">
+        An interactive sandbox for testing our dynamic contrast laws, typography sizing, HSL color palettes, and strict e-commerce design specifications.
+      </p>
+
+      <!-- 1. Brand Vision -->
+      <div style="margin-bottom: 80px;">
+        <span class="eyebrow" style="color: var(--color-pine); font-size: 11px;">01 / Concept</span>
+        <h2 class="section-title" style="font-family: var(--font-display); font-size: 24px; font-weight: 600; margin-bottom: 12px;">Brand Vision</h2>
+        <p class="section-desc" style="font-size: 14px; opacity: 0.8; margin-bottom: 24px;">Daily Drip represents structured randomness — clean-cut garments built on physical news drops. The catalog embodies a high-end editorial feel that remains organic and highly detailed.</p>
+        
+        <div class="vision-grid">
+          <div class="vision-card">
+            <span class="vision-num">01.1</span>
+            <h3 class="vision-title">Daily Drop Pulse</h3>
+            <p class="vision-body">Our garments reflect active cultural and news-driven topics. The digital experience must feel immediate, responsive, and editorial, as if scanning a daily paper structured for streetwear.</p>
+          </div>
+          <div class="vision-card">
+            <span class="vision-num">01.2</span>
+            <h3 class="vision-title">Organic Geometry</h3>
+            <p class="vision-body">We reconcile organic palettes (sage, clay, charcoal) with sharp geometric layouts. Soft materials are offset by precise hairline grids and tight technical specifications.</p>
+          </div>
+          <div class="vision-card">
+            <span class="vision-num">01.3</span>
+            <h3 class="vision-title">Zero Friction</h3>
+            <p class="vision-body">The user interface is an extension of our thread. Every drag, hover, slide-cart, and micro-interaction must move with the fluid weight of premium heavyweight cotton.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Logo Systems -->
+      <div style="margin-bottom: 80px;">
+        <span class="eyebrow" style="color: var(--color-pine); font-size: 11px;">02 / Typography</span>
+        <h2 class="section-title" style="font-family: var(--font-display); font-size: 24px; font-weight: 600; margin-bottom: 12px;">The Logo Family</h2>
+        <p class="section-desc" style="font-size: 14px; opacity: 0.8; margin-bottom: 24px;">Our logos exist in three primary configurations. To maintain brand consistency, always reference these relative asset locations directly in the codebase.</p>
+        
+        <div class="logo-family-grid">
+          <!-- Logo 1: Main Stacked -->
+          <div class="logo-box">
+            <div class="logo-preview light-preview">
+              <img src="../Core Art/logo-daily.png" alt="Daily Drip Stacked Logo" id="logo-stacked-img">
+            </div>
+            <div class="logo-info">
+              <div>
+                <h4 class="logo-name">Stacked Emblem</h4>
+                <p class="logo-desc">The primary vertical layout. Used for landing packages, model brochures, and centralized brand moments.</p>
+              </div>
+              <div class="logo-path-card">
+                <span>logo-daily.png</span>
+                <button class="copy-path-btn" data-copy-path="../Core Art/logo-daily.png" data-copy-name="Stacked Emblem Path">Copy Path</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logo 2: Horizontal long -->
+          <div class="logo-box">
+            <div class="logo-preview light-preview">
+              <img src="../Core Art/logo-long.png" alt="Daily Drip Horizontal Logo">
+            </div>
+            <div class="logo-info">
+              <div>
+                <h4 class="logo-name">Horizontal Banner</h4>
+                <p class="logo-desc">The header standard. Standardized at 24px height with tight horizontal space for navigation bars.</p>
+              </div>
+              <div class="logo-path-card">
+                <span>logo-long.png</span>
+                <button class="copy-path-btn" data-copy-path="../Core Art/logo-long.png" data-copy-name="Horizontal Banner Path">Copy Path</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logo 3: Drip Icon -->
+          <div class="logo-box">
+            <div class="logo-preview light-preview">
+              <img src="../Core Art/logo-icon.png" alt="Daily Drip Silhouette Icon">
+            </div>
+            <div class="logo-info">
+              <div>
+                <h4 class="logo-name">Silhouette Icon</h4>
+                <p class="logo-desc">Our seal of authenticity. Used for sizing tags, checkout badges, button symbols, and browser favicons.</p>
+              </div>
+              <div class="logo-path-card">
+                <span>logo-icon.png</span>
+                <button class="copy-path-btn" data-copy-path="../Core Art/logo-icon.png" data-copy-name="Silhouette Icon Path">Copy Path</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOs and DONTs -->
+        <div class="do-dont-grid">
+          <div class="do-card">
+            <h3 class="do-title">Logo Placement Rules</h3>
+            <ul class="rule-list">
+              <li><strong>The Contrast Rule:</strong> Strictly hotswap to the white drip logo (`logo-long-white.png`) when placing over dark elements (e.g. background `#0e0e0f` in the Arc'teryx storefront theme).</li>
+              <li><strong>Clear Padding:</strong> Maintain a minimum clear zone of 24px on all sides of the horizontal logo container in navigation headers.</li>
+              <li><strong>Fixed Heights:</strong> Restrict the navigation header logo height to precisely 24px to prevent vertical shift on page scroll.</li>
+            </ul>
+          </div>
+          <div class="dont-card">
+            <h3 class="dont-title">Logo Violations</h3>
+            <ul class="rule-list">
+              <li><strong>No Scaling Stretching:</strong> Never manually set a logo's width without maintaining aspect-ratio, causing stretching.</li>
+              <li><strong>Incorrect Background Contrasts:</strong> Never overlay the black drip logo on dark surfaces or the white drip logo on bright white/cream canvas cards.</li>
+              <li><strong>Raw Text fallbacks:</strong> Avoid raw text fallback elements inside high-fidelity showrooms when the image assets are fully loaded and active.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Contrast Playground -->
+      <div style="margin-bottom: 80px;">
+        <span class="eyebrow" style="color: var(--color-pine); font-size: 11px;">03 / Interactive Sandbox</span>
+        <h2 class="section-title" style="font-family: var(--font-display); font-size: 24px; font-weight: 600; margin-bottom: 12px;">Contrast Playground</h2>
+        <p class="section-desc" style="font-size: 14px; opacity: 0.8; margin-bottom: 24px;">Change the background color of the sandbox below to observe the Drip Contrast Rule. The system hotswaps the logo asset dynamically, keeping readability at a premium.</p>
+        
+        <div class="panel" style="padding: 24px;">
+          <div class="playground-canvas" id="play-canvas" style="background-color: #f8f9f6;">
+            <div class="playground-grid-overlay"></div>
+            <img src="../Core Art/logo-long.png" alt="Playground Logo" class="playground-logo" id="play-logo">
+          </div>
+
+          <div class="playground-controls">
+            <div>
+              <h4 style="font-family: var(--font-display); font-size: 15px; margin-bottom: 4px;">Canvas Background Selector</h4>
+              <p style="font-size: 12px; color: var(--color-text-muted);">Simulate brand backgrounds & watch the drip hotswap</p>
+            </div>
+            
+            <div class="swatch-group">
+              <button class="canvas-swatch active" style="background-color: #f8f9f6;" data-swatch-color="#f8f9f6" data-swatch-mode="light" data-swatch-name="Daily Drip Off-white" title="Daily Drip Light"></button>
+              <button class="canvas-swatch" style="background-color: #ffffff;" data-swatch-color="#ffffff" data-swatch-mode="light" data-swatch-name="Kith Clean White" title="Kith Clean White"></button>
+              <button class="canvas-swatch" style="background-color: #eae6df;" data-swatch-color="#eae6df" data-swatch-mode="light" data-swatch-name="Fear of God Oatmeal" title="Fear of God Oatmeal"></button>
+              <button class="canvas-swatch" style="background-color: #fdfbf7;" data-swatch-color="#fdfbf7" data-swatch-mode="light" data-swatch-name="ALD Queens Cream" title="ALD Vintage Cream"></button>
+              <button class="canvas-swatch" style="background-color: #2d3e33;" data-swatch-color="#2d3e33" data-swatch-mode="dark" data-swatch-name="Daily Drip Sage" title="Daily Drip Sage Green"></button>
+              <button class="canvas-swatch" style="background-color: #1e5234;" data-swatch-color="#1e5234" data-swatch-mode="dark" data-swatch-name="Forest Pine Accent" title="Forest Pine Green"></button>
+              <button class="canvas-swatch" style="background-color: #0e0e0f;" data-swatch-color="#0e0e0f" data-swatch-mode="dark" data-swatch-name="Arc'teryx Void Black" title="Arc'teryx Void Black"></button>
+            </div>
+
+            <div class="playground-status">
+              <span>Active Asset: <strong id="play-active-filename">logo-long.png</strong></span>
+              <span style="margin-top: 4px; display: block;">Contrast State: <strong id="play-contrast-label" style="color: var(--color-pine);">Light Background (Black Drip)</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Typography -->
+      <div style="margin-bottom: 80px;">
+        <span class="eyebrow" style="color: var(--color-pine); font-size: 11px;">04 / Font System</span>
+        <h2 class="section-title" style="font-family: var(--font-display); font-size: 24px; font-weight: 600; margin-bottom: 12px;">The Typography System</h2>
+        <p class="section-desc" style="font-size: 14px; opacity: 0.8; margin-bottom: 24px;">Our type hierarchy is built on three premium fonts, establishing direct editorial balance between street aesthetic and industrial product specifications.</p>
+        
+        <div class="typo-specimen-grid">
+          <!-- Font 1: Outfit -->
+          <div class="typo-specimen-card">
+            <span class="typo-letter" style="font-family: 'Outfit'; font-weight: 600;">Aa</span>
+            <div class="typo-details">
+              <h4 class="typo-family-name">Outfit</h4>
+              <span class="typo-usage">Editorial Displays & Section Titles</span>
+            </div>
+          </div>
+
+          <!-- Font 2: Inter -->
+          <div class="typo-specimen-card">
+            <span class="typo-letter" style="font-family: 'Inter'; font-weight: 400;">Aa</span>
+            <div class="typo-details">
+              <h4 class="typo-family-name">Inter</h4>
+              <span class="typo-usage">Body Text, Product Info & Descriptions</span>
+            </div>
+          </div>
+
+          <!-- Font 3: Space Mono -->
+          <div class="typo-specimen-card">
+            <span class="typo-letter" style="font-family: 'Space Mono'; font-weight: 400;">Aa</span>
+            <div class="typo-details">
+              <h4 class="typo-family-name">Space Mono</h4>
+              <span class="typo-usage">Technical Cards, Swatch Labels, & Metadata</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typography Sandbox -->
+        <div class="specimen-sandbox">
+          <div class="sandbox-preview-box">
+            <div class="sandbox-text" id="sandbox-text-element" contenteditable="true" style="font-family: 'Outfit'; font-size: 32px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.2;">
+              Daily Drip: Clothes dropped daily reflecting real-time news topics. Double-knit structure.
+            </div>
+          </div>
+          
+          <div class="sandbox-controls">
+            <div class="sandbox-slider-group">
+              <label>Font Family <span id="label-val-font" style="display:none;"></span></label>
+              <select class="sandbox-select" id="font-family-selector">
+                <option value="Outfit">Outfit (Display)</option>
+                <option value="Inter">Inter (Body)</option>
+                <option value="Space Mono">Space Mono (Technical)</option>
+              </select>
+            </div>
+
+            <div class="sandbox-slider-group">
+              <label>Size <span id="label-val-size">32px</span></label>
+              <input type="range" class="sandbox-slider" id="slider-size" min="14" max="72" value="32">
+            </div>
+
+            <div class="sandbox-slider-group">
+              <label>Line Height <span id="label-val-lh">1.2</span></label>
+              <input type="range" class="sandbox-slider" id="slider-lh" min="1.0" max="2.0" step="0.1" value="1.2">
+            </div>
+
+            <div class="sandbox-slider-group">
+              <label>Letter Spacing <span id="label-val-ls">-0.01em</span></label>
+              <input type="range" class="sandbox-slider" id="slider-ls" min="-0.05" max="0.3" step="0.01" value="-0.01">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Color Palette -->
+      <div style="margin-bottom: 80px;">
+        <span class="eyebrow" style="color: var(--color-pine); font-size: 11px;">05 / Color System</span>
+        <h2 class="section-title" style="font-family: var(--font-display); font-size: 24px; font-weight: 600; margin-bottom: 12px;">Color Palette Canvas</h2>
+        <p class="section-desc" style="font-size: 14px; opacity: 0.8; margin-bottom: 24px;">Our palette represents sophisticated earthen streetwear. Click the copy icon in any card block to copy that color value directly in HSL, HEX, or RGB to your clipboard.</p>
+        
+        <div class="color-swatch-grid">
+          <!-- Swatch 1: Sage Green -->
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: #2d3e33;"></div>
+            <div class="color-info-wrap">
+              <div class="color-name-row">
+                <span class="color-label">Primary Sage</span>
+                <span class="color-role">Dominant Theme Color</span>
+              </div>
+              
+              <div class="color-value-tile">
+                <span>HEX: <strong class="color-val">#2D3E33</strong></span>
+                <button class="copy-color-btn" data-copy-color="#2D3E33" data-copy-name="Primary Sage HEX" title="Copy HEX">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+              <div class="color-value-tile">
+                <span>HSL: <strong class="color-val">hsl(145, 16%, 21%)</strong></span>
+                <button class="copy-color-btn" data-copy-color="hsl(145, 16%, 21%)" data-copy-name="Primary Sage HSL" title="Copy HSL">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Swatch 2: Pine Accent -->
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: #1e5234;"></div>
+            <div class="color-info-wrap">
+              <div class="color-name-row">
+                <span class="color-label">Pine Accent</span>
+                <span class="color-role">Interactive Focus</span>
+              </div>
+              
+              <div class="color-value-tile">
+                <span>HEX: <strong class="color-val">#1E5234</strong></span>
+                <button class="copy-color-btn" data-copy-color="#1E5234" data-copy-name="Pine Accent HEX" title="Copy HEX">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+              <div class="color-value-tile">
+                <span>HSL: <strong class="color-val">hsl(146, 46%, 22%)</strong></span>
+                <button class="copy-color-btn" data-copy-color="hsl(146, 46%, 22%)" data-copy-name="Pine Accent HSL" title="Copy HSL">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Swatch 3: Canvas Off-white -->
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: #f8f9f6; border-bottom: 1px solid var(--color-border);"></div>
+            <div class="color-info-wrap">
+              <div class="color-name-row">
+                <span class="color-label">Canvas Light</span>
+                <span class="color-role">Main Backdrop</span>
+              </div>
+              
+              <div class="color-value-tile">
+                <span>HEX: <strong class="color-val">#F8F9F6</strong></span>
+                <button class="copy-color-btn" data-copy-color="#F8F9F6" data-copy-name="Canvas Light HEX" title="Copy HEX">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+              <div class="color-value-tile">
+                <span>HSL: <strong class="color-val">hsl(80, 8%, 97%)</strong></span>
+                <button class="copy-color-btn" data-copy-color="hsl(80, 8%, 97%)" data-copy-name="Canvas Light HSL" title="Copy HSL">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Swatch 4: Pure White -->
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: #ffffff; border-bottom: 1px solid var(--color-border);"></div>
+            <div class="color-info-wrap">
+              <div class="color-name-row">
+                <span class="color-label">Surface White</span>
+                <span class="color-role">Card Surfaces</span>
+              </div>
+              
+              <div class="color-value-tile">
+                <span>HEX: <strong class="color-val">#FFFFFF</strong></span>
+                <button class="copy-color-btn" data-copy-color="#FFFFFF" data-copy-name="Surface White HEX" title="Copy HEX">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+              <div class="color-value-tile">
+                <span>HSL: <strong class="color-val">hsl(0, 0%, 100%)</strong></span>
+                <button class="copy-color-btn" data-copy-color="hsl(0, 0%, 100%)" data-copy-name="Surface White HSL" title="Copy HSL">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Swatch 5: Charcoal Ink -->
+          <div class="color-card">
+            <div class="color-swatch" style="background-color: #171a18;"></div>
+            <div class="color-info-wrap">
+              <div class="color-name-row">
+                <span class="color-label">Charcoal Ink</span>
+                <span class="color-role">Typography & Ink</span>
+              </div>
+              
+              <div class="color-value-tile">
+                <span>HEX: <strong class="color-val">#171A18</strong></span>
+                <button class="copy-color-btn" data-copy-color="#171A18" data-copy-name="Charcoal Ink HEX" title="Copy HEX">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+              <div class="color-value-tile">
+                <span>HSL: <strong class="color-val">hsl(150, 8%, 10%)</strong></span>
+                <button class="copy-color-btn" data-copy-color="hsl(150, 8%, 10%)" data-copy-name="Charcoal Ink HSL" title="Copy HSL">
+                  <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Design Principles / Grid Specifications -->
+      <div>
+        <span class="eyebrow" style="color: var(--color-pine); font-size: 11px;">06 / Layout Mathematics</span>
+        <h2 class="section-title" style="font-family: var(--font-display); font-size: 24px; font-weight: 600; margin-bottom: 12px;">Design Principles & Grids</h2>
+        <p class="section-desc" style="font-size: 14px; opacity: 0.8; margin-bottom: 24px;">The Daily Drip design system relies on strict structural constraints rather than decorative decoration. We operate by 4 critical standards based on the E-Commerce Playbook.</p>
+        
+        <div class="principles-grid">
+          <!-- Principle 1 -->
+          <div class="principle-item">
+            <div class="principle-num">01</div>
+            <div class="principle-text-wrap">
+              <h4 class="principle-title">The 3:4 Portrait Scale</h4>
+              <p class="principle-body">All showroom product images are captured and displayed at a strict 3:4 portrait ratio (e.g. width 600px, height 800px). This maintains massive vertical editorial elegance and matches print model catalogs.</p>
+            </div>
+          </div>
+
+          <!-- Principle 2 -->
+          <div class="principle-item">
+            <div class="principle-num">02</div>
+            <div class="principle-text-wrap">
+              <h4 class="principle-title">45% Whitespace Standard</h4>
+              <p class="principle-body">Layout breathing room must make up at least 45% of the total viewport height in desktop views. Keep margins and section gaps massive (e.g. `margin-bottom: 120px;`) to convey extreme luxury branding.</p>
+            </div>
+          </div>
+
+          <!-- Principle 3 -->
+          <div class="principle-item">
+            <div class="principle-num">03</div>
+            <div class="principle-text-wrap">
+              <h4 class="principle-title">Hairline Border Borders</h4>
+              <p class="principle-body">Never use heavy black borders or strong solid rules. Separate sections and elements using 1px hairline rules structured in low opacity ink charcoal: `rgba(45, 62, 51, 0.08)`. This creates invisible structures.</p>
+            </div>
+          </div>
+
+          <!-- Principle 4 -->
+          <div class="principle-item">
+            <div class="principle-num">04</div>
+            <div class="principle-text-wrap">
+              <h4 class="principle-title">Dynamic Cross-Fade Reveals</h4>
+              <p class="principle-body">Product cards must utilize dual-image reveals. The model image sits in front, but hovering seamlessly cross-fades into the flat graphic image of the product to provide quick context on silhouette dimensions.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2843,8 +3876,150 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
   </div>
 
   <script>
+    // --- PREMIUM ON-SCREEN DIAGNOSTIC UTILITIES ---
+    const debugLogs = [];
+    
+    function logDebug(msg) {
+      console.log("[Daily Drip Debug] " + msg);
+      debugLogs.push(msg);
+      
+      const logList = document.getElementById('debug-log-list');
+      if (logList) {
+        const item = document.createElement('div');
+        item.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+        item.style.paddingBottom = '2px';
+        item.style.color = '#a3c2ae';
+        item.innerText = `> ${msg}`;
+        logList.appendChild(item);
+        
+        const container = document.getElementById('debug-console-container');
+        if (container) container.scrollTop = container.scrollHeight;
+      }
+      
+      const indicator = document.getElementById('debug-indicator');
+      if (indicator) {
+        indicator.title = `Logs:\n` + debugLogs.join("\n");
+      }
+    }
+
+    // Capture global syntax or runtime errors
+    window.onerror = function (message, source, lineno, colno, error) {
+      const errorMsg = `JS Error: ${message} at L${lineno}:${colno}`;
+      console.error(errorMsg, error);
+      logDebug(`CRITICAL: ${errorMsg}`);
+      
+      const indicator = document.getElementById('debug-indicator');
+      if (indicator) {
+        indicator.style.backgroundColor = '#e05d5d';
+        indicator.style.boxShadow = '0 0 10px #e05d5d';
+      }
+
+      // Display banner
+      let banner = document.getElementById('debug-error-banner');
+      if (!banner) {
+        banner = document.createElement('div');
+        banner.id = 'debug-error-banner';
+        banner.style.position = 'fixed';
+        banner.style.top = '0';
+        banner.style.left = '0';
+        banner.style.width = '100%';
+        banner.style.background = 'rgba(224, 93, 93, 0.95)';
+        banner.style.color = '#fff';
+        banner.style.padding = '12px 24px';
+        banner.style.fontFamily = 'monospace';
+        banner.style.fontSize = '12px';
+        banner.style.zIndex = '1000000';
+        banner.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+        banner.style.backdropFilter = 'blur(10px)';
+        banner.style.display = 'flex';
+        banner.style.justifyContent = 'space-between';
+        banner.style.alignItems = 'center';
+        
+        const textSpan = document.createElement('span');
+        textSpan.id = 'debug-error-text';
+        
+        const closeBtn = document.createElement('button');
+        closeBtn.innerText = '✕';
+        closeBtn.style.background = 'none';
+        closeBtn.style.border = 'none';
+        closeBtn.style.color = '#fff';
+        closeBtn.style.cursor = 'pointer';
+        closeBtn.style.fontWeight = 'bold';
+        closeBtn.style.fontSize = '14px';
+        closeBtn.onclick = () => banner.remove();
+        
+        banner.appendChild(textSpan);
+        banner.appendChild(closeBtn);
+        document.body.appendChild(banner);
+      }
+      document.getElementById('debug-error-text').innerText = errorMsg;
+      return false;
+    };
+
+    window.onunhandledrejection = function(event) {
+      window.onerror(`Promise Rejection: ${event.reason}`, 'async', 0, 0, event.reason);
+    };
+
+    // Create translucent floating logger drawer
+    function createDebugOverlay() {
+      if (document.getElementById('debug-console-container')) return;
+      
+      const container = document.createElement('div');
+      container.id = 'debug-console-container';
+      container.style.position = 'fixed';
+      container.style.bottom = '80px';
+      container.style.left = '20px';
+      container.style.width = '280px';
+      container.style.background = 'rgba(23, 26, 24, 0.95)';
+      container.style.color = '#fff';
+      container.style.padding = '14px';
+      container.style.borderRadius = '8px';
+      container.style.fontFamily = 'monospace';
+      container.style.fontSize = '10px';
+      container.style.zIndex = '999999';
+      container.style.boxShadow = '0 10px 30px rgba(0,0,0,0.4)';
+      container.style.backdropFilter = 'blur(15px)';
+      container.style.display = 'none';
+      container.style.flexDirection = 'column';
+      container.style.gap = '8px';
+      container.style.maxHeight = '250px';
+      container.style.overflowY = 'auto';
+      container.style.border = '1px solid rgba(255,255,255,0.1)';
+
+      const title = document.createElement('div');
+      title.style.fontWeight = 'bold';
+      title.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+      title.style.paddingBottom = '4px';
+      title.style.color = '#a3c2ae';
+      title.innerText = 'DAILY DRIP ENGINE LOGS';
+
+      const logList = document.createElement('div');
+      logList.id = 'debug-log-list';
+      logList.style.display = 'flex';
+      logList.style.flexDirection = 'column';
+      logList.style.gap = '4px';
+
+      container.appendChild(title);
+      container.appendChild(logList);
+      document.body.appendChild(container);
+      
+      // Hook up visual toggle to the indicator dot
+      const indicator = document.getElementById('debug-indicator');
+      if (indicator) {
+        indicator.style.backgroundColor = '#5de07a';
+        indicator.style.boxShadow = '0 0 10px #5de07a';
+        indicator.title = "Click to toggle debug logs console overlay";
+        indicator.addEventListener('click', () => {
+          container.style.display = container.style.display === 'none' ? 'flex' : 'none';
+        });
+      }
+    }
+
+    logDebug("JavaScript parsed successfully.");
+
     // Tab switching system
     function switchTab(tabId) {
+      logDebug(`switchTab called with tabId: "${tabId}"`);
       // Deactivate all nav items
       document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
@@ -2858,8 +4033,19 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
       // Activate target
       const navItem = document.getElementById('nav-' + tabId);
       const viewItem = document.getElementById('view-' + tabId);
-      if (navItem) navItem.classList.add('active');
-      if (viewItem) viewItem.classList.add('active');
+      if (navItem) {
+        navItem.classList.add('active');
+        logDebug(`Activated navigation element: #nav-${tabId}`);
+      } else {
+        logDebug(`WARNING: Navigation element #nav-${tabId} not found`);
+      }
+      
+      if (viewItem) {
+        viewItem.classList.add('active');
+        logDebug(`Activated view section: #view-${tabId}`);
+      } else {
+        logDebug(`WARNING: View section #view-${tabId} not found`);
+      }
       
       // Scroll to top
       window.scrollTo(0, 0);
@@ -2867,6 +4053,7 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
 
     // Playbook Subtab switching system
     function switchPlaybookSub(subId) {
+      logDebug(`switchPlaybookSub called: "${subId}"`);
       document.querySelectorAll('.playbook-tab-btn').forEach(btn => {
         btn.classList.remove('active');
       });
@@ -2882,6 +4069,7 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
 
     // Lookbook switching system
     function switchLookbookPane(paneNum) {
+      logDebug(`switchLookbookPane called: "${paneNum}"`);
       document.querySelectorAll('.lookbook-opt-btn').forEach(btn => {
         btn.classList.remove('active');
       });
@@ -2897,6 +4085,7 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
 
     // REDESIGNED: Prompt Square switching system (5 Squares Grid)
     function switchPromptSquare(num) {
+      logDebug(`switchPromptSquare called: "${num}"`);
       document.querySelectorAll('.prompt-square-card').forEach(card => {
         card.classList.remove('active');
       });
@@ -2912,6 +4101,7 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
 
     // Toggle spec accordion rows under PDP guidelines
     function toggleAccVisual(id) {
+      logDebug(`toggleAccVisual called: "${id}"`);
       const panel = document.getElementById('acc-body-visual-' + id);
       if (panel) {
         if (panel.style.display === 'none') {
@@ -2981,18 +4171,147 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
       }
     }
 
+    // --- INTERACTIVE BRAND PLAYGROUND LOGIC ---
+    function setPlaygroundColor(bgColor, contrastMode, swatchName) {
+      logDebug(`setPlaygroundColor: bgColor="${bgColor}", contrastMode="${contrastMode}", swatchName="${swatchName}"`);
+      const canvas = document.getElementById('play-canvas');
+      const logo = document.getElementById('play-logo');
+      const filenameEl = document.getElementById('play-active-filename');
+      const labelEl = document.getElementById('play-contrast-label');
+
+      if (!canvas || !logo || !filenameEl || !labelEl) {
+        logDebug("ERROR: Playground contrast canvas elements not found!");
+        return;
+      }
+
+      // 1. Update background color
+      canvas.style.backgroundColor = bgColor;
+
+      // 2. Toggle active swatch button highlight
+      document.querySelectorAll('.canvas-swatch').forEach(swatch => {
+        swatch.classList.remove('active');
+        const swatchColor = swatch.getAttribute('data-swatch-color');
+        if (swatchColor && swatchColor.toLowerCase() === bgColor.toLowerCase()) {
+          swatch.classList.add('active');
+        }
+      });
+
+      // 3. Execute strict dynamic contrast laws (hotswap asset files)
+      if (contrastMode === 'dark') {
+        logo.src = "../Core Art/logo-long-white.png";
+        filenameEl.innerText = "logo-long-white.png";
+        labelEl.innerText = `${swatchName} (White Drip Active)`;
+        labelEl.style.color = "hsl(146, 46%, 60%)";
+      } else {
+        logo.src = "../Core Art/logo-long.png";
+        filenameEl.innerText = "logo-long.png";
+        labelEl.innerText = `${swatchName} (Black Drip Active)`;
+        labelEl.style.color = "hsl(146, 46%, 22%)";
+      }
+    }
+
+    function updateSandboxFont() {
+      const selector = document.getElementById('font-family-selector');
+      const text = document.getElementById('sandbox-text-element');
+      const label = document.getElementById('label-val-font');
+      
+      if (!selector || !text || !label) {
+        logDebug("ERROR: Typography sandbox elements not found!");
+        return;
+      }
+      
+      const chosen = selector.value;
+      text.style.fontFamily = `'${chosen}'`;
+      label.innerText = chosen;
+
+      // Adjust letter spacing defaults to look beautiful based on typeface weights
+      const sliderLs = document.getElementById('slider-ls');
+      const labelLs = document.getElementById('label-val-ls');
+      if (sliderLs && labelLs) {
+        if (chosen === 'Outfit') {
+          sliderLs.value = -0.01;
+        } else if (chosen === 'Inter') {
+          sliderLs.value = 0.0;
+        } else if (chosen === 'Space Mono') {
+          sliderLs.value = 0.05;
+        }
+        labelLs.innerText = sliderLs.value + "em";
+        text.style.letterSpacing = sliderLs.value + "em";
+      }
+      logDebug(`Typography sandbox font changed to: ${chosen}`);
+    }
+
+    function updateSandboxStyle() {
+      const text = document.getElementById('sandbox-text-element');
+      const sliderSize = document.getElementById('slider-size');
+      const sliderLh = document.getElementById('slider-lh');
+      const sliderLs = document.getElementById('slider-ls');
+
+      if (!text || !sliderSize || !sliderLh || !sliderLs) {
+        logDebug("ERROR: Typography sandbox style controls not found!");
+        return;
+      }
+
+      const size = sliderSize.value;
+      const lh = sliderLh.value;
+      const ls = sliderLs.value;
+
+      const labelSize = document.getElementById('label-val-size');
+      const labelLh = document.getElementById('label-val-lh');
+      const labelLs = document.getElementById('label-val-ls');
+
+      if (labelSize) labelSize.innerText = size + "px";
+      if (labelLh) labelLh.innerText = lh;
+      if (labelLs) labelLs.innerText = ls + "em";
+
+      text.style.fontSize = size + "px";
+      text.style.lineHeight = lh;
+      text.style.letterSpacing = ls + "em";
+    }
+
     // Setup bulletproof programmatic event bindings
     function initStarterPackEngine() {
-      // 1. Sidebar tab switching
-      document.querySelectorAll('.nav-item button[data-tab]').forEach(btn => {
+      createDebugOverlay();
+      logDebug("initStarterPackEngine started execution.");
+      
+      // Global click tracker for inspection
+      document.addEventListener('click', (e) => {
+        const tag = e.target.tagName;
+        const id = e.target.id ? `#${e.target.id}` : '';
+        const cls = e.target.className ? `.${e.target.className.split(' ').join('.')}` : '';
+        logDebug(`Click detected on: ${tag}${id}${cls}`);
+      }, true);
+
+      // 0. Dashboard Quick Links to Tabs
+      const dashboardTabBtns = document.querySelectorAll('a[data-dashboard-tab]');
+      logDebug(`Found ${dashboardTabBtns.length} dashboard tab switch links.`);
+      dashboardTabBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
+          const targetTab = btn.getAttribute('data-dashboard-tab');
+          logDebug(`Dashboard link clicked. Switching inline to tab: "${targetTab}"`);
+          switchTab(targetTab);
+        });
+      });
+
+      // 1. Sidebar tab switching
+      const sidebarBtns = document.querySelectorAll('.nav-item button[data-tab]');
+      logDebug(`Found ${sidebarBtns.length} tab buttons.`);
+      sidebarBtns.forEach((btn, idx) => {
+        logDebug(`Binding tab button #${idx}: data-tab="${btn.getAttribute('data-tab')}"`);
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          logDebug(`Sidebar click event fired for tab: "${btn.getAttribute('data-tab')}"`);
           switchTab(btn.getAttribute('data-tab'));
         });
       });
-      document.querySelectorAll('.nav-item button[data-external]').forEach(btn => {
+      
+      const extBtns = document.querySelectorAll('.nav-item button[data-external]');
+      logDebug(`Found ${extBtns.length} external buttons.`);
+      extBtns.forEach((btn, idx) => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
+          logDebug(`External click event fired: "${btn.getAttribute('data-external')}"`);
           window.open(btn.getAttribute('data-external'), '_blank');
         });
       });
@@ -3052,6 +4371,58 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
           copyPromptText(btn.getAttribute('data-copy-prompt'));
         });
       });
+
+      // 9. Brand Playground Contrast Selector Swatches
+      const canvasSwatches = document.querySelectorAll('.canvas-swatch[data-swatch-color]');
+      logDebug(`Found ${canvasSwatches.length} canvas swatches.`);
+      canvasSwatches.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const color = btn.getAttribute('data-swatch-color');
+          const mode = btn.getAttribute('data-swatch-mode');
+          const name = btn.getAttribute('data-swatch-name');
+          setPlaygroundColor(color, mode, name);
+        });
+      });
+
+      // 10. Brand Playground Typography Controls
+      const fontSelector = document.getElementById('font-family-selector');
+      if (fontSelector) {
+        fontSelector.addEventListener('change', updateSandboxFont);
+      }
+
+      ['slider-size', 'slider-lh', 'slider-ls'].forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+          input.addEventListener('input', updateSandboxStyle);
+        }
+      });
+
+      // 11. Brand Playground Asset Paths Clipboard Copy
+      const copyPathBtns = document.querySelectorAll('.copy-path-btn[data-copy-path]');
+      logDebug(`Found ${copyPathBtns.length} copy-path buttons.`);
+      copyPathBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const path = btn.getAttribute('data-copy-path');
+          const name = btn.getAttribute('data-copy-name') || 'Asset path';
+          copyTextToClipboard(path, `Copied ${name} path to clipboard!`);
+        });
+      });
+
+      // 12. Brand Playground Color Swatch Palette Clipboard Copy
+      const copyColorBtns = document.querySelectorAll('.copy-color-btn[data-copy-color]');
+      logDebug(`Found ${copyColorBtns.length} copy-color buttons.`);
+      copyColorBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const color = btn.getAttribute('data-copy-color');
+          const name = btn.getAttribute('data-copy-name') || 'Color code';
+          copyTextToClipboard(color, `Copied ${name} to clipboard!`);
+        });
+      });
+      
+      logDebug("initStarterPackEngine binding completed successfully.");
     }
 
     if (document.readyState === 'loading') {

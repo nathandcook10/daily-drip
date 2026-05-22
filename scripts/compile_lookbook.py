@@ -12,24 +12,67 @@ from reportlab.pdfgen import canvas
 base_dir = "/Users/nathan/Daily Drip"
 models_dir = os.path.join(base_dir, "public/assets/models")
 output_path = os.path.join(base_dir, "Daily_Drip_Model_Lookbook.pdf")
-artifact_output_path = "/Users/nathan/.gemini/antigravity/brain/fed3221b-8e39-400a-9b28-1b2766abfa80/Daily_Drip_Model_Lookbook.pdf"
+artifact_output_path = "/Users/nathan/.gemini/antigravity/brain/affe4f09-1adf-4c4a-8e08-54786009d8b9/Daily_Drip_Model_Lookbook.pdf"
 
-# Grid images details
-# 6 images per option: 
-# 1: Close-up (ROBOT)
-# 2: Full Body (MONKEY)
-# 3: Medium Cafe/Loft (PEACE)
-# 4: Back view (ROBOT)
-# 5: Layered Outfit (MONKEY)
-# 6: Relaxed Lounge (PEACE)
-image_labels = [
-    "01. Front Close-up (Outperformed Tee)",
-    "02. Full Body Styled Fit (Punch the Monkey)",
-    "03. Lifestyle Context (Peace Sign Tee)",
-    "04. Street Back-view (Outperformed Tee)",
-    "05. Layered Tailored Look (Punch the Monkey)",
-    "06. Relaxed Lounge Shot (Peace Sign Tee)"
-]
+# Dynamic mapping of lookbook grid images and labels for each option
+lookbook_grid_config = {
+    "option1": {
+        "images": ["curator_1.png", "curator_2.png", "curator_3.png", "curator_4.png", "curator_5.png", "curator_6.png"],
+        "labels": [
+            "01. Front Close-up (Outperformed Tee)",
+            "02. Full Body Styled Fit (Punch the Monkey)",
+            "03. Lifestyle Context (Peace Sign Tee)",
+            "04. Street Back-view (Outperformed Tee)",
+            "05. Layered Tailored Look (Punch the Monkey)",
+            "06. Relaxed Lounge Shot (Peace Sign Tee)"
+        ]
+    },
+    "option2": {
+        "images": ["modernist_1.png", "modernist_7_sage.png", "modernist_9_neural.png", "modernist_4.png", "modernist_8_sage_layer.png", "modernist_10_neural_layer.png"],
+        "labels": [
+            "01. Front Close-up (Outperformed Tee)",
+            "02. Full Body Styled Fit (Sage Archives)",
+            "03. Lifestyle Context (Neural Echoes)",
+            "04. Street Back-view (Outperformed Tee)",
+            "05. Layered Tailored Look (Sage Archives)",
+            "06. Relaxed Lounge Shot (Neural Echoes)"
+        ]
+    },
+    "option3": {
+        "images": ["rebel_1.png", "rebel_2.png", "rebel_3.png", "rebel_4.png", "rebel_5.png", "rebel_6.png"],
+        "labels": [
+            "01. Front Close-up (Outperformed Tee)",
+            "02. Full Body Styled Fit (Punch the Monkey)",
+            "03. Lifestyle Context (Peace Sign Tee)",
+            "04. Street Back-view (Outperformed Tee)",
+            "05. Layered Tailored Look (Punch the Monkey)",
+            "06. Relaxed Lounge Shot (Peace Sign Tee)"
+        ]
+    },
+    "option4": {
+        "images": ["cyber_1.png", "cyber_7_binary.png", "cyber_3.png", "cyber_4.png", "cyber_8_binary_back.png", "cyber_6.png"],
+        "labels": [
+            "01. Front Close-up (Outperformed Tee)",
+            "02. Full Body Styled Fit (Binary Genesis)",
+            "03. Lifestyle Context (Peace Sign Tee)",
+            "04. Street Back-view (Outperformed Tee)",
+            "05. Layered Tailored Look (Binary Genesis)",
+            "06. Relaxed Lounge Shot (Peace Sign Tee)"
+        ]
+    },
+    "option5": {
+        "images": ["retro_1.png", "retro_9_pixel.png", "retro_7_vapor.png", "retro_4.png", "retro_10_pixel_layer.png", "retro_8_vapor_layer.png"],
+        "labels": [
+            "01. Front Close-up (Outperformed Tee)",
+            "02. Full Body Styled Fit (Pixelated Soul)",
+            "03. Lifestyle Context (Vaporwave Paradox)",
+            "04. Street Back-view (Outperformed Tee)",
+            "05. Layered Tailored Look (Pixelated Soul)",
+            "06. Relaxed Lounge Shot (Vaporwave Paradox)"
+        ]
+    }
+}
+
 
 # Custom NumberedCanvas for header/footer decoration
 class LookbookCanvas(canvas.Canvas):
@@ -308,8 +351,9 @@ def create_lookbook():
         
         # Compile a 2x3 table containing the 6 images and their captions
         image_cells = []
-        for img_num in range(1, 7):
-            img_filename = f"{opt['img_prefix']}_{img_num}.png"
+        opt_config = lookbook_grid_config[opt["folder"]]
+        for idx in range(6):
+            img_filename = opt_config["images"][idx]
             img_path = os.path.join(models_dir, opt["folder"], img_filename)
             
             # Check if file exists, else use placeholder text
@@ -319,7 +363,7 @@ def create_lookbook():
                 print(f"WARNING: Image not found at {img_path}!")
                 img_obj = Paragraph("Image Missing", body_style)
                 
-            label = Paragraph(image_labels[img_num-1], caption_style)
+            label = Paragraph(opt_config["labels"][idx], caption_style)
             
             # Pack image and label together in a neat block
             cell_content = [img_obj, Spacer(1, 4), label, Spacer(1, 8)]

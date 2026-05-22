@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Drip — Interactive Brand Guidelines & Design System</title>
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS Variables Design System */
+    :root {
+      /* Palette Tokens (HSL) */
+      --color-sage-raw: 145, 16%, 21%;
+      --color-pine-raw: 146, 46%, 22%;
+      --color-offwhite-raw: 80, 8%, 97%;
+      --color-charcoal-raw: 150, 8%, 10%;
+      --color-purewhite-raw: 0, 0%, 100%;
+      --color-clay-raw: 38, 12%, 90%;
+      
+      --color-primary: hsl(var(--color-sage-raw));
+      --color-accent: hsl(var(--color-pine-raw));
+      --color-bg-base: hsl(var(--color-offwhite-raw));
+      --color-bg-surface: hsl(var(--color-purewhite-raw));
+      --color-text-main: hsl(var(--color-charcoal-raw));
+      --color-text-muted: hsla(var(--color-charcoal-raw), 0.6);
+      --color-border: hsla(var(--color-charcoal-raw), 0.08);
+      --color-accent-light: hsla(var(--color-pine-raw), 0.1);
+      
+      /* Typography */
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      
+      /* Layout & Spacing */
+      --sidebar-width: 280px;
+      --header-height: 80px;
+      --border-radius-sm: 4px;
+      --border-radius-md: 8px;
+      --border-radius-lg: 16px;
+      
+      /* Transitions */
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --transition-fast: all 0.15s ease;
+    }
+
+    /* Selection Styles */
+    ::selection {
+      background-color: var(--color-accent-light);
+      color: var(--color-accent);
+    }
+
+    /* Reset & Base Rules */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg-base);
+      color: var(--color-text-main);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Custom Premium Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: hsla(var(--color-sage-raw), 0.2);
+      border-radius: var(--border-radius-sm);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-accent);
+    }
+
+    /* Sidebar Navigation (Glassmorphism & Hairline Borders) */
+    .sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background: hsla(var(--color-purewhite-raw), 0.8);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-right: 1px solid var(--color-border);
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    .brand-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      align-self: flex-start;
+      transition: var(--transition-smooth);
+    }
+
+    .brand-logo-img:hover {
+      opacity: 0.8;
+      transform: translateY(-1px);
+    }
+
+    .brand-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 40px;
+      flex-grow: 1;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 14px;
+      border-radius: var(--border-radius-md);
+      transition: var(--transition-fast);
+      border: 1px solid transparent;
+    }
+
+    .nav-item a:hover {
+      background: hsla(var(--color-sage-raw), 0.04);
+      color: var(--color-text-main);
+    }
+
+    .nav-item.active a {
+      background: var(--color-primary);
+      color: var(--color-bg-surface);
+      box-shadow: 0 4px 12px hsla(var(--color-sage-raw), 0.15);
+    }
+
+    .sidebar-footer {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      border-top: 1px solid var(--color-border);
+      padding-top: 20px;
+    }
+
+    .sidebar-footer a {
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sidebar-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Content Area */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      flex-grow: 1;
+      padding: 80px 100px;
+      max-width: 1280px;
+    }
+
+    section {
+      margin-bottom: 120px;
+      scroll-margin-top: 80px;
+    }
+
+    /* Typography Utilities */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    h1.display-title {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--color-text-main);
+      margin-bottom: 24px;
+    }
+
+    .lead-text {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--color-text-muted);
+      max-width: 800px;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--color-text-main);
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--color-text-muted);
+      max-width: 760px;
+      margin-bottom: 40px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 60px 0;
+    }
+
+    /* Card Panels & Layouts */
+    .panel {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+      margin-bottom: 30px;
+    }
+
+    .panel-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* 1. Brand Vision Grid */
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .vision-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 30px;
+      transition: var(--transition-smooth);
+    }
+
+    .vision-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+      border-color: hsla(var(--color-pine-raw), 0.2);
+    }
+
+    .vision-num {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--color-accent);
+      margin-bottom: 16px;
+      display: block;
+      font-weight: bold;
+    }
+
+    .vision-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .vision-body {
+      font-size: 14px;
+      color: var(--color-text-muted);
+    }
+
+    /* 2. Logo Family Grid */
+    .logo-family-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .logo-box {
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--color-bg-base);
+    }
+
+    .logo-preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      transition: var(--transition-fast);
+      position: relative;
+    }
+
+    .logo-preview.dark-preview {
+      background: var(--color-text-main);
+    }
+
+    .logo-preview.light-preview {
+      background: var(--color-bg-surface);
+    }
+
+    .logo-preview img {
+      max-height: 80px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .logo-preview.dark-preview img {
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .logo-info {
+      padding: 20px;
+      background: var(--color-bg-surface);
+      border-top: 1px solid var(--color-border);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .logo-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .logo-desc {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+    }
+
+    .logo-path-card {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--color-bg-base);
+      padding: 8px 12px;
+      border-radius: var(--border-radius-sm);
+      border: 1px dashed var(--color-border);
+      color: var(--color-text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .copy-path-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--color-accent);
+      font-weight: bold;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition-fast);
+    }
+
+    .copy-path-btn:hover {
+      background: var(--color-accent-light);
+    }
+
+    /* DOs & DONTs Grid */
+    .do-dont-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .do-card, .dont-card {
+      padding: 30px;
+      border-radius: var(--border-radius-lg);
+      border: 1px solid;
+    }
+
+    .do-card {
+      background: hsl(120, 20%, 98%);
+      border-color: hsl(120, 40%, 80%);
+    }
+
+    .dont-card {
+      background: hsl(0, 20%, 98%);
+      border-color: hsl(0, 40%, 80%);
+    }
+
+    .do-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: hsl(120, 50%, 20%);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dont-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: hsl(0, 50%, 20%);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rule-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .rule-list li {
+      font-size: 14px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .do-card .rule-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: hsl(120, 50%, 35%);
+      font-weight: bold;
+    }
+
+    .dont-card .rule-list li::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: hsl(0, 50%, 35%);
+      font-weight: bold;
+    }
+
+    /* 3. Interactive Logo contrast playground */
+    .playground-canvas {
+      height: 320px;
+      border-radius: var(--border-radius-lg);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .playground-logo {
+      height: 48px;
+      width: auto;
+      max-width: 80%;
+      object-fit: contain;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+
+    .playground-logo:hover {
+      transform: scale(1.03);
+    }
+
+    .playground-grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: linear-gradient(var(--color-border) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.15;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .playground-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: var(--color-bg-base);
+      padding: 20px 30px;
+      border-radius: var(--border-radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .swatch-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .canvas-swatch {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--color-bg-surface);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: var(--transition-fast);
+    }
+
+    .canvas-swatch:hover {
+      transform: scale(1.15);
+    }
+
+    .canvas-swatch.active {
+      transform: scale(1.15);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px var(--color-accent-light);
+    }
+
+    .playground-status {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-text-muted);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .playground-status span strong {
+      color: var(--color-text-main);
+    }
+
+    /* 4. Typography Showcase */
+    .typo-specimen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .typo-specimen-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 280px;
+    }
+
+    .typo-letter {
+      font-size: 72px;
+      line-height: 1;
+      font-weight: 500;
+      color: var(--color-text-main);
+      margin-bottom: 20px;
+    }
+
+    .typo-details {
+      border-top: 1px solid var(--color-border);
+      padding-top: 16px;
+    }
+
+    .typo-family-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .typo-usage {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Interactive Specimen Box */
+    .specimen-sandbox {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+    }
+
+    .sandbox-preview-box {
+      padding: 60px 40px;
+      border-bottom: 1px solid var(--color-border);
+      min-height: 240px;
+      display: flex;
+      align-items: center;
+      background: var(--color-bg-surface);
+      position: relative;
+    }
+
+    .sandbox-text {
+      width: 100%;
+      color: var(--color-text-main);
+      outline: none;
+      border: 1px dashed transparent;
+      padding: 10px;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition-fast);
+    }
+
+    .sandbox-text:focus {
+      border-color: var(--color-accent);
+      background: var(--color-bg-base);
+    }
+
+    .sandbox-controls {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 24px 30px;
+      background: var(--color-bg-base);
+    }
+
+    .sandbox-slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sandbox-slider-group label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .sandbox-slider-group label span {
+      color: var(--color-text-main);
+      font-weight: bold;
+    }
+
+    .sandbox-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: var(--color-border);
+      outline: none;
+    }
+
+    .sandbox-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .sandbox-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .sandbox-select {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      padding: 8px 12px;
+      border-radius: var(--border-radius-sm);
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--color-text-main);
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* 5. Color swatches */
+    .color-swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    .color-card {
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .color-swatch {
+      height: 140px;
+      width: 100%;
+      position: relative;
+    }
+
+    .color-info-wrap {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .color-name-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+
+    .color-label {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--color-text-main);
+    }
+
+    .color-role {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+    }
+
+    .color-value-tile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--color-bg-base);
+      padding: 6px 10px;
+      border-radius: var(--border-radius-sm);
+      color: var(--color-text-muted);
+    }
+
+    .color-val {
+      color: var(--color-text-main);
+      font-weight: 500;
+    }
+
+    .copy-color-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--color-accent);
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--border-radius-sm);
+      transition: var(--transition-fast);
+    }
+
+    .copy-color-btn:hover {
+      background: var(--color-accent-light);
+    }
+
+    .copy-color-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* 6. Layout and Grid Specifications */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .principle-item {
+      display: flex;
+      gap: 20px;
+      padding: 24px;
+      background: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+    }
+
+    .principle-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: bold;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .principle-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .principle-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .principle-body {
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--color-text-main);
+      color: var(--color-bg-surface);
+      padding: 12px 24px;
+      border-radius: var(--border-radius-md);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast svg {
+      fill: var(--color-accent);
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Responsive Breakdown */
+    @media (max-width: 1200px) {
+      .main-content {
+        padding: 60px 40px;
+      }
+      .color-swatch-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 24px 30px;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav-list {
+        display: none; /* Hide standard nav list on mobile for cleanliness */
+      }
+      .main-content {
+        margin-left: 0;
+        padding: 40px 24px;
+      }
+      .vision-grid, .logo-family-grid, .do-dont-grid, .typo-specimen-grid, .principles-grid {
+        grid-template-columns: 1fr;
+      }
+      .color-swatch-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .sandbox-controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .color-swatch-grid {
+        grid-template-columns: 1fr;
+      }
+      h1.display-title {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Glassmorphic Side Navigation -->
+  <aside class="sidebar">
+    <div class="brand-header">
+      <img src="../../Core Art/logo-long.png" alt="Daily Drip" class="brand-logo-img" id="sidebar-logo">
+      <h2 class="brand-title">Brand System v1.0</h2>
+    </div>
+    
+    <ul class="nav-list">
+      <li class="nav-item active" data-sec="vision"><a href="#vision">1. Brand Vision</a></li>
+      <li class="nav-item" data-sec="logos"><a href="#logos">2. Logo Systems</a></li>
+      <li class="nav-item" data-sec="playground"><a href="#playground">3. Contrast Arena</a></li>
+      <li class="nav-item" data-sec="typography"><a href="#typography">4. Typography</a></li>
+      <li class="nav-item" data-sec="colors"><a href="#colors">5. Color Palette</a></li>
+      <li class="nav-item" data-sec="grids"><a href="#grids">6. Grid Standards</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      Designed for <a href="showcase.html" target="_blank">Storefront</a><br>
+      © 2026 Daily Drip Inc.
+    </div>
+  </aside>
+
+  <!-- Main Content Chassis -->
+  <main class="main-content">
+    
+    <!-- Hero / Intro Section -->
+    <header class="hero-section">
+      <span class="eyebrow">Codified Design Language</span>
+      <h1 class="display-title">DAILY DRIP<br>IDENTITY DECK</h1>
+      <p class="lead-text">
+        Daily Drip combines street culture momentum with organic, high-end garments. This interactive resource codifies our core assets, strict contrast laws, custom typography, and the 20 fundamental design metrics that separate Daily Drip storefronts from traditional e-commerce.
+      </p>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- 1. Brand Vision -->
+    <section id="vision">
+      <span class="eyebrow">01 / Concept</span>
+      <h2 class="section-title">Brand Vision</h2>
+      <p class="section-desc">Daily Drip represents structured randomness — clean-cut garments built on physical news drops. The catalog embodies a high-end editorial feel that remains organic and highly detailed.</p>
+      
+      <div class="vision-grid">
+        <div class="vision-card">
+          <span class="vision-num">01.1</span>
+          <h3 class="vision-title">Daily Drop Pulse</h3>
+          <p class="vision-body">Our garments reflect active cultural and news-driven topics. The digital experience must feel immediate, responsive, and editorial, as if scanning a daily paper structured for streetwear.</p>
+        </div>
+        <div class="vision-card">
+          <span class="vision-num">01.2</span>
+          <h3 class="vision-title">Organic Geometry</h3>
+          <p class="vision-body">We reconcile organic palettes (sage, clay, charcoal) with sharp geometric layouts. Soft materials are offset by precise hairline grids and tight technical specifications.</p>
+        </div>
+        <div class="vision-card">
+          <span class="vision-num">01.3</span>
+          <h3 class="vision-title">Zero Friction</h3>
+          <p class="vision-body">The user interface is an extension of our thread. Every drag, hover, slide-cart, and micro-interaction must move with the fluid weight of premium heavyweight cotton.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Logo Systems -->
+    <section id="logos">
+      <span class="eyebrow">02 / Typography</span>
+      <h2 class="section-title">The Logo Family</h2>
+      <p class="section-desc">Our logos exist in three primary configurations. To maintain brand consistency, always reference these relative asset locations directly in the codebase.</p>
+      
+      <div class="logo-family-grid">
+        <!-- Logo 1: Main Stacked -->
+        <div class="logo-box">
+          <div class="logo-preview light-preview">
+            <img src="../../Core Art/logo-daily.png" alt="Daily Drip Stacked Logo" id="logo-stacked-img">
+          </div>
+          <div class="logo-info">
+            <div>
+              <h4 class="logo-name">Stacked Emblem</h4>
+              <p class="logo-desc">The primary vertical layout. Used for landing packages, model brochures, and centralized brand moments.</p>
+            </div>
+            <div class="logo-path-card">
+              <span>logo-daily.png</span>
+              <button class="copy-path-btn" onclick="copyText('../../Core Art/logo-daily.png', 'Stacked Logo Path')">Copy Path</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo 2: Horizontal long -->
+        <div class="logo-box">
+          <div class="logo-preview light-preview">
+            <img src="../../Core Art/logo-long.png" alt="Daily Drip Horizontal Logo">
+          </div>
+          <div class="logo-info">
+            <div>
+              <h4 class="logo-name">Horizontal Banner</h4>
+              <p class="logo-desc">The header standard. Standardized at 24px height with tight horizontal space for navigation bars.</p>
+            </div>
+            <div class="logo-path-card">
+              <span>logo-long.png</span>
+              <button class="copy-path-btn" onclick="copyText('../../Core Art/logo-long.png', 'Horizontal Logo Path')">Copy Path</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Logo 3: Drip Icon -->
+        <div class="logo-box">
+          <div class="logo-preview light-preview">
+            <img src="../../Core Art/logo-icon.png" alt="Daily Drip Silhouette Icon">
+          </div>
+          <div class="logo-info">
+            <div>
+              <h4 class="logo-name">Silhouette Icon</h4>
+              <p class="logo-desc">Our seal of authenticity. Used for sizing tags, checkout badges, button symbols, and browser favicons.</p>
+            </div>
+            <div class="logo-path-card">
+              <span>logo-icon.png</span>
+              <button class="copy-path-btn" onclick="copyText('../../Core Art/logo-icon.png', 'Icon Path')">Copy Path</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOs and DONTs -->
+      <div class="do-dont-grid">
+        <div class="do-card">
+          <h3 class="do-title">Logo Placement Rules</h3>
+          <ul class="rule-list">
+            <li><strong>The Contrast Rule:</strong> Strictly hotswap to the white drip logo (`logo-long-white.png`) when placing over dark elements (e.g. background `#0e0e0f` in the Arc'teryx storefront theme).</li>
+            <li><strong>Clear Padding:</strong> Maintain a minimum clear zone of 24px on all sides of the horizontal logo container in navigation headers.</li>
+            <li><strong>Fixed Heights:</strong> Restrict the navigation header logo height to precisely 24px to prevent vertical shift on page scroll.</li>
+          </ul>
+        </div>
+        <div class="dont-card">
+          <h3 class="dont-title">Logo Violations</h3>
+          <ul class="rule-list">
+            <li><strong>No Scaling Stretching:</strong> Never manually set a logo's width without maintaining aspect-ratio, causing stretching.</li>
+            <li><strong>Incorrect Background Contrasts:</strong> Never overlay the black drip logo on dark surfaces or the white drip logo on bright white/cream canvas cards.</li>
+            <li><strong>Raw Text fallbacks:</strong> Avoid raw text fallback elements inside high-fidelity showrooms when the image assets are fully loaded and active.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Contrast Playground -->
+    <section id="playground">
+      <span class="eyebrow">03 / Interactive Sandbox</span>
+      <h2 class="section-title">Contrast Playground</h2>
+      <p class="section-desc">Change the background color of the sandbox below to observe the Drip Contrast Rule. The system hotswaps the logo asset dynamically, keeping readability at a premium.</p>
+      
+      <div class="panel" style="padding: 24px;">
+        <div class="playground-canvas" id="play-canvas" style="background-color: #f8f9f6;">
+          <div class="playground-grid-overlay"></div>
+          <img src="../../Core Art/logo-long.png" alt="Playground Logo" class="playground-logo" id="play-logo">
+        </div>
+
+        <div class="playground-controls">
+          <div>
+            <h4 style="font-family: var(--font-display); font-size: 15px; margin-bottom: 4px;">Canvas Background Selector</h4>
+            <p style="font-size: 12px; color: var(--color-text-muted);">Simulate brand backgrounds & watch the drip hotswap</p>
+          </div>
+          
+          <div class="swatch-group">
+            <button class="canvas-swatch active" style="background-color: #f8f9f6;" onclick="setPlaygroundColor('#f8f9f6', 'light', 'Daily Drip Off-white')" title="Daily Drip Light"></button>
+            <button class="canvas-swatch" style="background-color: #ffffff;" onclick="setPlaygroundColor('#ffffff', 'light', 'Kith Clean White')" title="Kith Clean White"></button>
+            <button class="canvas-swatch" style="background-color: #eae6df;" onclick="setPlaygroundColor('#eae6df', 'light', 'Fear of God Oatmeal')" title="Fear of God Oatmeal"></button>
+            <button class="canvas-swatch" style="background-color: #fdfbf7;" onclick="setPlaygroundColor('#fdfbf7', 'light', 'ALD Queens Cream')" title="ALD Vintage Cream"></button>
+            <button class="canvas-swatch" style="background-color: #2d3e33;" onclick="setPlaygroundColor('#2d3e33', 'dark', 'Daily Drip Sage')" title="Daily Drip Sage Green"></button>
+            <button class="canvas-swatch" style="background-color: #1e5234;" onclick="setPlaygroundColor('#1e5234', 'dark', 'Forest Pine Accent')" title="Forest Pine Green"></button>
+            <button class="canvas-swatch" style="background-color: #0e0e0f;" onclick="setPlaygroundColor('#0e0e0f', 'dark', 'Arc\'teryx Void Black')" title="Arc'teryx Void Black"></button>
+          </div>
+
+          <div class="playground-status">
+            <span>Active Asset: <strong id="play-active-filename">logo-long.png</strong></span>
+            <span>Contrast State: <strong id="play-contrast-label" style="color: var(--color-accent);">Light Background (Black Drip)</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Typography -->
+    <section id="typography">
+      <span class="eyebrow">04 / Font System</span>
+      <h2 class="section-title">The Typography System</h2>
+      <p class="section-desc">Our type hierarchy is built on three premium fonts, establishing direct editorial balance between street aesthetic and industrial product specifications.</p>
+      
+      <div class="typo-specimen-grid">
+        <!-- Font 1: Outfit -->
+        <div class="typo-specimen-card">
+          <span class="typo-letter" style="font-family: 'Outfit'; font-weight: 600;">Aa</span>
+          <div class="typo-details">
+            <h4 class="typo-family-name">Outfit</h4>
+            <span class="typo-usage">Editorial Displays & Section Titles</span>
+          </div>
+        </div>
+
+        <!-- Font 2: Inter -->
+        <div class="typo-specimen-card">
+          <span class="typo-letter" style="font-family: 'Inter'; font-weight: 400;">Aa</span>
+          <div class="typo-details">
+            <h4 class="typo-family-name">Inter</h4>
+            <span class="typo-usage">Body Text, Product Info & Descriptions</span>
+          </div>
+        </div>
+
+        <!-- Font 3: Space Mono -->
+        <div class="typo-specimen-card">
+          <span class="typo-letter" style="font-family: 'Space Mono'; font-weight: 400;">Aa</span>
+          <div class="typo-details">
+            <h4 class="typo-family-name">Space Mono</h4>
+            <span class="typo-usage">Technical Cards, Swatch Labels, & Metadata</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typography Sandbox -->
+      <div class="specimen-sandbox">
+        <div class="sandbox-preview-box">
+          <div class="sandbox-text" id="sandbox-text-element" contenteditable="true" style="font-family: 'Outfit'; font-size: 32px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.2;">
+            Daily Drip: Clothes dropped daily reflecting real-time news topics. Double-knit structure.
+          </div>
+        </div>
+        
+        <div class="sandbox-controls">
+          <div class="sandbox-slider-group">
+            <label>Font Family <span id="label-val-font" style="display:none;"></span></label>
+            <select class="sandbox-select" id="font-family-selector" onchange="updateSandboxFont()">
+              <option value="Outfit">Outfit (Display)</option>
+              <option value="Inter">Inter (Body)</option>
+              <option value="Space Mono">Space Mono (Technical)</option>
+            </select>
+          </div>
+
+          <div class="sandbox-slider-group">
+            <label>Size <span id="label-val-size">32px</span></label>
+            <input type="range" class="sandbox-slider" id="slider-size" min="14" max="72" value="32" oninput="updateSandboxStyle()">
+          </div>
+
+          <div class="sandbox-slider-group">
+            <label>Line Height <span id="label-val-lh">1.2</span></label>
+            <input type="range" class="sandbox-slider" id="slider-lh" min="1.0" max="2.0" step="0.1" value="1.2" oninput="updateSandboxStyle()">
+          </div>
+
+          <div class="sandbox-slider-group">
+            <label>Letter Spacing <span id="label-val-ls">-0.01em</span></label>
+            <input type="range" class="sandbox-slider" id="slider-ls" min="-0.05" max="0.3" step="0.01" value="-0.01" oninput="updateSandboxStyle()">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Color Palette -->
+    <section id="colors">
+      <span class="eyebrow">05 / Color System</span>
+      <h2 class="section-title">Color Palette Canvas</h2>
+      <p class="section-desc">Our palette represents sophisticated earthen streetwear. Click the copy icon in any card block to copy that color value directly in HSL, HEX, or RGB to your clipboard.</p>
+      
+      <div class="color-swatch-grid">
+        <!-- Swatch 1: Sage Green -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #2d3e33;"></div>
+          <div class="color-info-wrap">
+            <div class="color-name-row">
+              <span class="color-label">Primary Sage</span>
+              <span class="color-role">Dominant Theme Color</span>
+            </div>
+            
+            <div class="color-value-tile">
+              <span>HEX: <strong class="color-val">#2D3E33</strong></span>
+              <button class="copy-color-btn" onclick="copyText('#2D3E33', 'Primary Sage HEX')" title="Copy HEX">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+            <div class="color-value-tile">
+              <span>HSL: <strong class="color-val">hsl(145, 16%, 21%)</strong></span>
+              <button class="copy-color-btn" onclick="copyText('hsl(145, 16%, 21%)', 'Primary Sage HSL')" title="Copy HSL">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 2: Pine Accent -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #1e5234;"></div>
+          <div class="color-info-wrap">
+            <div class="color-name-row">
+              <span class="color-label">Pine Accent</span>
+              <span class="color-role">Interactive Focus</span>
+            </div>
+            
+            <div class="color-value-tile">
+              <span>HEX: <strong class="color-val">#1E5234</strong></span>
+              <button class="copy-color-btn" onclick="copyText('#1E5234', 'Pine Accent HEX')" title="Copy HEX">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+            <div class="color-value-tile">
+              <span>HSL: <strong class="color-val">hsl(146, 46%, 22%)</strong></span>
+              <button class="copy-color-btn" onclick="copyText('hsl(146, 46%, 22%)', 'Pine Accent HSL')" title="Copy HSL">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 3: Canvas Off-white -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #f8f9f6; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-info-wrap">
+            <div class="color-name-row">
+              <span class="color-label">Canvas Light</span>
+              <span class="color-role">Main Backdrop</span>
+            </div>
+            
+            <div class="color-value-tile">
+              <span>HEX: <strong class="color-val">#F8F9F6</strong></span>
+              <button class="copy-color-btn" onclick="copyText('#F8F9F6', 'Canvas Light HEX')" title="Copy HEX">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+            <div class="color-value-tile">
+              <span>HSL: <strong class="color-val">hsl(80, 8%, 97%)</strong></span>
+              <button class="copy-color-btn" onclick="copyText('hsl(80, 8%, 97%)', 'Canvas Light HSL')" title="Copy HSL">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 4: Pure White -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #ffffff; border-bottom: 1px solid var(--color-border);"></div>
+          <div class="color-info-wrap">
+            <div class="color-name-row">
+              <span class="color-label">Surface White</span>
+              <span class="color-role">Card Surfaces</span>
+            </div>
+            
+            <div class="color-value-tile">
+              <span>HEX: <strong class="color-val">#FFFFFF</strong></span>
+              <button class="copy-color-btn" onclick="copyText('#FFFFFF', 'Surface White HEX')" title="Copy HEX">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+            <div class="color-value-tile">
+              <span>HSL: <strong class="color-val">hsl(0, 0%, 100%)</strong></span>
+              <button class="copy-color-btn" onclick="copyText('hsl(0, 0%, 100%)', 'Surface White HSL')" title="Copy HSL">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 5: Charcoal Ink -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #171a18;"></div>
+          <div class="color-info-wrap">
+            <div class="color-name-row">
+              <span class="color-label">Charcoal Ink</span>
+              <span class="color-role">Typography & Ink</span>
+            </div>
+            
+            <div class="color-value-tile">
+              <span>HEX: <strong class="color-val">#171A18</strong></span>
+              <button class="copy-color-btn" onclick="copyText('#171A18', 'Charcoal Ink HEX')" title="Copy HEX">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+            <div class="color-value-tile">
+              <span>HSL: <strong class="color-val">hsl(150, 8%, 10%)</strong></span>
+              <button class="copy-color-btn" onclick="copyText('hsl(150, 8%, 10%)', 'Charcoal Ink HSL')" title="Copy HSL">
+                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Design Principles / Grid Specifications -->
+    <section id="grids">
+      <span class="eyebrow">06 / Layout Mathematics</span>
+      <h2 class="section-title">Design Principles & Grids</h2>
+      <p class="section-desc">The Daily Drip design system relies on strict structural constraints rather than decorative decoration. We operate by 4 critical standards based on the E-Commerce Playbook.</p>
+      
+      <div class="principles-grid">
+        <!-- Principle 1 -->
+        <div class="principle-item">
+          <div class="principle-num">01</div>
+          <div class="principle-text-wrap">
+            <h4 class="principle-title">The 3:4 Portrait Scale</h4>
+            <p class="principle-body">All showroom product images are captured and displayed at a strict 3:4 portrait ratio (e.g. width 600px, height 800px). This maintains massive vertical editorial elegance and matches print model catalogs.</p>
+          </div>
+        </div>
+
+        <!-- Principle 2 -->
+        <div class="principle-item">
+          <div class="principle-num">02</div>
+          <div class="principle-text-wrap">
+            <h4 class="principle-title">45% Whitespace Standard</h4>
+            <p class="principle-body">Layout breathing room must make up at least 45% of the total viewport height in desktop views. Keep margins and section gaps massive (e.g. `margin-bottom: 120px;`) to convey extreme luxury branding.</p>
+          </div>
+        </div>
+
+        <!-- Principle 3 -->
+        <div class="principle-item">
+          <div class="principle-num">03</div>
+          <div class="principle-text-wrap">
+            <h4 class="principle-title">Hairline Border Borders</h4>
+            <p class="principle-body">Never use heavy black borders or strong solid rules. Separate sections and elements using 1px hairline rules structured in low opacity ink charcoal: `hsla(150, 8%, 10%, 0.08)`. This creates invisible structures.</p>
+          </div>
+        </div>
+
+        <!-- Principle 4 -->
+        <div class="principle-item">
+          <div class="principle-num">04</div>
+          <div class="principle-text-wrap">
+            <h4 class="principle-title">Dynamic Cross-Fade Reveals</h4>
+            <p class="principle-body">Product cards must utilize dual-image reveals. The model image sits in front, but hovering seamlessly cross-fades into the flat graphic image of the product to provide quick context on silhouette dimensions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Element for Interactive Clipboard Copying -->
+  <div class="toast" id="copy-toast">
+    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    <span id="toast-message">Copied asset path to clipboard!</span>
+  </div>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    // 1. Sidebar Active Section Intersection Observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          // Clear active states
+          document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('active');
+          });
+          // Set active state on matching nav item
+          const matchingItem = document.querySelector(`.nav-item[data-sec="${id}"]`);
+          if (matchingItem) {
+            matchingItem.classList.add('active');
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Track all sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // 2. Interactive Logo Background Contrast Playground switcher
+    function setPlaygroundColor(bgColor, contrastMode, swatchName) {
+      const canvas = document.getElementById('play-canvas');
+      const logo = document.getElementById('play-logo');
+      const filenameEl = document.getElementById('play-active-filename');
+      const labelEl = document.getElementById('play-contrast-label');
+
+      // 1. Update background color
+      canvas.style.backgroundColor = bgColor;
+
+      // 2. Toggle active swatch button highlight
+      document.querySelectorAll('.canvas-swatch').forEach(swatch => {
+        swatch.classList.remove('active');
+        // Simple color matching
+        const rgb = swatch.style.backgroundColor;
+        if (rgbToHex(rgb) === bgColor.toLowerCase() || bgColor.toLowerCase() === rgb) {
+          swatch.classList.add('active');
+        }
+      });
+
+      // 3. Execute strict dynamic contrast laws (hotswap asset files)
+      if (contrastMode === 'dark') {
+        logo.src = "../../Core Art/logo-long-white.png";
+        filenameEl.innerText = "logo-long-white.png";
+        labelEl.innerText = `${swatchName} (White Drip Active)`;
+        labelEl.style.color = "hsl(146, 46%, 60%)";
+      } else {
+        logo.src = "../../Core Art/logo-long.png";
+        filenameEl.innerText = "logo-long.png";
+        labelEl.innerText = `${swatchName} (Black Drip Active)`;
+        labelEl.style.color = "hsl(146, 46%, 22%)";
+      }
+    }
+
+    // Helper to normalize rgb to hex
+    function rgbToHex(rgb) {
+      if (!rgb || rgb.indexOf('rgb') === -1) return rgb;
+      const parts = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+      if (!parts) return rgb;
+      delete(parts[0]);
+      for (let i = 1; i <= 3; ++i) {
+        parts[i] = parseInt(parts[i]).toString(16);
+        if (parts[i].length == 1) parts[i] = '0' + parts[i];
+      }
+      return '#' + parts.join('');
+    }
+
+    // 3. Interactive Typography Sizer
+    function updateSandboxFont() {
+      const selector = document.getElementById('font-family-selector');
+      const text = document.getElementById('sandbox-text-element');
+      const label = document.getElementById('label-val-font');
+      
+      const chosen = selector.value;
+      text.style.fontFamily = `'${chosen}'`;
+      label.innerText = chosen;
+
+      // Adjust letter spacing defaults to look beautiful based on typeface weights
+      const sliderLs = document.getElementById('slider-ls');
+      const labelLs = document.getElementById('label-val-ls');
+      if (chosen === 'Outfit') {
+        sliderLs.value = -0.01;
+      } else if (chosen === 'Inter') {
+        sliderLs.value = 0.0;
+      } else if (chosen === 'Space Mono') {
+        sliderLs.value = 0.05;
+      }
+      labelLs.innerText = sliderLs.value + "em";
+      text.style.letterSpacing = sliderLs.value + "em";
+    }
+
+    function updateSandboxStyle() {
+      const text = document.getElementById('sandbox-text-element');
+      const size = document.getElementById('slider-size').value;
+      const lh = document.getElementById('slider-lh').value;
+      const ls = document.getElementById('slider-ls').value;
+
+      document.getElementById('label-val-size').innerText = size + "px";
+      document.getElementById('label-val-lh').innerText = lh;
+      document.getElementById('label-val-ls').innerText = ls + "em";
+
+      text.style.fontSize = size + "px";
+      text.style.lineHeight = lh;
+      text.style.letterSpacing = ls + "em";
+    }
+
+    // 4. Elegant Toast & Copy Engine
+    function copyText(value, friendlyName) {
+      // Use Clipboard API
+      navigator.clipboard.writeText(value).then(() => {
+        showToast(`Copied ${friendlyName} to clipboard!`);
+      }).catch(err => {
+        // Fallback for non-secure connections
+        const temp = document.createElement('textarea');
+        temp.value = value;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast(`Copied ${friendlyName} to clipboard!`);
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('copy-toast');
+      const text = document.getElementById('toast-message');
+      
+      text.innerText = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
