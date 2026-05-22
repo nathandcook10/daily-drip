@@ -1,0 +1,2950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Drip — Onboarding Portal & Model Lookbook</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* CSS Variables Design System - Daily Drip Earth Tones */
+    :root {
+      --color-sage: #2d3e33;
+      --color-pine: #1e5234;
+      --color-offwhite: #f8f9f6;
+      --color-charcoal: #171a18;
+      --color-purewhite: #ffffff;
+      --color-border: rgba(45, 62, 51, 0.08);
+      --color-border-dark: rgba(45, 62, 51, 0.18);
+      --color-accent-light: rgba(45, 62, 51, 0.04);
+      --color-accent-soft: rgba(30, 82, 52, 0.08);
+      
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      
+      --sidebar-width: 290px;
+      --border-radius-sm: 4px;
+      --border-radius-md: 8px;
+      --border-radius-lg: 16px;
+      --border-radius-full: 9999px;
+      
+      --transition-smooth: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --transition-fast: all 0.18s ease;
+    }
+
+    /* Base Styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-offwhite);
+      color: var(--color-charcoal);
+      line-height: 1.6;
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Custom Premium Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(45, 62, 51, 0.15);
+      border-radius: var(--border-radius-sm);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-sage);
+    }
+
+    /* Glassmorphic Sidebar */
+    .sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-right: 1px solid var(--color-border);
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 9999; /* Raise z-index extremely high to override stacking contexts created by backdrop-filter */
+      pointer-events: auto; /* Ensure pointer events are active */
+    }
+
+    .brand-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .brand-logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 12px;
+      height: 12px;
+      background-color: var(--color-pine);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(30, 82, 52, 0.4);
+    }
+
+    .brand-logo-text {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--color-sage);
+      opacity: 0.6;
+      text-transform: uppercase;
+      margin-left: 2px;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 36px;
+      flex-grow: 1;
+    }
+
+    .nav-item button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      color: var(--color-charcoal);
+      opacity: 0.65;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: var(--border-radius-md);
+      transition: var(--transition-fast);
+      border: 1px solid transparent;
+      background: none;
+      cursor: pointer;
+      text-align: left;
+      text-transform: lowercase; /* Streetwear brand minimal lowercase */
+      position: relative;
+      z-index: 10000;
+      pointer-events: auto;
+    }
+
+    .nav-item button:hover {
+      background: var(--color-accent-light);
+      opacity: 0.9;
+    }
+
+    .nav-item.active button {
+      background: var(--color-sage);
+      color: var(--color-purewhite);
+      opacity: 1;
+      box-shadow: 0 4px 12px rgba(45, 62, 51, 0.15);
+    }
+
+    .sidebar-footer {
+      font-size: 11px;
+      opacity: 0.6;
+      font-family: var(--font-mono);
+      border-top: 1px solid var(--color-border);
+      padding-top: 20px;
+    }
+
+    /* Main Container */
+    .main-content {
+      margin-left: var(--sidebar-width);
+      flex-grow: 1;
+      padding: 60px 80px;
+      max-width: 1240px;
+      position: relative;
+      z-index: 1; /* Explicitly layer behind the glassmorphic sidebar */
+    }
+
+    /* Views */
+    .tab-view {
+      display: none;
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tab-view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Typography & Utilities */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-pine);
+      font-weight: bold;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    h1.view-title {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .lead-text {
+      font-size: 18px;
+      font-weight: 350;
+      color: rgba(23, 26, 24, 0.7);
+      max-width: 820px;
+      margin-bottom: 40px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--color-border);
+      margin: 40px 0;
+    }
+
+    .card {
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+      margin-bottom: 30px;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Code Display Box */
+    .term-box {
+      background: #171a18;
+      color: #cbd5e1;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      border-radius: var(--border-radius-md);
+      padding: 20px;
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .term-copy-btn {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      padding: 6px 12px;
+      font-size: 10px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      z-index: 5;
+    }
+
+    .term-copy-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+    }
+
+    /* ----------------------------------------------------
+       PORTAL DASHBOARD TAB
+       ---------------------------------------------------- */
+    .pack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .pack-card {
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 24px;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .pack-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(45, 62, 51, 0.04);
+      border-color: rgba(30, 82, 52, 0.2);
+    }
+
+    .pack-card-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-pine);
+      font-weight: bold;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .pack-card-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .pack-card-desc {
+      font-size: 13px;
+      color: rgba(23, 26, 24, 0.6);
+    }
+
+    /* ----------------------------------------------------
+       BRAND PLAYBOOK TAB & DNA
+       ---------------------------------------------------- */
+    .playbook-nav {
+      display: flex;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 30px;
+      gap: 24px;
+    }
+
+    .playbook-tab-btn {
+      background: none;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: rgba(23, 26, 24, 0.5);
+      padding: 12px 4px;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition-fast);
+    }
+
+    .playbook-tab-btn:hover {
+      color: var(--color-charcoal);
+    }
+
+    .playbook-tab-btn.active {
+      color: var(--color-pine);
+    }
+
+    .playbook-tab-btn.active::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--color-pine);
+    }
+
+    .playbook-subview {
+      display: none;
+    }
+
+    .playbook-subview.active {
+      display: block;
+    }
+
+    .principles-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .principle-item {
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      transition: var(--transition-smooth);
+    }
+
+    .principle-item:hover {
+      border-color: var(--color-border-dark);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    }
+
+    .principle-index {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--color-pine);
+      background: var(--color-accent-soft);
+      min-width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .principle-content h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .principle-content p {
+      font-size: 14px;
+      color: rgba(23, 26, 24, 0.65);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .principle-rationale {
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(23, 26, 24, 0.55);
+      background: var(--color-offwhite);
+      padding: 8px 12px;
+      border-radius: var(--border-radius-sm);
+      margin-bottom: 12px;
+      border-left: 2px solid rgba(45, 62, 51, 0.2);
+    }
+
+    .principle-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: var(--color-offwhite);
+      border: 1px dashed var(--color-border);
+      color: var(--color-sage);
+      padding: 4px 10px;
+      border-radius: var(--border-radius-sm);
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    /* Brand Profiles DNA Grid */
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .brand-profile-box {
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .brand-profile-box:hover {
+      box-shadow: 0 10px 30px rgba(45, 62, 51, 0.03);
+    }
+
+    .brand-profile-header {
+      padding: 24px 30px;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-profile-header h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .brand-profile-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 6px 12px;
+      border-radius: var(--border-radius-full);
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .profile-ald { background: rgba(20, 44, 29, 0.08); color: #142c1d; }
+    .profile-fog { background: rgba(28, 27, 24, 0.08); color: #1c1b18; }
+    .profile-kith { background: rgba(0, 0, 0, 0.08); color: #000000; }
+    .profile-arc { background: rgba(255, 90, 0, 0.08); color: #ff5a00; }
+    .profile-dd { background: rgba(45, 62, 51, 0.08); color: #2d3e33; }
+
+    .brand-profile-body {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+    }
+
+    .brand-profile-desc {
+      font-size: 14px;
+      color: rgba(23, 26, 24, 0.7);
+    }
+
+    .brand-profile-desc h4 {
+      font-family: var(--font-display);
+      font-weight: bold;
+      color: var(--color-charcoal);
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .brand-profile-desc p {
+      margin-bottom: 20px;
+    }
+
+    .brand-tokens-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .brand-token-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      border-bottom: 1px dashed var(--color-border);
+      padding-bottom: 6px;
+    }
+
+    .brand-token-row span:first-child {
+      color: rgba(23, 26, 24, 0.5);
+      font-weight: 500;
+    }
+
+    .brand-token-row span:last-child {
+      font-family: var(--font-mono);
+      font-weight: bold;
+    }
+
+    /* ----------------------------------------------------
+       PDP DESIGN GUIDELINES TAB
+       ---------------------------------------------------- */
+    .pdp-section-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      color: var(--color-charcoal);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 10px;
+    }
+
+    .storyboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .storyboard-card {
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-fast);
+    }
+
+    .storyboard-card:hover {
+      border-color: var(--color-border-dark);
+      box-shadow: 0 8px 24px rgba(45, 62, 51, 0.02);
+    }
+
+    .storyboard-preview {
+      aspect-ratio: 3 / 4;
+      background: var(--color-offwhite);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-sage);
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
+    }
+
+    .storyboard-preview-label {
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .storyboard-preview-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--color-charcoal);
+      color: var(--color-purewhite);
+      font-size: 9px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: var(--border-radius-sm);
+    }
+
+    .storyboard-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .storyboard-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .storyboard-desc {
+      font-size: 12px;
+      color: rgba(23, 26, 24, 0.6);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .storyboard-execution {
+      font-size: 12px;
+      color: rgba(23, 26, 24, 0.7);
+      background: var(--color-offwhite);
+      padding: 10px;
+      border-radius: var(--border-radius-sm);
+      margin-bottom: 12px;
+    }
+
+    .storyboard-tactic {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      background: var(--color-accent-soft);
+      padding: 6px 10px;
+      border-radius: var(--border-radius-sm);
+      border-left: 2px solid var(--color-pine);
+      margin-top: auto;
+      font-weight: bold;
+      color: var(--color-pine);
+    }
+
+    .spec-block {
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 30px;
+      margin-top: 30px;
+    }
+
+    .spec-block h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .spec-desc {
+      font-size: 14px;
+      color: rgba(23, 26, 24, 0.65);
+      margin-bottom: 20px;
+    }
+
+    /* Typography Hierarchy Display Box */
+    .typo-hierarchy-visual {
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 30px;
+      background: var(--color-purewhite);
+      margin: 30px 0;
+    }
+
+    .typo-badge-visual {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-pine);
+      border: 1px dashed var(--color-border-dark);
+      padding: 4px 8px;
+      border-radius: var(--border-radius-sm);
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .typo-h1-visual {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: var(--color-charcoal);
+    }
+
+    .typo-price-visual {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--color-sage);
+      margin-bottom: 16px;
+    }
+
+    .typo-body-visual {
+      font-size: 14px;
+      color: rgba(23, 26, 24, 0.75);
+      max-width: 600px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .typo-chips-visual {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .typo-chip {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border-dark);
+      border-radius: var(--border-radius-md);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .typo-chip.sold-out {
+      opacity: 0.35;
+      position: relative;
+      cursor: not-allowed;
+    }
+
+    .typo-chip.sold-out::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: var(--color-charcoal);
+      transform: rotate(45deg);
+    }
+
+    .typo-btn-visual {
+      background: var(--color-sage);
+      color: #fff;
+      border: none;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: var(--border-radius-full);
+      cursor: pointer;
+    }
+
+    /* Monospace Tech spec accordion display */
+    .acc-block-visual {
+      margin-top: 24px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+    }
+
+    .acc-row-visual {
+      background: var(--color-offwhite);
+      border-bottom: 1px solid var(--color-border);
+      padding: 16px 20px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .acc-row-visual:last-child {
+      border-bottom: none;
+    }
+
+    .acc-body-mono {
+      background: var(--color-purewhite);
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--color-pine);
+      line-height: 1.6;
+    }
+
+    /* ----------------------------------------------------
+       INTERACTIVE MODEL LOOKBOOK TAB
+       ---------------------------------------------------- */
+    .lookbook-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-full);
+      padding: 6px;
+      width: fit-content;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    }
+
+    .lookbook-opt-btn {
+      background: none;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(23, 26, 24, 0.55);
+      padding: 10px 20px;
+      border-radius: var(--border-radius-full);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .lookbook-opt-btn:hover {
+      color: var(--color-charcoal);
+    }
+
+    .lookbook-opt-btn.active {
+      background: var(--color-pine);
+      color: var(--color-purewhite);
+    }
+
+    .lookbook-pane {
+      display: none;
+    }
+
+    .lookbook-pane.active {
+      display: block;
+    }
+
+    .lookbook-meta-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .lookbook-info-card {
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 30px;
+    }
+
+    .lookbook-brief-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .lookbook-brief-item {
+      display: flex;
+      flex-direction: column;
+      border-left: 2px solid var(--color-sage);
+      padding-left: 16px;
+    }
+
+    .lookbook-brief-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: var(--color-pine);
+      margin-bottom: 4px;
+    }
+
+    .lookbook-brief-val {
+      font-size: 13px;
+      color: rgba(23, 26, 24, 0.7);
+    }
+
+    .lookbook-prompt-card {
+      background: #171a18;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--border-radius-lg);
+      padding: 30px;
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .lookbook-prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    .lookbook-prompt-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .lookbook-prompt-body {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.6;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 16px;
+      border-radius: var(--border-radius-md);
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      max-height: 160px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .lookbook-prompt-btn {
+      align-self: flex-end;
+      background: #fff;
+      color: #171a18;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      border-radius: var(--border-radius-full);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lookbook-prompt-btn:hover {
+      background: var(--color-offwhite);
+      transform: translateY(-1px);
+    }
+
+    /* Storyboard Gallery */
+    .gallery-title-banner {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-pine);
+    }
+
+    .lookbook-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .lookbook-image-card {
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      position: relative;
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lookbook-image-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(45, 62, 51, 0.03);
+      border-color: var(--color-border-dark);
+    }
+
+    .lookbook-img-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--color-offwhite);
+      position: relative;
+    }
+
+    .lookbook-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lookbook-image-card:hover .lookbook-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    .lookbook-gallery-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--color-charcoal);
+      color: var(--color-purewhite);
+      font-size: 9px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: var(--border-radius-sm);
+      z-index: 10;
+    }
+
+    .lookbook-img-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(0deg, rgba(23, 26, 24, 0.45) 0%, transparent 80%);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .lookbook-image-card:hover .lookbook-img-overlay {
+      opacity: 1;
+    }
+
+    .lookbook-img-info {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lookbook-img-role {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .lookbook-img-alt {
+      font-size: 12px;
+      color: rgba(23, 26, 24, 0.6);
+      line-height: 1.5;
+    }
+
+    /* ----------------------------------------------------
+       DEVELOPER PROMPTS TAB (5 Premium Squares Grid)
+       ---------------------------------------------------- */
+    .prompt-squares-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .prompt-square-card {
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 24px 20px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+      position: relative;
+    }
+
+    .prompt-square-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--color-pine);
+      box-shadow: 0 10px 25px rgba(45, 62, 51, 0.05);
+    }
+
+    .prompt-square-card.active {
+      border: 2px solid var(--color-pine);
+      background: var(--color-accent-light);
+      box-shadow: 0 10px 25px rgba(45, 62, 51, 0.08);
+    }
+
+    .prompt-square-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: bold;
+      color: var(--color-pine);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .prompt-square-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .prompt-square-desc {
+      font-size: 12px;
+      color: rgba(23, 26, 24, 0.6);
+      line-height: 1.4;
+    }
+
+    .prompt-square-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      background: var(--color-offwhite);
+      border: 1px dashed var(--color-border);
+      padding: 2px 6px;
+      border-radius: var(--border-radius-sm);
+      display: inline-block;
+      margin-top: 12px;
+      text-transform: uppercase;
+      align-self: flex-start;
+      color: var(--color-sage);
+      font-weight: bold;
+    }
+
+    .prompt-display-pane {
+      background: var(--color-purewhite);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-lg);
+      padding: 40px;
+      display: none;
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .prompt-display-pane.active {
+      display: block;
+    }
+
+    .prompt-pane-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 20px;
+    }
+
+    .prompt-pane-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .prompt-pane-desc {
+      font-size: 14px;
+      color: rgba(23, 26, 24, 0.6);
+      margin-top: 6px;
+    }
+
+    .prompt-pane-copy-btn {
+      background: var(--color-pine);
+      color: var(--color-purewhite);
+      border: none;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      border-radius: var(--border-radius-full);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(30, 82, 52, 0.15);
+    }
+
+    .prompt-pane-copy-btn:hover {
+      background: var(--color-charcoal);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .prompt-params-card {
+      background: var(--color-offwhite);
+      border: 1px dashed var(--color-border-dark);
+      border-radius: var(--border-radius-md);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .prompt-params-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: var(--color-pine);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .prompt-params-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .prompt-params-list li {
+      font-size: 12px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .param-pill {
+      font-family: var(--font-mono);
+      background: rgba(225, 29, 72, 0.08);
+      color: #e11d48;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: var(--border-radius-sm);
+      font-size: 10px;
+    }
+
+    .prompt-textarea {
+      background: #171a18;
+      color: #e2e8f0;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.6;
+      border-radius: var(--border-radius-md);
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-height: 480px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    /* Notification Alert Toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #171a18;
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: var(--border-radius-md);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      color: #10b981;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Glassmorphic Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="brand-section">
+      <div class="brand-logo-container">
+        <div class="brand-dot"></div>
+        <h2 class="brand-logo-text">Daily Drip</h2>
+      </div>
+      <span class="brand-subtitle">Human Starter Pack</span>
+    </div>
+    
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-item active" id="nav-dashboard">
+          <button onclick="switchTab('dashboard')">one // portal home</button>
+        </li>
+        <li class="nav-item" id="nav-playbook">
+          <button onclick="switchTab('playbook')">two // brand playbook</button>
+        </li>
+        <li class="nav-item" id="nav-pdp">
+          <button onclick="switchTab('pdp')">three // PDP guidelines</button>
+        </li>
+        <li class="nav-item" id="nav-lookbook">
+          <button onclick="switchTab('lookbook')">four // model lookbook</button>
+        </li>
+        <li class="nav-item" id="nav-prompts">
+          <button onclick="switchTab('prompts')">five // prompt deck</button>
+        </li>
+        <li class="nav-item">
+          <button onclick="window.open('Brand_Guidelines_System.html', '_blank')">six // brand playground</button>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <span>Daily Drip V1.0.0</span><br>
+      <span>Pairing with <a href="#">Nathan & Team</a></span>
+    </div>
+  </aside>
+
+  <!-- Main Content Space -->
+  <main class="main-content">
+
+    <!-- ----------------------------------------------------
+         PORTAL DASHBOARD VIEW
+         ---------------------------------------------------- -->
+    <section class="tab-view active" id="view-dashboard">
+      <span class="eyebrow">Onboarding Launchpad</span>
+      <h1 class="view-title">Welcome to Daily Drip</h1>
+      <p class="lead-text">
+        This folder contains your unified **Human Onboarding & Brand Starter Pack**—codifying our high-fidelity design specifications, local blueprints, and campaign prompt engines so collaborators can align in seconds.
+      </p>
+      
+      <h3 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 20px;">Pack Contents & Duplicated Guides</h3>
+      <div class="pack-grid">
+        <a href="Brand_Playbook_v1.0.md" class="pack-card" target="_blank">
+          <span class="pack-card-num">01 / MARKDOWN</span>
+          <h4 class="pack-card-title">Brand Playbook</h4>
+          <p class="pack-card-desc">The 20 Codified Design Principles and the 5 Brand DNA Profiles.</p>
+        </a>
+        <a href="PDP_Design_Guidelines.md" class="pack-card" target="_blank">
+          <span class="pack-card-num">02 / MARKDOWN</span>
+          <h4 class="pack-card-title">PDP Guidelines</h4>
+          <p class="pack-card-desc">The 6-Step Visual Storyboard, technical spec systems, and SEO schema.</p>
+        </a>
+        <a href="Brand_Guidelines_System.html" class="pack-card" target="_blank">
+          <span class="pack-card-num">03 / HTML SYSTEM</span>
+          <h4 class="pack-card-title">Brand Playground</h4>
+          <p class="pack-card-desc">Interactive sandbox to test layouts, copy hex colors, and check logo contrast.</p>
+        </a>
+      </div>
+      
+      <div class="card">
+        <div class="card-title">💧 Storefront Developer Quick-Start</div>
+        <p style="font-size: 14px; color: rgba(23, 26, 24, 0.7); margin-bottom: 16px;">
+          To boot up the storefront dev server on your local machine and view the earth-tone streetwear catalog, copy and run these commands in your shell:
+        </p>
+        <div class="term-box">
+          <button class="term-copy-btn" onclick="copyTerm('cd_npm_run_dev')">Copy Code</button>
+          <code id="term-text-cd_npm_run_dev">
+# Install all React e-commerce dependencies<br>
+npm install<br><br>
+# Launch the hot-reloading development server<br>
+npm run dev
+          </code>
+        </div>
+        <p style="font-size: 12px; font-family: var(--font-mono); opacity: 0.6; margin-top: 10px;">
+          *Note: The local server will boot up instantly at http://localhost:5173/*
+        </p>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         BRAND PLAYBOOK VIEW
+         ---------------------------------------------------- -->
+    <section class="tab-view" id="view-playbook">
+      <span class="eyebrow">Design Standard & DNA</span>
+      <h1 class="view-title">Clothing Aesthetics Playbook</h1>
+      <p class="lead-text">
+        Inspired by the highly functional Power Design standard, this guide represents the architectural blueprint of our clothing storefront collections.
+      </p>
+      
+      <div class="playbook-nav">
+        <button class="playbook-tab-btn active" id="playbook-btn-principles" onclick="switchPlaybookSub('principles')">20 Codified Principles</button>
+        <button class="playbook-tab-btn" id="playbook-btn-dna" onclick="switchPlaybookSub('dna')">5 Brand DNA Profiles</button>
+      </div>
+      
+      <!-- Sub-Tab: Principles (All 20 Principles detailed!) -->
+      <div class="playbook-subview active" id="playbook-sub-principles">
+        <div class="principles-list">
+          
+          <!-- Sec 1 -->
+          <div style="font-family: var(--font-display); font-size: 14px; font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; margin: 20px 0 10px 5px; color: var(--color-pine)">Section 1: Visual Composition & Layout</div>
+
+          <div class="principle-item">
+            <div class="principle-index">01</div>
+            <div class="principle-content">
+              <h3>The Dual-Image Product Card</h3>
+              <p>Every product card in a catalog grid MUST display a flat-lay (garment-only) photo on load, and seamlessly morph/cross-fade (`transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1)`) into a model fit/editorial photo on pointer hover.</p>
+              <div class="principle-rationale">Humans buy clothing to see how it fits a body, but browse to see the product details. Combining both reduces cognitive friction.</div>
+              <span class="principle-tag">Visual Catalog</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">02</div>
+            <div class="principle-content">
+              <h3>Whitespace-to-Content Ratio (Grid Breathing)</h3>
+              <p>Product grids must maintain a minimum whitespace ratio of 45%. This is measured as the ratio of pixels containing only the background canvas color relative to the total viewport area. Grid gaps/gutters must be at least 32px.</p>
+              <div class="principle-rationale">High-end fashion is defined by breathing room. High content density signals "bargain bin" discount shopping; low density signals premium exclusivity.</div>
+              <span class="principle-tag">Layout</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">03</div>
+            <div class="principle-content">
+              <h3>Portrait Editorial Aspect Ratios</h3>
+              <p>All product catalog photography must maintain a strict 3:4 portrait aspect ratio (`aspect-ratio: 3 / 4`). Technical or macro detail cards may use a 1:1 square ratio (`aspect-ratio: 1 / 1`). Product photos must never be horizontal, landscape, or mixed aspect ratios within a single grid.</p>
+              <div class="principle-rationale">Human bodies are vertical. 3:4 is the gold standard for luxury lookbooks, maximizing screen height to present full garments.</div>
+              <span class="principle-tag">Photography</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">04</div>
+            <div class="principle-content">
+              <h3>Asymmetric Grid Spacing (The 62/38 Split)</h3>
+              <p>Double-wide promotional blocks or hero sliders must split the image and text using the Golden Ratio (61.8% image / 38.2% background content) or a Rule-of-Thirds split (66.6% / 33.3%). Never split a hero banner 50/50.</p>
+              <div class="principle-rationale">Symmetrical splits are static and unengaging; asymmetric weight creates kinetic energy that pulls the eye across the canvas.</div>
+              <span class="principle-tag">Layout Grid</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">05</div>
+            <div class="principle-content">
+              <h3>Hairline Border Simplicity</h3>
+              <p>Grid lines, cards, and input borders must be hairline-thin (exactly 1px solid) and colored using neutral-soft opacities (`rgba(0,0,0,0.06)` or `rgba(255,255,255,0.08)`). Thick or high-contrast borders must be avoided.</p>
+              <div class="principle-rationale">Borders exist to group, not to draw attention. Dark lines choke the light out of streetwear and lookbook photography.</div>
+              <span class="principle-tag">UI Borders</span>
+            </div>
+          </div>
+
+          <!-- Sec 2 -->
+          <div style="font-family: var(--font-display); font-size: 14px; font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; margin: 30px 0 10px 5px; color: var(--color-pine)">Section 2: Color, Light, & Contrast</div>
+
+          <div class="principle-item">
+            <div class="principle-index">06</div>
+            <div class="principle-content">
+              <h3>Canvas-Photography Color Sync</h3>
+              <p>The page background canvas color must match the ambient lighting temperature of the catalog photography. Cold/high-contrast studios require clean grays (`#F5F5F7` to `#FAFAFA`). Warm/grainy lookbooks require cream/parchment palettes (`#FDFBF7` to `#F7F4EB`).</p>
+              <div class="principle-rationale">If the photo background is warm and the page is stark blue-white, the photo will look dirty, creating a jarring, unpolished edge.</div>
+              <span class="principle-tag">Color System</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">07</div>
+            <div class="principle-content">
+              <h3>The 60-30-10 Color Scheme System</h3>
+              <p>Limit the UI color palette to exactly three roles: 60% dominant background neutral (canvas), 30% primary typography and structural lines (ink), and exactly 10% (or less) of a single saturated brand accent color reserved strictly for action CTAs (Add to Cart, Checkout).</p>
+              <div class="principle-rationale">Keeping color highly sparse focuses attention on the clothing colors themselves. The brand accent becomes an interactive guidepost.</div>
+              <span class="principle-tag">Color System</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">08</div>
+            <div class="principle-content">
+              <h3>Meaning Beyond Hue</h3>
+              <p>Color must never be the sole indicator of status (e.g. sale badges, stock warning). Pair red/green badges with high-contrast text or explicit labels (e.g., standard text tag "LOW STOCK" in uppercase tracking +0.1em).</p>
+              <div class="principle-rationale">Matches WCAG 1.4.1 requirements and ensures the interface is accessible to color-blind shoppers (~8% of male users).</div>
+              <span class="principle-tag">Accessibility</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">09</div>
+            <div class="principle-content">
+              <h3>Projector/Mobile-Resilient Contrast</h3>
+              <p>All body typography and size indicators must maintain a contrast ratio of at least 4.5:1 (AA standard) against the canvas. Primary headers should aim for 7:1 (AAA standard) to resist ambient light wash-out on low-end screens.</p>
+              <div class="principle-rationale">Clothing sites are frequently browsed on mobile devices outdoors under strong sunlight; high contrast guarantees readability anywhere.</div>
+              <span class="principle-tag">Accessibility</span>
+            </div>
+          </div>
+
+          <!-- Sec 3 -->
+          <div style="font-family: var(--font-display); font-size: 14px; font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; margin: 30px 0 10px 5px; color: var(--color-pine)">Section 3: Typography & Text Layout</div>
+
+          <div class="principle-item">
+            <div class="principle-index">10</div>
+            <div class="principle-content">
+              <h3>The Two-Family Typography Cap</h3>
+              <p>A storefront must utilize a maximum of two font families: 1 Editorial Serif (or Heavy Grotesque Display) for headlines + 1 highly readable Sans-serif (or Monospace) for body copy, size selectors, pricing, and specs.</p>
+              <div class="principle-rationale">Multiple type styles distract the eye, making the website look disjointed. Variable weights within two families offer plenty of hierarchy.</div>
+              <span class="principle-tag">Typography</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">11</div>
+            <div class="principle-content">
+              <h3>Display vs. Functional Letter-Spacing</h3>
+              <p>Big display headings (≥40px) must have negative letter-spacing applied (`letter-spacing: -0.02em` to `-0.04em`). Small labels, price tags, and uppercase metadata (≤12px) must open their tracking (`letter-spacing: 0.1em` to `0.2em`).</p>
+              <div class="principle-rationale">Tightening display type makes letters lock together into cohesive wordmarks; opening small labels keeps them highly legible at small sizes.</div>
+              <span class="principle-tag">Typography</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">12</div>
+            <div class="principle-content">
+              <h3>Line-Height Bounds for Readability</h3>
+              <p>Body text (14px–18px) must use a line-height between 1.4 and 1.6. Large display headings (≥32px) must clamp line-height tightly between 1.05 and 1.2 to prevent sprawling lines.</p>
+              <div class="principle-rationale">Too tight body text merges lines into dark stripes; too loose headline text disconnects the words from the same phrase.</div>
+              <span class="principle-tag">Typography</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">13</div>
+            <div class="principle-content">
+              <h3>Technical Specs Monospace Overlay</h3>
+              <p>Any technical performance garment specifications (e.g. GSM weight, fabric composite, hydrophobic coatings) must be rendered in a strict monospace typeface, downsized to exactly 10px–11px, capitalized, and tracked by +0.15em.</p>
+              <div class="principle-rationale">Monospace evokes diagnostics and utilitarian precision, visually reinforcing the technical features of technical/outdoors streetwear.</div>
+              <span class="principle-tag">Typography Specs</span>
+            </div>
+          </div>
+
+          <!-- Sec 4 -->
+          <div style="font-family: var(--font-display); font-size: 14px; font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; margin: 30px 0 10px 5px; color: var(--color-pine)">Section 4: Interaction & Micro-UX</div>
+
+          <div class="principle-item">
+            <div class="principle-index">14</div>
+            <div class="principle-content">
+              <h3>Hover Size Chips Display</h3>
+              <p>Apparel catalog cards must reveal available size chips (`S`, `M`, `L`, `XL`) instantly on card pointer hover using a smooth Y-axis translation (`transform: translateY(-8px)` with opacity fade-in over 200ms).</p>
+              <div class="principle-rationale">Allows immediate check of availability without forcing the shopper to click and wait for a separate product page load.</div>
+              <span class="principle-tag">Micro-UX</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">15</div>
+            <div class="principle-content">
+              <h3>Soft Out-of-Stock Size Chips</h3>
+              <p>Never delete or hide sold-out sizes. Style them at 35% opacity with a diagonal 1px slash strike-through. Signals authentic high-demand inventory.</p>
+              <div class="principle-rationale">Tells the user that the size was designed and existed, and allows them to sign up for notifications instead of assuming it was never offered.</div>
+              <span class="principle-tag">Micro-UX</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">16</div>
+            <div class="principle-content">
+              <h3>Dynamic Glassmorphic Navigation Header</h3>
+              <p>Sticky navigation headers must transition from 100% transparent on page load/hero overlap to a frosted glass state (`backdrop-filter: blur(12px) saturate(180%)`, background color opacity between 70% and 80%) once scrolled ≥80px from top.</p>
+              <div class="principle-rationale">Retains the full-bleed beauty of visual hero imagery while keeping navigation highly accessible and legible over dark/busy catalog grids.</div>
+              <span class="principle-tag">Header UX</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">17</div>
+            <div class="principle-content">
+              <h3>Slide-Out Utility Side-Cart (The Drawer)</h3>
+              <p>Clicking "Cart" must trigger a slide-out cart drawer occupying exactly the right 400px–420px of the screen, paired with a dark backdrop mask (`rgba(0,0,0,0.5)`) fading in over 300ms. Never redirect to a standalone cart page.</p>
+              <div class="principle-rationale">Keeps the checkout flow inline. Seamless shopping transitions increase conversion rates by keeping the customer on the product grid.</div>
+              <span class="principle-tag">Cart UX</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">18</div>
+            <div class="principle-content">
+              <h3>The Kinetic Brand Loop (Infinite Marquee)</h3>
+              <p>Horizontal text marquee loops must run at a constant speed between 30 and 45 seconds per cycle, and must be hardware-accelerated using standard CSS transform variables (`transform: translate3d(0,0,0)`).</p>
+              <div class="principle-rationale">Kinetic motion draws attention, but too fast motion causes reading fatigue. A gentle, sweeping pace keeps the site feeling alive.</div>
+              <span class="principle-tag">Animation</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">19</div>
+            <div class="principle-content">
+              <h3>Dynamic Cart Badge Scale Pop</h3>
+              <p>When a product is added to the cart, the numeric item-count badge must perform a spring scale scaling up to exactly 1.25× before snapping back to 1.0× over exactly 200ms (`transform: scale(1.25)` to `scale(1)`).</p>
+              <div class="principle-rationale">Provides satisfying, immediate tactile feedback that confirms a system reaction without using interruptive popup alerts.</div>
+              <span class="principle-tag">Tactile Feedback</span>
+            </div>
+          </div>
+
+          <div class="principle-item">
+            <div class="principle-index">20</div>
+            <div class="principle-content">
+              <h3>Seamless Form Inputs & Validation</h3>
+              <p>Checkout and drop email inputs must use standard CSS `:user-valid` and `:user-invalid` selectors. Green checkmark indicators or light validation glows must only trigger after focus blur—never flash error messages while the user is actively typing.</p>
+              <div class="principle-rationale">Eliminates early-typing stress and form friction, providing a smooth, high-end shopping experience.</div>
+              <span class="principle-tag">Validation UX</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <!-- Sub-Tab: Brand DNA (All 5 Profiles included!) -->
+      <div class="playbook-subview" id="playbook-sub-dna">
+        <div class="profiles-grid">
+          
+          <!-- ALD -->
+          <div class="brand-profile-box">
+            <div class="brand-profile-header">
+              <h3>Aimé Leon Dore</h3>
+              <span class="brand-profile-badge profile-ald">Warm Heritage Prep</span>
+            </div>
+            <div class="brand-profile-body">
+              <div class="brand-profile-desc">
+                <h4>Queens Basketball & Classical New York Editorial</h4>
+                <p>A deeply warm, nostalgic editorial design that feels like a vintage European apparel shop combined with Queens basketball heritage. Anchored on warm cream backgrounds (#FDFBF7) and rich forest greens, the brand uses classical serif typography (editorial serifs) with tight, boxed hairline borders. Photography features analog film grain, vintage lighting, and rich textures.</p>
+              </div>
+              <div class="brand-tokens-list">
+                <div class="brand-token-row"><span>Canvas Color</span><span>#fdfbf7 (Warm Cream)</span></div>
+                <div class="brand-token-row"><span>Primary Accent</span><span>#142c1d (Forest Green)</span></div>
+                <div class="brand-token-row"><span>Secondary Accent</span><span>#d4af37 (Brass Gold)</span></div>
+                <div class="brand-token-row"><span>Primary Font</span><span>Playfair Display / Garamond (Serif)</span></div>
+                <div class="brand-token-row"><span>Border Radius</span><span>0px (Sharp Corners)</span></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Fear of God -->
+          <div class="brand-profile-box">
+            <div class="brand-profile-header">
+              <h3>Fear of God</h3>
+              <span class="brand-profile-badge profile-fog">Minimal Luxury</span>
+            </div>
+            <div class="brand-profile-body">
+              <div class="brand-profile-desc">
+                <h4>Monochromatic Space & Quiet Luxury</h4>
+                <p>Extreme minimalism, massive whitespace, and monochromatic earth tones (sand, oatmeal, charcoal). Typography is sparse, utilizing ultra-light geometric sans-serif fonts set in uppercase with extensive tracking. Photography is high-contrast, editorial, featuring full-bleed garments against stark sand studio backgrounds.</p>
+              </div>
+              <div class="brand-tokens-list">
+                <div class="brand-token-row"><span>Canvas Color</span><span>#eae6df (Oatmeal Sand)</span></div>
+                <div class="brand-token-row"><span>Primary Accent</span><span>#1c1b18 (Charcoal)</span></div>
+                <div class="brand-token-row"><span>Secondary Accent</span><span>#1c1b18</span></div>
+                <div class="brand-token-row"><span>Primary Font</span><span>Outfit (Light Tracked Sans)</span></div>
+                <div class="brand-token-row"><span>Border Radius</span><span>0px</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kith -->
+          <div class="brand-profile-box">
+            <div class="brand-profile-header">
+              <h3>Kith</h3>
+              <span class="brand-profile-badge profile-kith">Modern Streetwear</span>
+            </div>
+            <div class="brand-profile-body">
+              <div class="brand-profile-desc">
+                <h4>The Drop & Symmetrical Hype Boxed Grid</h4>
+                <p>A grid-dominant, highly functional layout optimized for fast-paced catalog drops. Utilizes aggressive, tight grotesque/sans typography, high-contrast black and white palettes, and extensive metadata blocks. Visuals focus on heavy product details, size availability, and quick actions.</p>
+              </div>
+              <div class="brand-tokens-list">
+                <div class="brand-token-row"><span>Canvas Color</span><span>#ffffff (Pure White)</span></div>
+                <div class="brand-token-row"><span>Primary Accent</span><span>#000000 (Midnight Black)</span></div>
+                <div class="brand-token-row"><span>Secondary Accent</span><span>#111111</span></div>
+                <div class="brand-token-row"><span>Primary Font</span><span>Helvetica Neue / Arial (Sans Bold)</span></div>
+                <div class="brand-token-row"><span>Border Radius</span><span>3px (Tight Rounding)</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arc'teryx -->
+          <div class="brand-profile-box">
+            <div class="brand-profile-header">
+              <h3>Arc'teryx</h3>
+              <span class="brand-profile-badge profile-arc">Technical Outdoors</span>
+            </div>
+            <div class="brand-profile-body">
+              <div class="brand-profile-desc">
+                <h4>Utilitarian Gorpcore & Diagnostic Blueprint</h4>
+                <p>Utilitarian, clean, and extremely high-performance. Visualizes garment structure and material technology. Utilizes stark technical monospace typography, deep slate/charcoal backgrounds, neon safety highlights, and diagnostics lines. Grid is structured like a blueprints spec sheet.</p>
+              </div>
+              <div class="brand-tokens-list">
+                <div class="brand-token-row"><span>Canvas Color</span><span>#0e0e0f (Deep Slate)</span></div>
+                <div class="brand-token-row"><span>Primary Accent</span><span>#141416 (Zinc White Ink)</span></div>
+                <div class="brand-token-row"><span>Secondary Accent</span><span>#ff5a00 (Neon Safety Orange)</span></div>
+                <div class="brand-token-row"><span>Primary Font</span><span>Space Mono (Monospace Specs)</span></div>
+                <div class="brand-token-row"><span>Border Radius</span><span>8px</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Daily Drip -->
+          <div class="brand-profile-box" style="border: 2px solid var(--color-pine)">
+            <div class="brand-profile-header" style="background: var(--color-accent-soft)">
+              <h3>Daily Drip</h3>
+              <span class="brand-profile-badge profile-dd">Organic Sage Streetwear</span>
+            </div>
+            <div class="brand-profile-body">
+              <div class="brand-profile-desc">
+                <h4>Fluid Earth-Tones & Organic Minimalist Skateboard Culture</h4>
+                <p>A highly aesthetic, calm, and premium streetwear portal combining skateboarding culture with organic minimalism. Anchored on smooth off-white backgrounds, deep charcoal inks, and organic sage/forest green brand tones. Uses modern variable typography, beautiful glassmorphism scroll overlays, and fluid micro-transitions.</p>
+              </div>
+              <div class="brand-tokens-list">
+                <div class="brand-token-row"><span>Canvas Color</span><span>#f8f9f6 (Smooth Off-white)</span></div>
+                <div class="brand-token-row"><span>Primary Accent</span><span>#2d3e33 (Organic Sage)</span></div>
+                <div class="brand-token-row"><span>Secondary Accent</span><span>#1e5234 (Forest Pine Green)</span></div>
+                <div class="brand-token-row"><span>Primary Font</span><span>Outfit & Inter (Modern Sans)</span></div>
+                <div class="brand-token-row"><span>Border Radius</span><span>16px (Fluid Curves)</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         PDP DESIGN GUIDELINES VIEW
+         ---------------------------------------------------- -->
+    <section class="tab-view" id="view-pdp">
+      <span class="eyebrow">Conversion & Layout</span>
+      <h1 class="view-title">Product Detail Page Guidelines</h1>
+      <p class="lead-text">
+        Apparel Product Detail Pages (PDP) are not transactional item listings—they are digital showrooms. Our blueprint balances visuals with structured tech specifications, search authority, and micro-UX details.
+      </p>
+      
+      <!-- 1. The 6-Step Visual Storyboard -->
+      <h3 class="pdp-section-title" style="margin-top: 0;">1. The 6-Step Visual Storyboard Gallery</h3>
+      <p style="font-size: 14px; opacity: 0.7; margin-bottom: 20px;">
+        To replicate the high-end boutique feel, every product catalog gallery follows a strict image sequence representing the buyer's psychological journey. All photography must strictly adhere to a **3:4 Portrait Aspect Ratio** (`aspect-ratio: 3 / 4`).
+      </p>
+      
+      <div class="storyboard-grid">
+        <!-- Step 1 -->
+        <div class="storyboard-card">
+          <div class="storyboard-preview">
+            <span class="storyboard-preview-badge">01</span>
+            <span class="storyboard-preview-label">THE HOOK</span>
+          </div>
+          <div class="storyboard-info">
+            <h4 class="storyboard-name">On-Model Front Shot</h4>
+            <p class="storyboard-desc">Instant persona hook, style fit, and emotional resonance. The model represents the customer's aspirational community.</p>
+            <div class="storyboard-execution"><strong>Execution:</strong> Front-facing styled model shot. The posture Projects relaxed confidence—never stiff. Avoid flat-lays as primary entry photos.</div>
+            <span class="storyboard-tactic">No studio flats</span>
+          </div>
+        </div>
+        <!-- Step 2 -->
+        <div class="storyboard-card">
+          <div class="storyboard-preview">
+            <span class="storyboard-preview-badge">02</span>
+            <span class="storyboard-preview-label">STRUCTURE</span>
+          </div>
+          <div class="storyboard-info">
+            <h4 class="storyboard-name">On-Model Back Shot</h4>
+            <p class="storyboard-desc">Establish visual trust and reveal structural construction details, seams, graphics, and neck labels.</p>
+            <div class="storyboard-execution"><strong>Execution:</strong> Clear on-model back view. This is critical for streetwear where major graphics are frequently printed on the back.</div>
+            <span class="storyboard-tactic">Seams & print details</span>
+          </div>
+        </div>
+        <!-- Step 3 -->
+        <div class="storyboard-card">
+          <div class="storyboard-preview">
+            <span class="storyboard-preview-badge">03</span>
+            <span class="storyboard-preview-label">THE STYLE</span>
+          </div>
+          <div class="storyboard-info">
+            <h4 class="storyboard-name">Layered Outfit Shot</h4>
+            <p class="storyboard-desc">Increase average order value (AOV) and demonstrate complete contextual garment styling guides.</p>
+            <div class="storyboard-execution"><strong>Execution:</strong> Full body on-model shot showcasing the item styled inside a layered outfit (e.g. vintage cap, loafers, knitted cardigan).</div>
+            <span class="storyboard-tactic">Loafers & cardigans</span>
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="storyboard-card">
+          <div class="storyboard-preview">
+            <span class="storyboard-preview-badge">04</span>
+            <span class="storyboard-preview-label">FABRIC TRUST</span>
+          </div>
+          <div class="storyboard-info">
+            <h4 class="storyboard-name">Macro Textural Zoom</h4>
+            <p class="storyboard-desc">Replace the in-store physical touch experience. Verifies fabric density and build quality.</p>
+            <div class="storyboard-execution"><strong>Execution:</strong> Macro zoom shot highlighting stitching grains, collar ribs, print ink density, or embroidery details.</div>
+            <span class="storyboard-tactic">240 GSM organic slubs</span>
+          </div>
+        </div>
+        <!-- Step 5 -->
+        <div class="storyboard-card">
+          <div class="storyboard-preview">
+            <span class="storyboard-preview-badge">05</span>
+            <span class="storyboard-preview-label">SILHOUETTE</span>
+          </div>
+          <div class="storyboard-info">
+            <h4 class="storyboard-name">Profile & Volume</h4>
+            <p class="storyboard-desc">Define fabric weight, drape, sleeve fall, and total boxiness under slight motion.</p>
+            <div class="storyboard-execution"><strong>Execution:</strong> Side or three-quarters view of the model standing, turning, or walking. Shows how the boxy retro fit drops off the shoulder.</div>
+            <span class="storyboard-tactic">3/4 motion turn</span>
+          </div>
+        </div>
+        <!-- Step 6 -->
+        <div class="storyboard-card">
+          <div class="storyboard-preview">
+            <span class="storyboard-preview-badge">06</span>
+            <span class="storyboard-preview-label">THE LIFE</span>
+          </div>
+          <div class="storyboard-info">
+            <h4 class="storyboard-name">Ambient Lifestyle</h4>
+            <p class="storyboard-desc">Deepen brand storytelling and reinforce cultural authenticity in an organic environment.</p>
+            <div class="storyboard-execution"><strong>Execution:</strong> Informal, cinematically graded lifestyle shot in an authentic urban setting (brownstone stairs, vintage reading lounge).</div>
+            <span class="storyboard-tactic">Warm vintage grading</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Copywriting Hierarchy -->
+      <h3 class="pdp-section-title">2. Copywriting & Visual Hierarchy</h3>
+      <p style="font-size: 14px; opacity: 0.7; margin-bottom: 20px;">
+        Balance visual minimalism in the viewport with rich story narrative copy and technical specs accordion menus.
+      </p>
+
+      <div class="typo-hierarchy-visual">
+        <span class="typo-badge-visual">Vaulted Archive #011</span>
+        <h1 class="typo-h1-visual">PUNCH THE MONKEY VINTAGE TEE</h1>
+        <div class="typo-price-visual">$29.99</div>
+        <p class="typo-body-visual">
+          Classic vintage vibes meet modern street expression. A playful take on cultural nostalgia, screen-printed on organic ringspun cotton for a structured 90s vintage drape.
+        </p>
+        
+        <div class="typo-chips-visual">
+          <div class="typo-chip">S</div>
+          <div class="typo-chip">M</div>
+          <div class="typo-chip sold-out">L</div>
+          <div class="typo-chip">XL</div>
+        </div>
+
+        <button class="typo-btn-visual">Add to bag</button>
+
+        <div class="acc-block-visual">
+          <div class="acc-row-visual" onclick="toggleAccVisual(1)">
+            <span>📁 Product Story & Philosophy</span>
+            <span>+</span>
+          </div>
+          <div class="acc-body-mono" id="acc-body-visual-1">
+            Deep dive into the graphic's design origin, inspirations, retro references, and digital street culture context.author notes: "Designed in our organic skate lounge."
+          </div>
+
+          <div class="acc-row-visual" onclick="toggleAccVisual(2)">
+            <span>📁 Technical Specifications</span>
+            <span>+</span>
+          </div>
+          <div class="acc-body-mono" id="acc-body-visual-2" style="display:none;">
+            • 240 GSM HEAVYWEIGHT COTTON<br>
+            • 100% ORGANIC CERTIFIED RINGSPUN YARN<br>
+            • DIRECT-TO-GARMENT RESILIENT INKS<br>
+            • PRODUCED SUSTAINABLY VIA PRINTIFY
+          </div>
+
+          <div class="acc-row-visual" onclick="toggleAccVisual(3)">
+            <span>📁 Drop Mechanics & Returns</span>
+            <span>+</span>
+          </div>
+          <div class="acc-body-mono" id="acc-body-visual-3" style="display:none;">
+            ZERO-WASTE INVENTORY DROP. PRODUCED IN HIGHLY LIMITED RUNS. ONCE VAULTED, THIS ORIGINAL PIECE WILL NEVER BE PRINTED OR RESTOCKED AGAIN.
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. SEO & Social trend optimization -->
+      <h3 class="pdp-section-title">3. SEO & Social Trend Optimization</h3>
+      <p style="font-size: 14px; opacity: 0.7; margin-bottom: 20px;">
+        To leverage viral social traffic, the metadata structure of the page must be optimized for search engine spiders and social sharing cards.
+      </p>
+
+      <h4 style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;">Search Title Tag & Meta Description</h4>
+      <div class="term-box">
+        <button class="term-copy-btn" onclick="copyTerm('seo_meta')">Copy Meta Tags</button>
+        <code id="term-text-seo_meta">
+&lt;!-- SEO Header Tags --&gt;<br>
+&lt;title&gt;Punch the Monkey Vintage Graphic T-Shirt | Streetwear | The Daily Drip&lt;/title&gt;<br>
+&lt;meta name="description" content="Vaulted Archive #011: The Punch the Monkey T-Shirt features premium organic cotton, a relaxed 90s vintage drape, and custom hand-screened artwork. Sustainable direct-to-garment streetwear. Only at The Daily Drip." /&gt;
+        </code>
+      </div>
+
+      <h4 style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;">Open Graph (OG) Social Sharing Cards</h4>
+      <div class="term-box">
+        <button class="term-copy-btn" onclick="copyTerm('og_meta')">Copy OG Tags</button>
+        <code id="term-text-og_meta">
+&lt;!-- Open Graph Metadata --&gt;<br>
+&lt;meta property="og:type" content="product" /&gt;<br>
+&lt;meta property="og:title" content="Punch the Monkey Vintage T-Shirt | The Daily Drip" /&gt;<br>
+&lt;meta property="og:description" content="Vaulted Archive #011. Heavyweight organic cotton graphic tee featuring a relaxed vintage drape. Zero excess stock drop." /&gt;<br>
+&lt;meta property="og:image" content="https://daily-drip.club/assets/models/option1/curator_2.png" /&gt;<br>
+&lt;meta property="og:image:width" content="1200" /&gt;<br>
+&lt;meta property="og:image:height" content="1600" /&gt;<br>
+&lt;meta property="og:url" content="https://daily-drip.club/products/punch-the-monkey" /&gt;<br>
+&lt;meta property="og:site_name" content="The Daily Drip" /&gt;<br><br>
+&lt;!-- Open Graph Product Schema --&gt;<br>
+&lt;meta property="product:price:amount" content="29.99" /&gt;<br>
+&lt;meta property="product:price:currency" content="USD" /&gt;<br>
+&lt;meta property="product:availability" content="instock" /&gt;
+        </code>
+      </div>
+
+      <h4 style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;">Structured Data (JSON-LD Product Schema)</h4>
+      <div class="term-box">
+        <button class="term-copy-btn" onclick="copyTerm('json_schema')">Copy JSON-LD</button>
+        <code id="term-text-json_schema">
+&lt;script type="application/ld+json"&gt;<br>
+{<br>
+  "@context": "https://schema.org/",<br>
+  "@type": "Product",<br>
+  "name": "Punch the Monkey Vintage T-Shirt",<br>
+  "image": [<br>
+    "https://daily-drip.club/assets/models/option1/curator_2.png",<br>
+    "https://daily-drip.club/assets/models/option1/curator_5.png"<br>
+  ],<br>
+  "description": "Vaulted Archive #011: Premium heavyweight organic cotton graphic tee featuring a relaxed 90s vintage drape and custom direct-to-garment artwork.",<br>
+  "sku": "DD-MONK-011",<br>
+  "mpn": "DD-MONK-011",<br>
+  "brand": {<br>
+    "@type": "Brand",<br>
+    "name": "The Daily Drip"<br>
+  },<br>
+  "offers": {<br>
+    "@type": "Offer",<br>
+    "url": "https://daily-drip.club/products/punch-the-monkey",<br>
+    "priceCurrency": "USD",<br>
+    "price": "29.99",<br>
+    "priceValidUntil": "2027-12-31",<br>
+    "itemCondition": "https://schema.org/NewCondition",<br>
+    "availability": "https://schema.org/InStock",<br>
+    "seller": {<br>
+      "@type": "Organization",<br>
+      "name": "The Daily Drip"<br>
+    }<br>
+  }<br>
+}<br>
+&lt;/script&gt;
+        </code>
+      </div>
+
+      <!-- 4. UX Conversion micro details -->
+      <h3 class="pdp-section-title">4. Conversion-Focused Micro-UX Details</h3>
+      <div class="card" style="margin-bottom: 20px;">
+        <h4 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 8px;">Size Chips & Soft Out-of-Stock strike-through</h4>
+        <p style="font-size: 14px; opacity: 0.75;">Do not hide sold-out sizes. Style them at 35% opacity with a diagonal 1px slash strike-through. This confirms product demand and lets users click the size to open a notification modal instead of creating dead interface space.</p>
+      </div>
+      <div class="card" style="margin-bottom: 20px;">
+        <h4 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 8px;">Mobile Sticky ATC (Add To Cart) Bar</h4>
+        <p style="font-size: 14px; opacity: 0.75;">On mobile screens, once the user scrolls past the main purchase card, a sticky floating bar slides up from the bottom displaying thumbnail, price, size, and CTA button to bypass scrolling friction.</p>
+      </div>
+      <div class="card">
+        <h4 style="font-family: var(--font-display); font-weight: 700; margin-bottom: 8px;">Inline Slide-Out Cart Drawer</h4>
+        <p style="font-size: 14px; opacity: 0.75;">Adding to cart must slide out a right-side glassmorphic cart drawer pairing with a dim mask layer. Standard stand-alone cart redirects break shopping momentum and drop conversion rates by up to 22%.</p>
+      </div>
+
+    </section>
+
+    <!-- ----------------------------------------------------
+         INTERACTIVE MODEL LOOKBOOK VIEW
+         ---------------------------------------------------- -->
+    <section class="tab-view" id="view-lookbook">
+      <span class="eyebrow">Visual Curation Deck</span>
+      <h1 class="view-title">Daily Drip Model Lookbook</h1>
+      <p class="lead-text">
+        Instead of loading a bulky, static 30MB PDF catalog, explore all 5 of our official photoshoot styling archetypes in this interactive storyboard viewer.
+      </p>
+      
+      <div class="lookbook-selector">
+        <button class="lookbook-opt-btn active" id="lookbook-btn-opt1" onclick="switchLookbookPane(1)">01 // The Curator</button>
+        <button class="lookbook-opt-btn" id="lookbook-btn-opt2" onclick="switchLookbookPane(2)">02 // The Modernist</button>
+        <button class="lookbook-opt-btn" id="lookbook-btn-opt3" onclick="switchLookbookPane(3)">03 // The Rebel</button>
+        <button class="lookbook-opt-btn" id="lookbook-btn-opt4" onclick="switchLookbookPane(4)">04 // The Cyber</button>
+        <button class="lookbook-opt-btn" id="lookbook-btn-opt5" onclick="switchLookbookPane(5)">05 // The Retro</button>
+      </div>
+
+      <!-- LOOKBOOK PANE 1: THE CURATOR -->
+      <div class="lookbook-pane active" id="lookbook-pane-1">
+        <div class="lookbook-meta-grid">
+          <div class="lookbook-info-card">
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 700;">Option 1: The Curator</h3>
+            <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">
+              The core aesthetic of Daily Drip. Represents an elegant, academic skateboarding look—clean earth tones and tailored layers mixed with bold graphic streetwear.
+            </p>
+            <div class="lookbook-brief-list">
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Model Styling & Layers</span>
+                <span class="lookbook-brief-val">Pleated trousers, open fine cardigans, premium leather luxury loafers, clean vintage baseball cap.</span>
+              </div>
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Lighting & Ambient Temperature</span>
+                <span class="lookbook-brief-val">Warm soft indoor ambient light, subtle analog film grain texture, cream plaster background wall.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lookbook-prompt-card">
+            <div class="lookbook-prompt-header">
+              <span class="lookbook-prompt-title">Midjourney Storyboard Prompts</span>
+              <span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-pine); font-weight: bold; background: rgba(30,82,52,0.15); padding: 2px 8px; border-radius: 4px;">6-Step Stack</span>
+            </div>
+            <div class="lookbook-prompt-body" id="lookbook-prompt-text-1">
+# Image 01 (Hook): On-model front fit shot, model standing relaxed, styled in pleated gray trousers and vintage cap, cream plaster wall backdrop, analog film grain, warm lighting, --ar 3:4<br><br>
+# Image 02 (Structure): Model back view showing t-shirt shoulder drape, clean screen-print graphic alignment, 35mm film aesthetic, --ar 3:4<br><br>
+# Image 03 (Styled): Full body lifestyle shot, model wearing sage t-shirt layered under open knit brown cardigan, pleated pants, leather loafers, --ar 3:4
+            </div>
+            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(1)">Copy Prompts</button>
+          </div>
+        </div>
+        
+        <h3 class="gallery-title-banner">01 // Curator Fit Storyboard</h3>
+        <div class="lookbook-gallery-grid">
+          <!-- curator 1 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">01 // Front Fit</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option1/curator_1.png" alt="Curator model style front pose">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">The Persona Hook</h4>
+              <p class="lookbook-img-alt">Model front pose. Captures the primary fit characteristics and clean streetwear demeanor.</p>
+            </div>
+          </div>
+          <!-- curator 2 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">02 // Editorial</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option1/curator_2.png" alt="Curator model styled fit">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Styling Context</h4>
+              <p class="lookbook-img-alt">Aspirational close-in styled portrait on warm cream backdrop showing graphic texture.</p>
+            </div>
+          </div>
+          <!-- curator 3 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">03 // Detail</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option1/curator_3.png" alt="Curator texture detail">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Fabric Trust</h4>
+              <p class="lookbook-img-alt">Zoomed focus. Highlights garment ribbing density, cotton slub weight, and print detail.</p>
+            </div>
+          </div>
+          <!-- curator 4 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">04 // Profile</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option1/curator_4.png" alt="Curator profile drape">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Silhouette Drape</h4>
+              <p class="lookbook-img-alt">Profile drape. Visualizes how the sleeve hangs and details the boxy vintage drop outline.</p>
+            </div>
+          </div>
+          <!-- curator 5 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">05 // Outfit</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option1/curator_5.png" alt="Curator layered styling">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Layered Context</h4>
+              <p class="lookbook-img-alt">Styled layered look showing the t-shirt combined with pleated trousers and cardigan.</p>
+            </div>
+          </div>
+          <!-- curator 6 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">06 // Life</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option1/curator_6.png" alt="Curator lifestyle ambient">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Ambient Storytelling</h4>
+              <p class="lookbook-img-alt">Cinematically graded lifestyle shot in an ambient indoor reading lounge setup.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOOKBOOK PANE 2: THE MODERNIST -->
+      <div class="lookbook-pane" id="lookbook-pane-2">
+        <div class="lookbook-meta-grid">
+          <div class="lookbook-info-card">
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 700;">Option 2: The Modernist</h3>
+            <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">
+              A clean, earth-minimalist aesthetic. Focuses on neutral tone block pairings, architectural geometric lines, and highly polished quiet streetwear drapes.
+            </p>
+            <div class="lookbook-brief-list">
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Model Styling & Layers</span>
+                <span class="lookbook-brief-val">Wide sand-colored utility fatigues, clean white under-layers, premium modern slide sandals or leather trainers.</span>
+              </div>
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Lighting & Ambient Temperature</span>
+                <span class="lookbook-brief-val">Natural architectural side-lighting, neutral concrete textures, balanced cool gray-cream colors.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lookbook-prompt-card">
+            <div class="lookbook-prompt-header">
+              <span class="lookbook-prompt-title">Midjourney Storyboard Prompts</span>
+              <span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-pine); font-weight: bold; background: rgba(30,82,52,0.15); padding: 2px 8px; border-radius: 4px;">6-Step Stack</span>
+            </div>
+            <div class="lookbook-prompt-body" id="lookbook-prompt-text-2">
+# Image 01 (Hook): On-model front fit shot, modernist style, clean minimal architectural concrete backdrop, natural side lighting, neutral warm grading, --ar 3:4<br><br>
+# Image 02 (Structure): Back view, focus on t-shirt seam construction and neck ribbing, sharp digital detail, --ar 3:4<br><br>
+# Image 03 (Styled): Styled outfit shot, model in green t-shirt with sand utility fatigues and premium leather slides, --ar 3:4
+            </div>
+            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(2)">Copy Prompts</button>
+          </div>
+        </div>
+        
+        <h3 class="gallery-title-banner">02 // Modernist Storyboard</h3>
+        <div class="lookbook-gallery-grid">
+          <!-- modernist 1 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">01 // Front</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option2/modernist_1.png" alt="Modernist model style front pose">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Modernist Persona Hook</h4>
+              <p class="lookbook-img-alt">Clean, high-impact front pose showing modernist aesthetic on neutral gray back wall.</p>
+            </div>
+          </div>
+          <!-- modernist 2 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">02 // Editorial</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option2/modernist_2.png" alt="Modernist model styled fit">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Identity Curation</h4>
+              <p class="lookbook-img-alt">Aspirational styled shot showing earth minimalist pairing on concrete backdrop.</p>
+            </div>
+          </div>
+          <!-- modernist 3 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">03 // Detail</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option2/modernist_3.png" alt="Modernist texture detail">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Structural Trust</h4>
+              <p class="lookbook-img-alt">Garment zoom. Showcases screen-printed lines and ringspun cotton details.</p>
+            </div>
+          </div>
+          <!-- modernist 4 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">04 // Profile</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option2/modernist_4.png" alt="Modernist profile drape">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Silhouette Drape</h4>
+              <p class="lookbook-img-alt">Side profile view showing sleeve structure and clean architectural shoulder lines.</p>
+            </div>
+          </div>
+          <!-- modernist 5 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">05 // Outfit</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option2/modernist_5.png" alt="Modernist layered styling">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Utility Layering</h4>
+              <p class="lookbook-img-alt">Styled outfit showcasing utility fatigues paired with earth-tone streetwear.</p>
+            </div>
+          </div>
+          <!-- modernist 6 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">06 // Life</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option2/modernist_6.png" alt="Modernist lifestyle ambient">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Ambient Narrative</h4>
+              <p class="lookbook-img-alt">Cinematic backdrop highlighting organic lines in mid-century architecture.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOOKBOOK PANE 3: THE REBEL -->
+      <div class="lookbook-pane" id="lookbook-pane-3">
+        <div class="lookbook-meta-grid">
+          <div class="lookbook-info-card">
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 700;">Option 3: The Rebel</h3>
+            <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">
+              A raw, skater-influenced street aesthetic. Captures high kinetic energy, relaxed oversized volume drapes, and organic graffiti/skateplaza backdrops.
+            </p>
+            <div class="lookbook-brief-list">
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Model Styling & Layers</span>
+                <span class="lookbook-brief-val">Baggy washed canvas double-knee skate pants, open plaid overshirts, retro skate sneakers.</span>
+              </div>
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Lighting & Ambient Temperature</span>
+                <span class="lookbook-brief-val">Dynamic natural daylight, cool asphalt road shadows, urban textures, subtle warm film grain.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lookbook-prompt-card">
+            <div class="lookbook-prompt-header">
+              <span class="lookbook-prompt-title">Midjourney Storyboard Prompts</span>
+              <span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-pine); font-weight: bold; background: rgba(30,82,52,0.15); padding: 2px 8px; border-radius: 4px;">6-Step Stack</span>
+            </div>
+            <div class="lookbook-prompt-body" id="lookbook-prompt-text-3">
+# Image 01 (Hook): Skater model front pose, baggy double-knee pants, raw urban skateplaza backdrop, soft sunset lighting, analog 35mm grain, --ar 3:4<br><br>
+# Image 02 (Structure): Back view showing model holding skateboard, graphic detail clearly visible, --ar 3:4<br><br>
+# Image 03 (Styled): Dynamic outfit styling shot, baggy pants, layered plaid shirt, --ar 3:4
+            </div>
+            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(3)">Copy Prompts</button>
+          </div>
+        </div>
+        
+        <h3 class="gallery-title-banner">03 // Rebel Storyboard</h3>
+        <div class="lookbook-gallery-grid">
+          <!-- rebel 1 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">01 // Front</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option3/rebel_1.png" alt="Rebel model style front pose">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">The Skate Hook</h4>
+              <p class="lookbook-img-alt">Model front shot detailing oversized drape and skater streetwear identity.</p>
+            </div>
+          </div>
+          <!-- rebel 2 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">02 // Editorial</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option3/rebel_2.png" alt="Rebel model styled fit">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Street Curation</h4>
+              <p class="lookbook-img-alt">Aspirational urban shot showing skater fit details against an raw brick wall.</p>
+            </div>
+          </div>
+          <!-- rebel 3 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">03 // Detail</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option3/rebel_3.png" alt="Rebel texture detail">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Garment Integrity</h4>
+              <p class="lookbook-img-alt">Macro close-in. Details organic cotton slub weave and heavy double-stitch seam line.</p>
+            </div>
+          </div>
+          <!-- rebel 4 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">04 // Profile</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option3/rebel_4.png" alt="Rebel profile drape">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Silhouette Drape</h4>
+              <p class="lookbook-img-alt">3/4 side profile view demonstrating relaxed sleeve volumes and streetwear drop shoulders.</p>
+            </div>
+          </div>
+          <!-- rebel 5 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">05 // Outfit</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option3/rebel_5.png" alt="Rebel layered styling">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Skate Layering</h4>
+              <p class="lookbook-img-alt">Styled outfit showcasing double-knee skate pants paired with open plaid shirt.</p>
+            </div>
+          </div>
+          <!-- rebel 6 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">06 // Life</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option3/rebel_6.png" alt="Rebel lifestyle ambient">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Skateplaza Ambient</h4>
+              <p class="lookbook-img-alt">Cinematic street shot reflecting skateboard culture in an authentic urban park plaza.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOOKBOOK PANE 4: THE CYBER -->
+      <div class="lookbook-pane" id="lookbook-pane-4">
+        <div class="lookbook-meta-grid">
+          <div class="lookbook-info-card">
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 700;">Option 4: The Cyber</h3>
+            <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">
+              A futuristic, tech-sage streetwear aesthetic. Combines clean utilitarian designs, diagnostics specs, slate/charcoal colors, and glowing indicators.
+            </p>
+            <div class="lookbook-brief-list">
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Model Styling & Layers</span>
+                <span class="lookbook-brief-val">Technical slate utility cargo vest, dark cargo pants, futuristic heavy retro runners.</span>
+              </div>
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Lighting & Ambient Temperature</span>
+                <span class="lookbook-brief-val">High-contrast slate studio light, subtle digital highlights, diagnostic overlay textures.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lookbook-prompt-card">
+            <div class="lookbook-prompt-header">
+              <span class="lookbook-prompt-title">Midjourney Storyboard Prompts</span>
+              <span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-pine); font-weight: bold; background: rgba(30,82,52,0.15); padding: 2px 8px; border-radius: 4px;">6-Step Stack</span>
+            </div>
+            <div class="lookbook-prompt-body" id="lookbook-prompt-text-4">
+# Image 01 (Hook): Techwear model front pose, utility vest, futuristic slate-charcoal studio backdrop, high-contrast digital lighting, --ar 3:4<br><br>
+# Image 02 (Structure): Back view showing techwear cargo strap details and technical specifications on shirt, --ar 3:4<br><br>
+# Image 03 (Styled): Utility styled outfit shot, cargo vest, retro runners, --ar 3:4
+            </div>
+            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(4)">Copy Prompts</button>
+          </div>
+        </div>
+        
+        <h3 class="gallery-title-banner">04 // Cyber Spec Storyboard</h3>
+        <div class="lookbook-gallery-grid">
+          <!-- cyber 1 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">01 // Front</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option4/cyber_1.png" alt="Cyber model style front pose">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Technical Persona Hook</h4>
+              <p class="lookbook-img-alt">Model front shot highlighting technical streetwear styling and clean structural lines.</p>
+            </div>
+          </div>
+          <!-- cyber 2 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">02 // Editorial</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option4/cyber_2.png" alt="Cyber model styled fit">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Diagnostic Identity</h4>
+              <p class="lookbook-img-alt">Aspirational techwear shot demonstrating utility cargo vest on slate backdrop.</p>
+            </div>
+          </div>
+          <!-- cyber 3 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">03 // Detail</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option4/cyber_3.png" alt="Cyber texture detail">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Diagnostics Trust</h4>
+              <p class="lookbook-img-alt">Close-in focus detailing hydrophobic coatings, technical stitching, and monospace branding print.</p>
+            </div>
+          </div>
+          <!-- cyber 4 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">04 // Profile</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option4/cyber_4.png" alt="Cyber profile drape">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Silhouette Drape</h4>
+              <p class="lookbook-img-alt">Side profile view showing sleeve cargo strap alignment and technical drop volume shape.</p>
+            </div>
+          </div>
+          <!-- cyber 5 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">05 // Outfit</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option4/cyber_5.png" alt="Cyber layered styling">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Techwear Layering</h4>
+              <p class="lookbook-img-alt">Styled outfit showcasing diagnostic utility vest layered over technical streetwear.</p>
+            </div>
+          </div>
+          <!-- cyber 6 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">06 // Life</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option4/cyber_6.png" alt="Cyber lifestyle ambient">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Cyberspace Ambient</h4>
+              <p class="lookbook-img-alt">Cinematic urban shot representing futuristic gorpcore style inside an neon slate plaza.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOOKBOOK PANE 5: THE RETRO -->
+      <div class="lookbook-pane" id="lookbook-pane-5">
+        <div class="lookbook-meta-grid">
+          <div class="lookbook-info-card">
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 700;">Option 5: The Retro</h3>
+            <p style="font-size: 14px; opacity: 0.7; margin-top: 8px;">
+              A nostalgic, vintage streetwear aesthetic. Pulls heavily from 90s vintage shapes, pixelated glitch textures, and retro physical toy collections.
+            </p>
+            <div class="lookbook-brief-list">
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Model Styling & Layers</span>
+                <span class="lookbook-brief-val">Baggy retro washed windbreaker track pants, bulky runners, vintage utility chest rigs.</span>
+              </div>
+              <div class="lookbook-brief-item">
+                <span class="lookbook-brief-label">Lighting & Ambient Temperature</span>
+                <span class="lookbook-brief-val">Soft CRT screen lighting, vintage color grading, nostalgic grain textures, pastel hints.</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lookbook-prompt-card">
+            <div class="lookbook-prompt-header">
+              <span class="lookbook-prompt-title">Midjourney Storyboard Prompts</span>
+              <span style="font-family: var(--font-mono); font-size: 10px; color: var(--color-pine); font-weight: bold; background: rgba(30,82,52,0.15); padding: 2px 8px; border-radius: 4px;">6-Step Stack</span>
+            </div>
+            <div class="lookbook-prompt-body" id="lookbook-prompt-text-5">
+# Image 01 (Hook): Retro model front pose, windbreaker track pants, nostalgic 90s bedroom CRT lighting, warm vintage grain, --ar 3:4<br><br>
+# Image 02 (Structure): Back view showing t-shirt pixelated graphic and loose collar drape, --ar 3:4<br><br>
+# Image 03 (Styled): Retro outfit styling, Windbreaker pants, bulky chunky runners, --ar 3:4
+            </div>
+            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(5)">Copy Prompts</button>
+          </div>
+        </div>
+        
+        <h3 class="gallery-title-banner">05 // Retro Storyboard</h3>
+        <div class="lookbook-gallery-grid">
+          <!-- retro 1 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">01 // Front</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option5/retro_1.png" alt="Retro model style front pose">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Nostalgic Persona Hook</h4>
+              <p class="lookbook-img-alt">Model front shot highlighting 90s vintage shapes and relaxed street character.</p>
+            </div>
+          </div>
+          <!-- retro 2 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">02 // Editorial</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option5/retro_2.png" alt="Retro model styled fit">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Retro Identity</h4>
+              <p class="lookbook-img-alt">Aspirational vintage shot showing windbreaker track pants on CRT warm backdrop.</p>
+            </div>
+          </div>
+          <!-- retro 3 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">03 // Detail</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option5/retro_3.png" alt="Retro texture detail">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Nostalgia Trust</h4>
+              <p class="lookbook-img-alt">Garment zoom. Highlights organic 90s thick cotton ribs and pixelated deconstructed prints.</p>
+            </div>
+          </div>
+          <!-- retro 4 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">04 // Profile</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option5/retro_4.png" alt="Retro profile drape">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Silhouette Drape</h4>
+              <p class="lookbook-img-alt">3/4 side profile view demonstrating baggy windbreaker volume drape and chunky runner shape.</p>
+            </div>
+          </div>
+          <!-- retro 5 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">05 // Outfit</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option5/retro_5.png" alt="Retro layered styling">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Vintage Layering</h4>
+              <p class="lookbook-img-alt">Styled outfit showcasing windbreaker track pants paired with bulky trainers.</p>
+            </div>
+          </div>
+          <!-- retro 6 -->
+          <div class="lookbook-image-card">
+            <span class="lookbook-gallery-badge">06 // Life</span>
+            <div class="lookbook-img-wrap">
+              <div class="lookbook-img-overlay"></div>
+              <img src="../public/assets/models/option5/retro_6.png" alt="Retro lifestyle ambient">
+            </div>
+            <div class="lookbook-img-info">
+              <h4 class="lookbook-img-role">Nostalgic Ambient</h4>
+              <p class="lookbook-img-alt">Cinematic indoor shot representing early cyberspace memory inside an nostalgic room setup.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------
+         DEVELOPER PROMPTS VIEW (Redesigned with 5 Squares Grid)
+         ---------------------------------------------------- -->
+    <section class="tab-view" id="view-prompts">
+      <span class="eyebrow">AI Prompt Libraries</span>
+      <h1 class="view-title">Automated Developer Prompts</h1>
+      <p class="lead-text">
+        These battle-tested, structured prompts force any AI coding or marketing copilot to replicate our exact styles, storefront specifications, and campaign structures.
+      </p>
+      
+      <!-- 5 Squares Prompt Deck Grid -->
+      <div class="prompt-squares-grid">
+        <!-- Square 1 -->
+        <div class="prompt-square-card active" id="prompt-card-1" onclick="switchPromptSquare(1)">
+          <div>
+            <span class="prompt-square-num">Prompt 01</span>
+            <h4 class="prompt-square-title">Product Brief & React Updater</h4>
+            <p class="prompt-square-desc">Launch a new streetwear drop and program React catalog data.</p>
+          </div>
+          <span class="prompt-square-tag">Storefront</span>
+        </div>
+        <!-- Square 2 -->
+        <div class="prompt-square-card" id="prompt-card-2" onclick="switchPromptSquare(2)">
+          <div>
+            <span class="prompt-square-num">Prompt 02</span>
+            <h4 class="prompt-square-title">Meta Ads & CLI Campaign</h4>
+            <p class="prompt-square-desc">Generate high-converting ad copies and python launch commands.</p>
+          </div>
+          <span class="prompt-square-tag">Marketing</span>
+        </div>
+        <!-- Square 3 -->
+        <div class="prompt-square-card" id="prompt-card-3" onclick="switchPromptSquare(3)">
+          <div>
+            <span class="prompt-square-num">Prompt 03</span>
+            <h4 class="prompt-square-title">AI Photoshoot Brief</h4>
+            <p class="prompt-square-desc">Create 6 distinct Midjourney prompt stacks matching storyboards.</p>
+          </div>
+          <span class="prompt-square-tag">Creative</span>
+        </div>
+        <!-- Square 4 -->
+        <div class="prompt-square-card" id="prompt-card-4" onclick="switchPromptSquare(4)">
+          <div>
+            <span class="prompt-square-num">Prompt 04</span>
+            <h4 class="prompt-square-title">Dev & AI Onboarder</h4>
+            <p class="prompt-square-desc">Instantly align a new senior AI copilot with our workspace rules.</p>
+          </div>
+          <span class="prompt-square-tag">Onboarding</span>
+        </div>
+        <!-- Square 5 -->
+        <div class="prompt-square-card" id="prompt-card-5" onclick="switchPromptSquare(5)">
+          <div>
+            <span class="prompt-square-num">Prompt 05</span>
+            <h4 class="prompt-square-title">Shopify to React Schema</h4>
+            <p class="prompt-square-desc">Convert standard Shopify listings to optimized SEO React layouts.</p>
+          </div>
+          <span class="prompt-square-tag">Migration</span>
+        </div>
+      </div>
+      
+      <!-- Prompt Details Panel -->
+      <div id="prompt-details-container">
+        
+        <!-- PANE 1 -->
+        <div class="prompt-display-pane active" id="prompt-pane-1">
+          <div class="prompt-pane-header">
+            <div>
+              <h2 class="prompt-pane-title">Product Brief & React Updater</h2>
+              <p class="prompt-pane-desc">Use this to launch a new streetwear drop. Programmatically creates the React catalog block.</p>
+            </div>
+            <button class="prompt-pane-copy-btn" onclick="copyPromptText(1)">Copy Complete Prompt</button>
+          </div>
+          
+          <div class="prompt-params-card">
+            <span class="prompt-params-title">Parameters Checklist</span>
+            <ul class="prompt-params-list">
+              <li><span class="param-pill">[PRODUCT_NAME]</span> Name of your new streetwear item (e.g. Sage Earth Block Tee)</li>
+              <li><span class="param-pill">[DESIGN_DETAILS]</span> Graphic design concept and theme descriptions</li>
+            </ul>
+          </div>
+          
+          <div class="prompt-textarea" id="prompt-text-1">Hi assistant! We are launching a brand-new streetwear drop for "The Daily Drip" called "🔴 [PRODUCT_NAME] 🔴" and need you to program it into our custom storefront.
+
+First, you MUST view and read our local brand design standards in:
+- Brand Playbook & DNA Profiles: docs/clothing-ecommerce-design/playbook.md
+- PDP Conversion & Visual Storyboard Blueprint: docs/clothing-ecommerce-design/pdp_guidelines.md
+
+Your task is to:
+1. DESIGN THE PRODUCT BRIEF:
+   - Identify the design concept: 🔴 [INSERT_DESIGN_CONCEPT_AND_ARTWORK_DETAILS_HERE] 🔴
+   - Write a high-converting, premium narrative description in the Daily Drip voice (2-3 sentences).
+   - Generate technical specifications in uppercase Monospace standard (e.g. GSM weight, fabric type, eco certifications, print method).
+   
+2. CODE THE STOREFRONT COMPONENT UPDATE:
+   - Generate the React data block or list entry to add this product to the storefront catalog (typically in `src/components/ProductList.jsx` or similar).
+   - Ensure the card utilizes the dual-image cross-fade hover reveal (flat-lay on load -> on-model fit shot on pointer hover) using standard aspect-ratio: 3/4.
+   
+3. BUILD THE PDP STORYBOARD SCHEMA:
+   - Detail the 6-step visual storyboard gallery sequence for this item (Front Hook, Back Shot, Layered Outfit, Fabric Macro Zoom, Silhouette Profile, Lifestyle Ambient).
+
+Let's begin! Please read the files first and present the design proposal for my final approval before modifying the codebase.</div>
+        </div>
+
+        <!-- PANE 2 -->
+        <div class="prompt-display-pane" id="prompt-pane-2">
+          <div class="prompt-pane-header">
+            <div>
+              <h2 class="prompt-pane-title">Meta Ads & CLI Campaign Builder</h2>
+              <p class="prompt-pane-desc">Guides the AI to write high-converting ad copy and compile Python automation scripts.</p>
+            </div>
+            <button class="prompt-pane-copy-btn" onclick="copyPromptText(2)">Copy Complete Prompt</button>
+          </div>
+          
+          <div class="prompt-params-card">
+            <span class="prompt-params-title">Parameters Checklist</span>
+            <ul class="prompt-params-list">
+              <li><span class="param-pill">[PRODUCT_NAME]</span> Name of your new streetwear item</li>
+              <li><span class="param-pill">[RETAIL_PRICE]</span> Retail price of item in USD (e.g., 34.00)</li>
+              <li><span class="param-pill">[MOCKUP_FILE_NAME]</span> File name of your ad mockup saved inside Core Art folder</li>
+            </ul>
+          </div>
+          
+          <div class="prompt-textarea" id="prompt-text-2">Hi assistant! I need to plan and launch a targeted Meta Ads campaign (Facebook & Instagram) for our new Daily Drip streetwear drop called "🔴 [PRODUCT_NAME] 🔴".
+
+First, please read our Meta Ads guide to understand how our scripts are wired:
+- docs/conversations/002_meta_ads_setup.md
+- scripts/daily_drip_manager.py
+
+Here are the details for the new product:
+- Title: 🔴 [PRODUCT_NAME] 🔴
+- Price: $🔴 [RETAIL_PRICE] 🔴
+- Core Concept: 🔴 [CORE_CONCEPT_OR_THEME] 🔴
+- Target Audience Focus: Skateboard culture, minimalist fashion, organic apparel.
+
+Please perform the following tasks:
+1. DEVELOP HIGH-CONVERGENCE AD COPY:
+   - Create 3 copy variations (Primary Ad Copy, Headline, and Description) optimized for Facebook/Instagram feeds.
+   - Maintain the "Daily Drip" voice: minimal, organic, street-literate, slightly exclusive ("vaulted release").
+2. COMPILE TARGET INTERESTS:
+   - Provide a list of 5-10 specific, high-intent interests to target in Ads Manager.
+3. GENERATE THE PYTHON CLI AUTOMATION COMMAND:
+   - Generate the exact copy-paste terminal command to launch this campaign via `scripts/daily_drip_manager.py create-drip`.</div>
+        </div>
+
+        <!-- PANE 3 -->
+        <div class="prompt-display-pane" id="prompt-pane-3">
+          <div class="prompt-pane-header">
+            <div>
+              <h2 class="prompt-pane-title">AI Photoshoot Brief Generator</h2>
+              <p class="prompt-pane-desc">Translates brand style guidelines into direct photography briefs or Midjourney prompt stacks.</p>
+            </div>
+            <button class="prompt-pane-copy-btn" onclick="copyPromptText(3)">Copy Complete Prompt</button>
+          </div>
+          
+          <div class="prompt-params-card">
+            <span class="prompt-params-title">Parameters Checklist</span>
+            <ul class="prompt-params-list">
+              <li><span class="param-pill">[PRODUCT_NAME]</span> Name of your new streetwear item</li>
+              <li><span class="param-pill">[VISUAL_PALETTE]</span> Core colors to integrate into the scene (e.g. sage green, slate charcoal)</li>
+            </ul>
+          </div>
+          
+          <div class="prompt-textarea" id="prompt-text-3">Hi assistant! I need to generate a visual asset photoshoot brief and matching AI image-generation prompts for our upcoming streetwear drop called "🔴 [PRODUCT_NAME] 🔴".
+
+First, please read and absorb our visual standard rules:
+- docs/clothing-ecommerce-design/playbook.md
+- docs/clothing-ecommerce-design/pdp_guidelines.md
+
+Here are the product details:
+- Product Theme/Artwork: 🔴 [INSERT_THEME_E.G._ORGANIC_SAGE_LEAF_GRAPHIC] 🔴
+- Visual Palette: 🔴 [VISUAL_PALETTE] 🔴
+
+Your task is to:
+1. CREATE A PHOTO DIRECTORS BRIEF:
+   - Outline styling requirements (e.g. pleated trousers, cardigans, cap, loafers), lighting temp, and postures.
+2. GENERATE HIGH-FIDELITY AI PROMPTS:
+   - Provide 6 distinct, highly detailed text-to-image prompts (for Midjourney) corresponding to our strict **6-Step PDP Visual Storyboard**:
+     - Image 01: On-Model Front Shot (Aspirational persona hook, 3:4 crop)
+     - Image 02: On-Model Back Shot (Structural back graphic detail)
+     - Image 03: Layered Outfit Styling Context
+     - Image 04: Macro Close-up Quality Proof (ribs, stitch details)
+     - Image 05: Profile Silhouette Drape (3/4 motion profile view)
+     - Image 06: Lifestyle Ambient Context (Cinematic brownstone stoop or lounge)
+   
+   - Ensure every AI prompt strictly requests `--ar 3:4`, cinematic light, and 35mm film aesthetic.</div>
+        </div>
+
+        <!-- PANE 4 -->
+        <div class="prompt-display-pane" id="prompt-pane-4">
+          <div class="prompt-pane-header">
+            <div>
+              <h2 class="prompt-pane-title">Dev & AI Onboarding Bootstrapper</h2>
+              <p class="prompt-pane-desc">Pastes into a new chat session to instantly align any Senior AI copilot with the entire repository.</p>
+            </div>
+            <button class="prompt-pane-copy-btn" onclick="copyPromptText(4)">Copy Complete Prompt</button>
+          </div>
+          
+          <div class="prompt-params-card">
+            <span class="prompt-params-title">Parameters Checklist</span>
+            <ul class="prompt-params-list">
+              <li><span class="param-pill">[DEVELOPER_NAME]</span> Name of the new developer joining the team (or "Team")</li>
+            </ul>
+          </div>
+          
+          <div class="prompt-textarea" id="prompt-text-4">Hi assistant! I have just cloned our private streetwear e-commerce repository for "The Daily Drip" to my local machine. My name is 🔴 [DEVELOPER_NAME] 🔴 and I am pair-programming with Nathan to build out this brand. 
+
+I need you to scan this workspace and act as my Senior Technical Co-Pilot.
+
+First, please read and process the following files:
+1. README.md (Contains the active onboarding guide and dev commands)
+2. .cursorrules / .clinerules (Specifies our strict brand design systems)
+3. docs/conversations/001_project_setup.md (Explains our initial repository foundations)
+4. scripts/daily_drip_manager.py (Our main Python automation runner)
+
+Please perform these onboarding tasks for me:
+1. VERIFY SYSTEM STRUCTURE:
+   - Walk me through where the storefront code (`src/...`), design assets (`public/...`), and automation scripts (`scripts/...`) reside.
+2. VERIFY LOCAL GIT & ENVS:
+   - Show me how to copy `scripts/.env.example` to `scripts/.env` and walk me through the key Printify and Meta API tokens we need to fill out.
+3. RUN DIAGNOSTIC CHECKS:
+   - Provide the exact shell commands to install React npm dependencies and launch the local server.
+
+I am ready to collaborate! Let's get my local environment fully verified.</div>
+        </div>
+
+        <!-- PANE 5 -->
+        <div class="prompt-display-pane" id="prompt-pane-5">
+          <div class="prompt-pane-header">
+            <div>
+              <h2 class="prompt-pane-title">Shopify to React Schema Converter</h2>
+              <p class="prompt-pane-desc">Converts raw Shopify item descriptions and images into our compliant search-optimized React block.</p>
+            </div>
+            <button class="prompt-pane-copy-btn" onclick="copyPromptText(5)">Copy Complete Prompt</button>
+          </div>
+          
+          <div class="prompt-params-card">
+            <span class="prompt-params-title">Parameters Checklist</span>
+            <ul class="prompt-params-list">
+              <li><span class="param-pill">[SHOPIFY_TITLE]</span> Original title from Shopify catalog</li>
+              <li><span class="param-pill">[SHOPIFY_DESCRIPTION]</span> Raw description text or specifications</li>
+              <li><span class="param-pill">[SHOPIFY_PRICE]</span> Product retail price (e.g. 29.99)</li>
+            </ul>
+          </div>
+          
+          <div class="prompt-textarea" id="prompt-text-5">Hi assistant! I need to migrate an existing apparel product from our Shopify catalog into our premium custom React storefront for "The Daily Drip".
+
+Here are the raw product details from Shopify:
+- Title: 🔴 [SHOPIFY_TITLE] 🔴
+- Description: 🔴 [SHOPIFY_DESCRIPTION] 🔴
+- Price: 🔴 [SHOPIFY_PRICE] 🔴
+- Sizes Available: 🔴 [SHOPIFY_SIZES] 🔴
+- Main Image URL: 🔴 [SHOPIFY_MAIN_IMAGE] 🔴
+
+Please convert this basic product listing into our premium design standard:
+1. ELEVATE COPYWRITING:
+   - Rewrite the Shopify description. Turn it into a 2-3 sentence high-end brand narrative in the "Daily Drip" voice.
+   - Extract fabric details and format them into uppercase monospace technical specs (GSM, cotton type).
+2. GENERATE REACT COMPONENT CODE:
+   - Output the exact React product object structure to merge into `src/components/ProductList.jsx`.
+   - Include variables for dynamic UI elements: availableSizes mapped as chips, soft out-of-stock sizes styled at 35% opacity with the slash strike-through, and images mapped in 3:4 ratio.
+3. SOCIAL & SEO SCHEMA GENERATION:
+   - Generate search-optimized `<title>` tag, open-graph tags, and the JSON-LD structured schema block mapped to Google's Product standard.
+
+Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md` and `docs/clothing-ecommerce-design/pdp_guidelines.md` first.</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div class="toast" id="clipboard-toast">
+    <span class="toast-icon">✓</span>
+    <span id="toast-message">Copied to clipboard successfully!</span>
+  </div>
+
+  <script>
+    // Tab switching system
+    function switchTab(tabId) {
+      // Deactivate all nav items
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // Deactivate all views
+      document.querySelectorAll('.tab-view').forEach(view => {
+        view.classList.remove('active');
+      });
+      
+      // Activate target
+      document.getElementById('nav-' + tabId).classList.add('active');
+      document.getElementById('view-' + tabId).classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    // Playbook Subtab switching system
+    function switchPlaybookSub(subId) {
+      document.querySelectorAll('.playbook-tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelectorAll('.playbook-subview').forEach(view => {
+        view.classList.remove('active');
+      });
+      
+      document.getElementById('playbook-btn-' + subId).classList.add('active');
+      document.getElementById('playbook-sub-' + subId).classList.add('active');
+    }
+
+    // Lookbook switching system
+    function switchLookbookPane(paneNum) {
+      document.querySelectorAll('.lookbook-opt-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelectorAll('.lookbook-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+      
+      document.getElementById('lookbook-btn-opt' + paneNum).classList.add('active');
+      document.getElementById('lookbook-pane-' + paneNum).classList.add('active');
+    }
+
+    // REDESIGNED: Prompt Square switching system (5 Squares Grid)
+    function switchPromptSquare(num) {
+      document.querySelectorAll('.prompt-square-card').forEach(card => {
+        card.classList.remove('active');
+      });
+      document.querySelectorAll('.prompt-display-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
+      
+      document.getElementById('prompt-card-' + num).classList.add('active');
+      document.getElementById('prompt-pane-' + num).classList.add('active');
+    }
+
+    // Toggle spec accordion rows under PDP guidelines
+    function toggleAccVisual(id) {
+      const panel = document.getElementById('acc-body-visual-' + id);
+      if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+      } else {
+        panel.style.display = 'none';
+      }
+    }
+
+    // Toast show helper
+    function showToast(message) {
+      const toast = document.getElementById('clipboard-toast');
+      document.getElementById('toast-message').innerText = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Clipboard copy functions
+    function copyTerm(id) {
+      const text = document.getElementById('term-text-' + id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Code block copied successfully!');
+      });
+    }
+
+    function copyLookbookPrompt(num) {
+      const text = document.getElementById('lookbook-prompt-text-' + num).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Midjourney prompt stack copied!');
+      });
+    }
+
+    function copyPromptText(num) {
+      const text = document.getElementById('prompt-text-' + num).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Complete AI prompt template copied!');
+      });
+    }
+  </script>
+
+</body>
+</html>
