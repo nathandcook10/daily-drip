@@ -1027,7 +1027,7 @@
             </div>
             <div class="logo-path-card">
               <span>logo-daily.png</span>
-              <button class="copy-path-btn" onclick="copyText('../Core Art/logo-daily.png', 'Stacked Logo Path')">Copy Path</button>
+              <button class="copy-path-btn" data-copy-path="../Core Art/logo-daily.png" data-copy-name="Stacked Emblem Path">Copy Path</button>
             </div>
           </div>
         </div>
@@ -1044,7 +1044,7 @@
             </div>
             <div class="logo-path-card">
               <span>logo-long.png</span>
-              <button class="copy-path-btn" onclick="copyText('../Core Art/logo-long.png', 'Horizontal Logo Path')">Copy Path</button>
+              <button class="copy-path-btn" data-copy-path="../Core Art/logo-long.png" data-copy-name="Horizontal Banner Path">Copy Path</button>
             </div>
           </div>
         </div>
@@ -1061,7 +1061,7 @@
             </div>
             <div class="logo-path-card">
               <span>logo-icon.png</span>
-              <button class="copy-path-btn" onclick="copyText('../Core Art/logo-icon.png', 'Icon Path')">Copy Path</button>
+              <button class="copy-path-btn" data-copy-path="../Core Art/logo-icon.png" data-copy-name="Silhouette Icon Path">Copy Path</button>
             </div>
           </div>
         </div>
@@ -1107,13 +1107,13 @@
           </div>
           
           <div class="swatch-group">
-            <button class="canvas-swatch active" style="background-color: #f8f9f6;" onclick="setPlaygroundColor('#f8f9f6', 'light', 'Daily Drip Off-white')" title="Daily Drip Light"></button>
-            <button class="canvas-swatch" style="background-color: #ffffff;" onclick="setPlaygroundColor('#ffffff', 'light', 'Kith Clean White')" title="Kith Clean White"></button>
-            <button class="canvas-swatch" style="background-color: #eae6df;" onclick="setPlaygroundColor('#eae6df', 'light', 'Fear of God Oatmeal')" title="Fear of God Oatmeal"></button>
-            <button class="canvas-swatch" style="background-color: #fdfbf7;" onclick="setPlaygroundColor('#fdfbf7', 'light', 'ALD Queens Cream')" title="ALD Vintage Cream"></button>
-            <button class="canvas-swatch" style="background-color: #2d3e33;" onclick="setPlaygroundColor('#2d3e33', 'dark', 'Daily Drip Sage')" title="Daily Drip Sage Green"></button>
-            <button class="canvas-swatch" style="background-color: #1e5234;" onclick="setPlaygroundColor('#1e5234', 'dark', 'Forest Pine Accent')" title="Forest Pine Green"></button>
-            <button class="canvas-swatch" style="background-color: #0e0e0f;" onclick="setPlaygroundColor('#0e0e0f', 'dark', 'Arc\'teryx Void Black')" title="Arc'teryx Void Black"></button>
+            <button class="canvas-swatch active" style="background-color: #f8f9f6;" data-swatch-color="#f8f9f6" data-swatch-mode="light" data-swatch-name="Daily Drip Off-white" title="Daily Drip Light"></button>
+            <button class="canvas-swatch" style="background-color: #ffffff;" data-swatch-color="#ffffff" data-swatch-mode="light" data-swatch-name="Kith Clean White" title="Kith Clean White"></button>
+            <button class="canvas-swatch" style="background-color: #eae6df;" data-swatch-color="#eae6df" data-swatch-mode="light" data-swatch-name="Fear of God Oatmeal" title="Fear of God Oatmeal"></button>
+            <button class="canvas-swatch" style="background-color: #fdfbf7;" data-swatch-color="#fdfbf7" data-swatch-mode="light" data-swatch-name="ALD Queens Cream" title="ALD Vintage Cream"></button>
+            <button class="canvas-swatch" style="background-color: #2d3e33;" data-swatch-color="#2d3e33" data-swatch-mode="dark" data-swatch-name="Daily Drip Sage" title="Daily Drip Sage Green"></button>
+            <button class="canvas-swatch" style="background-color: #1e5234;" data-swatch-color="#1e5234" data-swatch-mode="dark" data-swatch-name="Forest Pine Accent" title="Forest Pine Green"></button>
+            <button class="canvas-swatch" style="background-color: #0e0e0f;" data-swatch-color="#0e0e0f" data-swatch-mode="dark" data-swatch-name="Arc'teryx Void Black" title="Arc'teryx Void Black"></button>
           </div>
 
           <div class="playground-status">
@@ -1170,7 +1170,7 @@
         <div class="sandbox-controls">
           <div class="sandbox-slider-group">
             <label>Font Family <span id="label-val-font" style="display:none;"></span></label>
-            <select class="sandbox-select" id="font-family-selector" onchange="updateSandboxFont()">
+            <select class="sandbox-select" id="font-family-selector">
               <option value="Outfit">Outfit (Display)</option>
               <option value="Inter">Inter (Body)</option>
               <option value="Space Mono">Space Mono (Technical)</option>
@@ -1179,17 +1179,17 @@
 
           <div class="sandbox-slider-group">
             <label>Size <span id="label-val-size">32px</span></label>
-            <input type="range" class="sandbox-slider" id="slider-size" min="14" max="72" value="32" oninput="updateSandboxStyle()">
+            <input type="range" class="sandbox-slider" id="slider-size" min="14" max="72" value="32">
           </div>
 
           <div class="sandbox-slider-group">
             <label>Line Height <span id="label-val-lh">1.2</span></label>
-            <input type="range" class="sandbox-slider" id="slider-lh" min="1.0" max="2.0" step="0.1" value="1.2" oninput="updateSandboxStyle()">
+            <input type="range" class="sandbox-slider" id="slider-lh" min="1.0" max="2.0" step="0.1" value="1.2">
           </div>
 
           <div class="sandbox-slider-group">
             <label>Letter Spacing <span id="label-val-ls">-0.01em</span></label>
-            <input type="range" class="sandbox-slider" id="slider-ls" min="-0.05" max="0.3" step="0.01" value="-0.01" oninput="updateSandboxStyle()">
+            <input type="range" class="sandbox-slider" id="slider-ls" min="-0.05" max="0.3" step="0.01" value="-0.01">
           </div>
         </div>
       </div>
@@ -1213,13 +1213,13 @@
             
             <div class="color-value-tile">
               <span>HEX: <strong class="color-val">#2D3E33</strong></span>
-              <button class="copy-color-btn" onclick="copyText('#2D3E33', 'Primary Sage HEX')" title="Copy HEX">
+              <button class="copy-color-btn" data-copy-color="#2D3E33" data-copy-name="Primary Sage HEX" title="Copy HEX">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
             <div class="color-value-tile">
               <span>HSL: <strong class="color-val">hsl(145, 16%, 21%)</strong></span>
-              <button class="copy-color-btn" onclick="copyText('hsl(145, 16%, 21%)', 'Primary Sage HSL')" title="Copy HSL">
+              <button class="copy-color-btn" data-copy-color="hsl(145, 16%, 21%)" data-copy-name="Primary Sage HSL" title="Copy HSL">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
@@ -1237,13 +1237,13 @@
             
             <div class="color-value-tile">
               <span>HEX: <strong class="color-val">#1E5234</strong></span>
-              <button class="copy-color-btn" onclick="copyText('#1E5234', 'Pine Accent HEX')" title="Copy HEX">
+              <button class="copy-color-btn" data-copy-color="#1E5234" data-copy-name="Pine Accent HEX" title="Copy HEX">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
             <div class="color-value-tile">
               <span>HSL: <strong class="color-val">hsl(146, 46%, 22%)</strong></span>
-              <button class="copy-color-btn" onclick="copyText('hsl(146, 46%, 22%)', 'Pine Accent HSL')" title="Copy HSL">
+              <button class="copy-color-btn" data-copy-color="hsl(146, 46%, 22%)" data-copy-name="Pine Accent HSL" title="Copy HSL">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
@@ -1261,13 +1261,13 @@
             
             <div class="color-value-tile">
               <span>HEX: <strong class="color-val">#F8F9F6</strong></span>
-              <button class="copy-color-btn" onclick="copyText('#F8F9F6', 'Canvas Light HEX')" title="Copy HEX">
+              <button class="copy-color-btn" data-copy-color="#F8F9F6" data-copy-name="Canvas Light HEX" title="Copy HEX">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
             <div class="color-value-tile">
               <span>HSL: <strong class="color-val">hsl(80, 8%, 97%)</strong></span>
-              <button class="copy-color-btn" onclick="copyText('hsl(80, 8%, 97%)', 'Canvas Light HSL')" title="Copy HSL">
+              <button class="copy-color-btn" data-copy-color="hsl(80, 8%, 97%)" data-copy-name="Canvas Light HSL" title="Copy HSL">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
@@ -1285,13 +1285,13 @@
             
             <div class="color-value-tile">
               <span>HEX: <strong class="color-val">#FFFFFF</strong></span>
-              <button class="copy-color-btn" onclick="copyText('#FFFFFF', 'Surface White HEX')" title="Copy HEX">
+              <button class="copy-color-btn" data-copy-color="#FFFFFF" data-copy-name="Surface White HEX" title="Copy HEX">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
             <div class="color-value-tile">
               <span>HSL: <strong class="color-val">hsl(0, 0%, 100%)</strong></span>
-              <button class="copy-color-btn" onclick="copyText('hsl(0, 0%, 100%)', 'Surface White HSL')" title="Copy HSL">
+              <button class="copy-color-btn" data-copy-color="hsl(0, 0%, 100%)" data-copy-name="Surface White HSL" title="Copy HSL">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
@@ -1309,13 +1309,13 @@
             
             <div class="color-value-tile">
               <span>HEX: <strong class="color-val">#171A18</strong></span>
-              <button class="copy-color-btn" onclick="copyText('#171A18', 'Charcoal Ink HEX')" title="Copy HEX">
+              <button class="copy-color-btn" data-copy-color="#171A18" data-copy-name="Charcoal Ink HEX" title="Copy HEX">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
             <div class="color-value-tile">
               <span>HSL: <strong class="color-val">hsl(150, 8%, 10%)</strong></span>
-              <button class="copy-color-btn" onclick="copyText('hsl(150, 8%, 10%)', 'Charcoal Ink HSL')" title="Copy HSL">
+              <button class="copy-color-btn" data-copy-color="hsl(150, 8%, 10%)" data-copy-name="Charcoal Ink HSL" title="Copy HSL">
                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
               </button>
             </div>
@@ -1421,9 +1421,8 @@
       // 2. Toggle active swatch button highlight
       document.querySelectorAll('.canvas-swatch').forEach(swatch => {
         swatch.classList.remove('active');
-        // Simple color matching
-        const rgb = swatch.style.backgroundColor;
-        if (rgbToHex(rgb) === bgColor.toLowerCase() || bgColor.toLowerCase() === rgb) {
+        const swatchColor = swatch.getAttribute('data-swatch-color');
+        if (swatchColor && swatchColor.toLowerCase() === bgColor.toLowerCase()) {
           swatch.classList.add('active');
         }
       });
@@ -1440,19 +1439,6 @@
         labelEl.innerText = `${swatchName} (Black Drip Active)`;
         labelEl.style.color = "hsl(146, 46%, 22%)";
       }
-    }
-
-    // Helper to normalize rgb to hex
-    function rgbToHex(rgb) {
-      if (!rgb || rgb.indexOf('rgb') === -1) return rgb;
-      const parts = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-      if (!parts) return rgb;
-      delete(parts[0]);
-      for (let i = 1; i <= 3; ++i) {
-        parts[i] = parseInt(parts[i]).toString(16);
-        if (parts[i].length == 1) parts[i] = '0' + parts[i];
-      }
-      return '#' + parts.join('');
     }
 
     // 3. Interactive Typography Sizer
@@ -1496,19 +1482,25 @@
 
     // 4. Elegant Toast & Copy Engine
     function copyText(value, friendlyName) {
-      // Use Clipboard API
-      navigator.clipboard.writeText(value).then(() => {
-        showToast(`Copied ${friendlyName} to clipboard!`);
-      }).catch(err => {
-        // Fallback for non-secure connections
-        const temp = document.createElement('textarea');
-        temp.value = value;
-        document.body.appendChild(temp);
-        temp.select();
-        document.execCommand('copy');
-        document.body.removeChild(temp);
-        showToast(`Copied ${friendlyName} to clipboard!`);
-      });
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(value).then(() => {
+          showToast(`Copied ${friendlyName} to clipboard!`);
+        }).catch(err => {
+          fallbackCopyToClipboard(value, friendlyName);
+        });
+      } else {
+        fallbackCopyToClipboard(value, friendlyName);
+      }
+    }
+
+    function fallbackCopyToClipboard(value, friendlyName) {
+      const temp = document.createElement('textarea');
+      temp.value = value;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast(`Copied ${friendlyName} to clipboard!`);
     }
 
     function showToast(message) {
@@ -1521,6 +1513,59 @@
       setTimeout(() => {
         toast.classList.remove('show');
       }, 3000);
+    }
+
+    // 5. Setup programmatic event bindings
+    function initGuidelinesEngine() {
+      // Logo Path copy buttons
+      document.querySelectorAll('.copy-path-btn[data-copy-path]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const path = btn.getAttribute('data-copy-path');
+          const name = btn.getAttribute('data-copy-name') || 'Asset path';
+          copyText(path, name);
+        });
+      });
+
+      // Canvas Swatches
+      document.querySelectorAll('.canvas-swatch[data-swatch-color]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const color = btn.getAttribute('data-swatch-color');
+          const mode = btn.getAttribute('data-swatch-mode');
+          const name = btn.getAttribute('data-swatch-name');
+          setPlaygroundColor(color, mode, name);
+        });
+      });
+
+      // Typography inputs
+      const fontSelector = document.getElementById('font-family-selector');
+      if (fontSelector) {
+        fontSelector.addEventListener('change', updateSandboxFont);
+      }
+
+      ['slider-size', 'slider-lh', 'slider-ls'].forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+          input.addEventListener('input', updateSandboxStyle);
+        }
+      });
+
+      // Color Palette Swatch copy buttons
+      document.querySelectorAll('.copy-color-btn[data-copy-color]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const color = btn.getAttribute('data-copy-color');
+          const name = btn.getAttribute('data-copy-name') || 'Color code';
+          copyText(color, name);
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGuidelinesEngine);
+    } else {
+      initGuidelinesEngine();
     }
   </script>
 </body>

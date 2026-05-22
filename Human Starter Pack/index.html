@@ -1326,22 +1326,22 @@
     <nav>
       <ul class="nav-list">
         <li class="nav-item active" id="nav-dashboard">
-          <button onclick="switchTab('dashboard')">one // portal home</button>
+          <button data-tab="dashboard">one // portal home</button>
         </li>
         <li class="nav-item" id="nav-playbook">
-          <button onclick="switchTab('playbook')">two // brand playbook</button>
+          <button data-tab="playbook">two // brand playbook</button>
         </li>
         <li class="nav-item" id="nav-pdp">
-          <button onclick="switchTab('pdp')">three // PDP guidelines</button>
+          <button data-tab="pdp">three // PDP guidelines</button>
         </li>
         <li class="nav-item" id="nav-lookbook">
-          <button onclick="switchTab('lookbook')">four // model lookbook</button>
+          <button data-tab="lookbook">four // model lookbook</button>
         </li>
         <li class="nav-item" id="nav-prompts">
-          <button onclick="switchTab('prompts')">five // prompt deck</button>
+          <button data-tab="prompts">five // prompt deck</button>
         </li>
         <li class="nav-item">
-          <button onclick="window.open('Brand_Guidelines_System.html', '_blank')">six // brand playground</button>
+          <button data-external="Brand_Guidelines_System.html">six // brand playground</button>
         </li>
       </ul>
     </nav>
@@ -1390,7 +1390,7 @@
           To boot up the storefront dev server on your local machine and view the earth-tone streetwear catalog, copy and run these commands in your shell:
         </p>
         <div class="term-box">
-          <button class="term-copy-btn" onclick="copyTerm('cd_npm_run_dev')">Copy Code</button>
+          <button class="term-copy-btn" data-copy-term="cd_npm_run_dev">Copy Code</button>
           <code id="term-text-cd_npm_run_dev">
 # Install all React e-commerce dependencies<br>
 npm install<br><br>
@@ -1415,8 +1415,8 @@ npm run dev
       </p>
       
       <div class="playbook-nav">
-        <button class="playbook-tab-btn active" id="playbook-btn-principles" onclick="switchPlaybookSub('principles')">20 Codified Principles</button>
-        <button class="playbook-tab-btn" id="playbook-btn-dna" onclick="switchPlaybookSub('dna')">5 Brand DNA Profiles</button>
+        <button class="playbook-tab-btn active" id="playbook-btn-principles" data-playbook-sub="principles">20 Codified Principles</button>
+        <button class="playbook-tab-btn" id="playbook-btn-dna" data-playbook-sub="dna">5 Brand DNA Profiles</button>
       </div>
       
       <!-- Sub-Tab: Principles (All 20 Principles detailed!) -->
@@ -1872,7 +1872,7 @@ npm run dev
         <button class="typo-btn-visual">Add to bag</button>
 
         <div class="acc-block-visual">
-          <div class="acc-row-visual" onclick="toggleAccVisual(1)">
+          <div class="acc-row-visual" data-acc-toggle="1">
             <span>📁 Product Story & Philosophy</span>
             <span>+</span>
           </div>
@@ -1880,7 +1880,7 @@ npm run dev
             Deep dive into the graphic's design origin, inspirations, retro references, and digital street culture context.author notes: "Designed in our organic skate lounge."
           </div>
 
-          <div class="acc-row-visual" onclick="toggleAccVisual(2)">
+          <div class="acc-row-visual" data-acc-toggle="2">
             <span>📁 Technical Specifications</span>
             <span>+</span>
           </div>
@@ -1891,7 +1891,7 @@ npm run dev
             • PRODUCED SUSTAINABLY VIA PRINTIFY
           </div>
 
-          <div class="acc-row-visual" onclick="toggleAccVisual(3)">
+          <div class="acc-row-visual" data-acc-toggle="3">
             <span>📁 Drop Mechanics & Returns</span>
             <span>+</span>
           </div>
@@ -1909,7 +1909,7 @@ npm run dev
 
       <h4 style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;">Search Title Tag & Meta Description</h4>
       <div class="term-box">
-        <button class="term-copy-btn" onclick="copyTerm('seo_meta')">Copy Meta Tags</button>
+        <button class="term-copy-btn" data-copy-term="seo_meta">Copy Meta Tags</button>
         <code id="term-text-seo_meta">
 &lt;!-- SEO Header Tags --&gt;<br>
 &lt;title&gt;Punch the Monkey Vintage Graphic T-Shirt | Streetwear | The Daily Drip&lt;/title&gt;<br>
@@ -1919,7 +1919,7 @@ npm run dev
 
       <h4 style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;">Open Graph (OG) Social Sharing Cards</h4>
       <div class="term-box">
-        <button class="term-copy-btn" onclick="copyTerm('og_meta')">Copy OG Tags</button>
+        <button class="term-copy-btn" data-copy-term="og_meta">Copy OG Tags</button>
         <code id="term-text-og_meta">
 &lt;!-- Open Graph Metadata --&gt;<br>
 &lt;meta property="og:type" content="product" /&gt;<br>
@@ -1939,7 +1939,7 @@ npm run dev
 
       <h4 style="font-size: 15px; font-weight: bold; margin: 20px 0 10px 0;">Structured Data (JSON-LD Product Schema)</h4>
       <div class="term-box">
-        <button class="term-copy-btn" onclick="copyTerm('json_schema')">Copy JSON-LD</button>
+        <button class="term-copy-btn" data-copy-term="json_schema">Copy JSON-LD</button>
         <code id="term-text-json_schema">
 &lt;script type="application/ld+json"&gt;<br>
 {<br>
@@ -2003,11 +2003,11 @@ npm run dev
       </p>
       
       <div class="lookbook-selector">
-        <button class="lookbook-opt-btn active" id="lookbook-btn-opt1" onclick="switchLookbookPane(1)">01 // The Curator</button>
-        <button class="lookbook-opt-btn" id="lookbook-btn-opt2" onclick="switchLookbookPane(2)">02 // The Modernist</button>
-        <button class="lookbook-opt-btn" id="lookbook-btn-opt3" onclick="switchLookbookPane(3)">03 // The Rebel</button>
-        <button class="lookbook-opt-btn" id="lookbook-btn-opt4" onclick="switchLookbookPane(4)">04 // The Cyber</button>
-        <button class="lookbook-opt-btn" id="lookbook-btn-opt5" onclick="switchLookbookPane(5)">05 // The Retro</button>
+        <button class="lookbook-opt-btn active" id="lookbook-btn-opt1" data-lookbook-pane="1">01 // The Curator</button>
+        <button class="lookbook-opt-btn" id="lookbook-btn-opt2" data-lookbook-pane="2">02 // The Modernist</button>
+        <button class="lookbook-opt-btn" id="lookbook-btn-opt3" data-lookbook-pane="3">03 // The Rebel</button>
+        <button class="lookbook-opt-btn" id="lookbook-btn-opt4" data-lookbook-pane="4">04 // The Cyber</button>
+        <button class="lookbook-opt-btn" id="lookbook-btn-opt5" data-lookbook-pane="5">05 // The Retro</button>
       </div>
 
       <!-- LOOKBOOK PANE 1: THE CURATOR -->
@@ -2040,7 +2040,7 @@ npm run dev
 # Image 02 (Structure): Model back view showing t-shirt shoulder drape, clean screen-print graphic alignment, 35mm film aesthetic, --ar 3:4<br><br>
 # Image 03 (Styled): Full body lifestyle shot, model wearing sage t-shirt layered under open knit brown cardigan, pleated pants, leather loafers, --ar 3:4
             </div>
-            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(1)">Copy Prompts</button>
+            <button class="lookbook-prompt-btn" data-lookbook-prompt="1">Copy Prompts</button>
           </div>
         </div>
         
@@ -2151,7 +2151,7 @@ npm run dev
 # Image 02 (Structure): Back view, focus on t-shirt seam construction and neck ribbing, sharp digital detail, --ar 3:4<br><br>
 # Image 03 (Styled): Styled outfit shot, model in green t-shirt with sand utility fatigues and premium leather slides, --ar 3:4
             </div>
-            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(2)">Copy Prompts</button>
+            <button class="lookbook-prompt-btn" data-lookbook-prompt="2">Copy Prompts</button>
           </div>
         </div>
         
@@ -2262,7 +2262,7 @@ npm run dev
 # Image 02 (Structure): Back view showing model holding skateboard, graphic detail clearly visible, --ar 3:4<br><br>
 # Image 03 (Styled): Dynamic outfit styling shot, baggy pants, layered plaid shirt, --ar 3:4
             </div>
-            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(3)">Copy Prompts</button>
+            <button class="lookbook-prompt-btn" data-lookbook-prompt="3">Copy Prompts</button>
           </div>
         </div>
         
@@ -2373,7 +2373,7 @@ npm run dev
 # Image 02 (Structure): Back view showing techwear cargo strap details and technical specifications on shirt, --ar 3:4<br><br>
 # Image 03 (Styled): Utility styled outfit shot, cargo vest, retro runners, --ar 3:4
             </div>
-            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(4)">Copy Prompts</button>
+            <button class="lookbook-prompt-btn" data-lookbook-prompt="4">Copy Prompts</button>
           </div>
         </div>
         
@@ -2484,7 +2484,7 @@ npm run dev
 # Image 02 (Structure): Back view showing t-shirt pixelated graphic and loose collar drape, --ar 3:4<br><br>
 # Image 03 (Styled): Retro outfit styling, Windbreaker pants, bulky chunky runners, --ar 3:4
             </div>
-            <button class="lookbook-prompt-btn" onclick="copyLookbookPrompt(5)">Copy Prompts</button>
+            <button class="lookbook-prompt-btn" data-lookbook-prompt="5">Copy Prompts</button>
           </div>
         </div>
         
@@ -2579,7 +2579,7 @@ npm run dev
       <!-- 5 Squares Prompt Deck Grid -->
       <div class="prompt-squares-grid">
         <!-- Square 1 -->
-        <div class="prompt-square-card active" id="prompt-card-1" onclick="switchPromptSquare(1)">
+        <div class="prompt-square-card active" id="prompt-card-1" data-prompt-square="1">
           <div>
             <span class="prompt-square-num">Prompt 01</span>
             <h4 class="prompt-square-title">Product Brief & React Updater</h4>
@@ -2588,7 +2588,7 @@ npm run dev
           <span class="prompt-square-tag">Storefront</span>
         </div>
         <!-- Square 2 -->
-        <div class="prompt-square-card" id="prompt-card-2" onclick="switchPromptSquare(2)">
+        <div class="prompt-square-card" id="prompt-card-2" data-prompt-square="2">
           <div>
             <span class="prompt-square-num">Prompt 02</span>
             <h4 class="prompt-square-title">Meta Ads & CLI Campaign</h4>
@@ -2597,7 +2597,7 @@ npm run dev
           <span class="prompt-square-tag">Marketing</span>
         </div>
         <!-- Square 3 -->
-        <div class="prompt-square-card" id="prompt-card-3" onclick="switchPromptSquare(3)">
+        <div class="prompt-square-card" id="prompt-card-3" data-prompt-square="3">
           <div>
             <span class="prompt-square-num">Prompt 03</span>
             <h4 class="prompt-square-title">AI Photoshoot Brief</h4>
@@ -2606,7 +2606,7 @@ npm run dev
           <span class="prompt-square-tag">Creative</span>
         </div>
         <!-- Square 4 -->
-        <div class="prompt-square-card" id="prompt-card-4" onclick="switchPromptSquare(4)">
+        <div class="prompt-square-card" id="prompt-card-4" data-prompt-square="4">
           <div>
             <span class="prompt-square-num">Prompt 04</span>
             <h4 class="prompt-square-title">Dev & AI Onboarder</h4>
@@ -2615,7 +2615,7 @@ npm run dev
           <span class="prompt-square-tag">Onboarding</span>
         </div>
         <!-- Square 5 -->
-        <div class="prompt-square-card" id="prompt-card-5" onclick="switchPromptSquare(5)">
+        <div class="prompt-square-card" id="prompt-card-5" data-prompt-square="5">
           <div>
             <span class="prompt-square-num">Prompt 05</span>
             <h4 class="prompt-square-title">Shopify to React Schema</h4>
@@ -2635,7 +2635,7 @@ npm run dev
               <h2 class="prompt-pane-title">Product Brief & React Updater</h2>
               <p class="prompt-pane-desc">Use this to launch a new streetwear drop. Programmatically creates the React catalog block.</p>
             </div>
-            <button class="prompt-pane-copy-btn" onclick="copyPromptText(1)">Copy Complete Prompt</button>
+            <button class="prompt-pane-copy-btn" data-copy-prompt="1">Copy Complete Prompt</button>
           </div>
           
           <div class="prompt-params-card">
@@ -2675,7 +2675,7 @@ Let's begin! Please read the files first and present the design proposal for my 
               <h2 class="prompt-pane-title">Meta Ads & CLI Campaign Builder</h2>
               <p class="prompt-pane-desc">Guides the AI to write high-converting ad copy and compile Python automation scripts.</p>
             </div>
-            <button class="prompt-pane-copy-btn" onclick="copyPromptText(2)">Copy Complete Prompt</button>
+            <button class="prompt-pane-copy-btn" data-copy-prompt="2">Copy Complete Prompt</button>
           </div>
           
           <div class="prompt-params-card">
@@ -2716,7 +2716,7 @@ Please perform the following tasks:
               <h2 class="prompt-pane-title">AI Photoshoot Brief Generator</h2>
               <p class="prompt-pane-desc">Translates brand style guidelines into direct photography briefs or Midjourney prompt stacks.</p>
             </div>
-            <button class="prompt-pane-copy-btn" onclick="copyPromptText(3)">Copy Complete Prompt</button>
+            <button class="prompt-pane-copy-btn" data-copy-prompt="3">Copy Complete Prompt</button>
           </div>
           
           <div class="prompt-params-card">
@@ -2759,7 +2759,7 @@ Your task is to:
               <h2 class="prompt-pane-title">Dev & AI Onboarding Bootstrapper</h2>
               <p class="prompt-pane-desc">Pastes into a new chat session to instantly align any Senior AI copilot with the entire repository.</p>
             </div>
-            <button class="prompt-pane-copy-btn" onclick="copyPromptText(4)">Copy Complete Prompt</button>
+            <button class="prompt-pane-copy-btn" data-copy-prompt="4">Copy Complete Prompt</button>
           </div>
           
           <div class="prompt-params-card">
@@ -2797,7 +2797,7 @@ I am ready to collaborate! Let's get my local environment fully verified.</div>
               <h2 class="prompt-pane-title">Shopify to React Schema Converter</h2>
               <p class="prompt-pane-desc">Converts raw Shopify item descriptions and images into our compliant search-optimized React block.</p>
             </div>
-            <button class="prompt-pane-copy-btn" onclick="copyPromptText(5)">Copy Complete Prompt</button>
+            <button class="prompt-pane-copy-btn" data-copy-prompt="5">Copy Complete Prompt</button>
           </div>
           
           <div class="prompt-params-card">
@@ -2856,8 +2856,10 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
       });
       
       // Activate target
-      document.getElementById('nav-' + tabId).classList.add('active');
-      document.getElementById('view-' + tabId).classList.add('active');
+      const navItem = document.getElementById('nav-' + tabId);
+      const viewItem = document.getElementById('view-' + tabId);
+      if (navItem) navItem.classList.add('active');
+      if (viewItem) viewItem.classList.add('active');
       
       // Scroll to top
       window.scrollTo(0, 0);
@@ -2872,8 +2874,10 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
         view.classList.remove('active');
       });
       
-      document.getElementById('playbook-btn-' + subId).classList.add('active');
-      document.getElementById('playbook-sub-' + subId).classList.add('active');
+      const btnEl = document.getElementById('playbook-btn-' + subId);
+      const subEl = document.getElementById('playbook-sub-' + subId);
+      if (btnEl) btnEl.classList.add('active');
+      if (subEl) subEl.classList.add('active');
     }
 
     // Lookbook switching system
@@ -2885,8 +2889,10 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
         pane.classList.remove('active');
       });
       
-      document.getElementById('lookbook-btn-opt' + paneNum).classList.add('active');
-      document.getElementById('lookbook-pane-' + paneNum).classList.add('active');
+      const btnEl = document.getElementById('lookbook-btn-opt' + paneNum);
+      const paneEl = document.getElementById('lookbook-pane-' + paneNum);
+      if (btnEl) btnEl.classList.add('active');
+      if (paneEl) paneEl.classList.add('active');
     }
 
     // REDESIGNED: Prompt Square switching system (5 Squares Grid)
@@ -2898,51 +2904,160 @@ Let's do the conversion! Please read `docs/clothing-ecommerce-design/playbook.md
         pane.classList.remove('active');
       });
       
-      document.getElementById('prompt-card-' + num).classList.add('active');
-      document.getElementById('prompt-pane-' + num).classList.add('active');
+      const cardEl = document.getElementById('prompt-card-' + num);
+      const paneEl = document.getElementById('prompt-pane-' + num);
+      if (cardEl) cardEl.classList.add('active');
+      if (paneEl) paneEl.classList.add('active');
     }
 
     // Toggle spec accordion rows under PDP guidelines
     function toggleAccVisual(id) {
       const panel = document.getElementById('acc-body-visual-' + id);
-      if (panel.style.display === 'none') {
-        panel.style.display = 'block';
-      } else {
-        panel.style.display = 'none';
+      if (panel) {
+        if (panel.style.display === 'none') {
+          panel.style.display = 'block';
+        } else {
+          panel.style.display = 'none';
+        }
       }
     }
 
     // Toast show helper
     function showToast(message) {
       const toast = document.getElementById('clipboard-toast');
-      document.getElementById('toast-message').innerText = message;
-      toast.classList.add('show');
-      
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
+      const msg = document.getElementById('toast-message');
+      if (toast && msg) {
+        msg.innerText = message;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3000);
+      }
+    }
+
+    // Unified clipboard copy logic with robust fallback
+    function copyTextToClipboard(text, successMessage) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(successMessage);
+        }).catch(err => {
+          fallbackCopyToClipboard(text, successMessage);
+        });
+      } else {
+        fallbackCopyToClipboard(text, successMessage);
+      }
+    }
+
+    function fallbackCopyToClipboard(text, successMessage) {
+      const temp = document.createElement('textarea');
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast(successMessage);
     }
 
     // Clipboard copy functions
     function copyTerm(id) {
-      const text = document.getElementById('term-text-' + id).innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Code block copied successfully!');
-      });
+      const textEl = document.getElementById('term-text-' + id);
+      if (textEl) {
+        copyTextToClipboard(textEl.innerText, 'Code block copied successfully!');
+      }
     }
 
     function copyLookbookPrompt(num) {
-      const text = document.getElementById('lookbook-prompt-text-' + num).innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Midjourney prompt stack copied!');
-      });
+      const textEl = document.getElementById('lookbook-prompt-text-' + num);
+      if (textEl) {
+        copyTextToClipboard(textEl.innerText, 'Midjourney prompt stack copied!');
+      }
     }
 
     function copyPromptText(num) {
-      const text = document.getElementById('prompt-text-' + num).innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Complete AI prompt template copied!');
+      const textEl = document.getElementById('prompt-text-' + num);
+      if (textEl) {
+        copyTextToClipboard(textEl.innerText, 'Complete AI prompt template copied!');
+      }
+    }
+
+    // Setup bulletproof programmatic event bindings
+    function initStarterPackEngine() {
+      // 1. Sidebar tab switching
+      document.querySelectorAll('.nav-item button[data-tab]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchTab(btn.getAttribute('data-tab'));
+        });
       });
+      document.querySelectorAll('.nav-item button[data-external]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.open(btn.getAttribute('data-external'), '_blank');
+        });
+      });
+
+      // 2. Playbook Subtabs
+      document.querySelectorAll('.playbook-tab-btn[data-playbook-sub]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchPlaybookSub(btn.getAttribute('data-playbook-sub'));
+        });
+      });
+
+      // 3. Lookbook Panes
+      document.querySelectorAll('.lookbook-opt-btn[data-lookbook-pane]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchLookbookPane(btn.getAttribute('data-lookbook-pane'));
+        });
+      });
+
+      // 4. Accordion Toggle
+      document.querySelectorAll('.acc-row-visual[data-acc-toggle]').forEach(row => {
+        row.addEventListener('click', (e) => {
+          e.preventDefault();
+          toggleAccVisual(row.getAttribute('data-acc-toggle'));
+        });
+      });
+
+      // 5. Code copies (Quick start, SEO, OG, JSON Schema)
+      document.querySelectorAll('.term-copy-btn[data-copy-term]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          copyTerm(btn.getAttribute('data-copy-term'));
+        });
+      });
+
+      // 6. Lookbook copies
+      document.querySelectorAll('.lookbook-prompt-btn[data-lookbook-prompt]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          copyLookbookPrompt(btn.getAttribute('data-lookbook-prompt'));
+        });
+      });
+
+      // 7. Prompt squares
+      document.querySelectorAll('.prompt-square-card[data-prompt-square]').forEach(card => {
+        card.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchPromptSquare(card.getAttribute('data-prompt-square'));
+        });
+      });
+
+      // 8. Prompt copies
+      document.querySelectorAll('.prompt-pane-copy-btn[data-copy-prompt]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          copyPromptText(btn.getAttribute('data-copy-prompt'));
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initStarterPackEngine);
+    } else {
+      initStarterPackEngine();
     }
   </script>
 
