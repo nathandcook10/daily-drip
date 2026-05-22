@@ -52,6 +52,8 @@ def main():
         message = f"💧 {sender} is active on Daily Drip. Pulling latest files from GitHub to start building!"
     elif event == "close":
         message = f"{sender}'s now closing and is out of GitHub."
+    elif event == "push":
+        message = f"💧 {sender} just pushed to GitHub!"
     elif event == "custom" and len(sys.argv) > 2:
         message = sys.argv[2]
     else:
