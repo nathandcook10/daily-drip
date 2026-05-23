@@ -16,11 +16,14 @@ export default function ProductCard({ product, onAddToCart }) {
   const [selectedSize, setSelectedSize] = useState(null);
   const [feedback, setFeedback] = useState(null);
 
+  const isVaulted = product.badge && product.badge.startsWith("VAULT");
   const pdpUrl = `/docs/clothing-ecommerce-design/${PDP_MAP[product.id] || ''}`;
 
   return (
-    <div className="product-card">
-      <span className="product-badge">{product.badge}</span>
+    <div className={`product-card ${isVaulted ? 'vaulted' : ''}`}>
+      <span className="product-badge" style={{ backgroundColor: isVaulted ? '#717572' : 'var(--color-accent)' }}>
+        {product.badge}
+      </span>
       
       {/* Product Image Viewer with Size Hover Selector Overlay */}
       {product.imageFront ? (
@@ -31,23 +34,25 @@ export default function ProductCard({ product, onAddToCart }) {
               <img className="product-img img-flat" src={product.imageBack} alt={`${product.title} flat layup`} />
             )}
             
-            {/* Themed Size Selection Overlay on Hover */}
-            <div className="card-size-overlay">
-              {product.sizes.map(size => (
-                <button 
-                  key={size}
-                  className={`chip-btn ${selectedSize === size ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    setSelectedSize(size);
-                  }}
-                  aria-label={`Select size ${size}`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
+            {/* Themed Size Selection Overlay on Hover (only if active) */}
+            {!isVaulted && (
+              <div class="card-size-overlay">
+                {product.sizes.map(size => (
+                  <button 
+                    key={size}
+                    className={`chip-btn ${selectedSize === size ? 'active' : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      setSelectedSize(size);
+                    }}
+                    aria-label={`Select size ${size}`}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </a>
       ) : (
@@ -68,35 +73,49 @@ export default function ProductCard({ product, onAddToCart }) {
           <a href={pdpUrl} style={{ textDecoration: 'none', color: 'inherit' }}>
             <h3 className="product-title" style={{ transition: 'color var(--transition-fast)' }}>{product.title}</h3>
           </a>
-          <span className="product-price">${product.price.toFixed(2)}</span>
+          <span className="product-price" style={{ textDecoration: isVaulted ? 'line-through' : 'none' }}>
+            ${product.price.toFixed(2)}
+          </span>
         </div>
         
         <p style={{ fontSize: '0.75rem', color: 'var(--color-text-secondary)', lineHeight: 1.5, marginBottom: '1.25rem', fontWeight: 300 }}>
           {product.description}
         </p>
 
-        {/* Stateful Size Swatches Picker */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <span className="spec-text" style={{ fontSize: '9px', display: 'block', marginBottom: '8px', color: 'var(--color-text-muted)' }}>
-            SELECT SIZE
-          </span>
-          <div className="size-picker">
-            {product.sizes.map(size => (
-              <button 
-                key={size}
-                className={`size-btn ${selectedSize === size ? 'active' : ''}`}
-                onClick={() => setSelectedSize(size)}
-                aria-label={`Select size ${size}`}
-              >
-                {size}
-              </button>
-            ))}
+        {/* Stateful Size Swatches Picker (Active vs. Vaulted) */}
+        {!isVaulted ? (
+          <div style={{ marginBottom: '1.5rem' }}>
+            <span className="spec-text" style={{ fontSize: '9px', display: 'block', marginBottom: '8px', color: 'var(--color-text-muted)' }}>
+              SELECT SIZE
+            </span>
+            <div className="size-picker">
+              {product.sizes.map(size => (
+                <button 
+                  key={size}
+                  className={`size-btn ${selectedSize === size ? 'active' : ''}`}
+                  onClick={() => setSelectedSize(size)}
+                  aria-label={`Select size ${size}`}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div style={{ marginBottom: '1.5rem' }}>
+            <span className="spec-text" style={{ fontSize: '9px', display: 'block', marginBottom: '8px', color: '#ea5454', fontWeight: 700 }}>
+              DROP CLOSED
+            </span>
+            <span style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', fontWeight: 300, display: 'block', lineHeight: 1.4 }}>
+              This release has reached printing limits and is vaulted.
+            </span>
+          </div>
+        )}
         
         {/* Full-width Direct Add to Cart Button with Micro-Interaction Feedback */}
         <button 
-          className={`btn-add-cart ${selectedSize ? 'ready' : ''}`}
+          className={`btn-add-cart ${selectedSize && !isVaulted ? 'ready' : ''}`}
+          disabled={isVaulted}
           onClick={() => {
             if (selectedSize) {
               onAddToCart(product, selectedSize);
@@ -106,7 +125,7 @@ export default function ProductCard({ product, onAddToCart }) {
             }
           }}
         >
-          {feedback ? feedback : (selectedSize ? `ADD TO CART` : 'SELECT SIZE')}
+          {isVaulted ? 'VAULTED / SOLD OUT' : (feedback ? feedback : (selectedSize ? `ADD TO CART` : 'SELECT SIZE'))}
         </button>
       </div>
     </div>

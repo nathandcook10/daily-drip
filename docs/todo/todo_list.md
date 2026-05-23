@@ -41,6 +41,7 @@ When pair-programming, you **must** keep this document up to date:
 ### 2. User Experience polish
 * [ ] **Eliminate Browser-Blocking Alerts:** Convert the raw checkout `alert()` in `App.jsx` and newsletter `alert()` in `Footer.jsx` to utilize the modern, smooth React `showToast()` message system. `[Priority: High | Added: May 22, 2026 by Nathan]`
 * [ ] **Replace External Hero Media:** Swap the placeholder Unsplash hero image in `Hero.jsx` with a premium brand asset lookbook photography file. `[Priority: High | Added: May 22, 2026 by Nathan]`
+* [x] **Refine Homepage Visuals:** Elevate the layout and styling of the homepage to match our premium glassmorphism design system, optimizing margins, alignment, typography, and hover animations (implemented category capsule chips and vaulted FOMO teaser grid). `[Completed: May 23, 2026 by Alby | Log: 004_homepage_scarcity_merchandising.md]`
 * [ ] **Define Placeholder Tag Style:** Add a matching CSS rule in `global.css` for the `.placeholder-tag` class referenced in `ProductCard.jsx` for missing flat images. `[Priority: Low | Added: May 22, 2026 by Nathan]`
 
 ### 3. High-Fidelity Asset Sync & Optimization
@@ -59,3 +60,4 @@ When pair-programming, you **must** keep this document up to date:
 * [x] Initialize Git Repository and push to private remote `[Completed: May 20, 2026 | Log: 001_project_setup.md]`
 * [x] Draft Stripe payment architecture plans `[Completed: May 22, 2026 | Log: 002_stripe_integration.md]`
 * [x] Comprehensive codebase audit scan `[Completed: May 22, 2026 | Log: 003_codebase_cleanup_audit.md]`
+* [x] Implement homepage scarcity merchandising and capsule navigation tabs `[Completed: May 23, 2026 by Alby | Log: 004_homepage_scarcity_merchandising.md]`
