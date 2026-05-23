@@ -26,8 +26,8 @@ BLANKS = {
     "modernist_8_blank": "modernist_8_blank_1779480206195.png",
     "modernist_9_blank": "modernist_9_blank_1779480227440.png",
     "modernist_10_blank": "modernist_10_blank_1779480246349.png",
-    "rebel_3_blank": "rebel_3_blank_1779480272073.png",
-    "rebel_6_blank": "rebel_6_blank_1779480290415.png",
+    "rebel_3_blank": "rebel_3_blank_black_1779511533466.png",
+    "rebel_6_blank": "rebel_6_blank_black_1779511552985.png",
     "cyber_1_blank": "cyber_1_blank_1779480311849.png",
     "cyber_4_blank": "cyber_4_blank_1779480332086.png",
     "cyber_7_blank": "cyber_7_blank_1779480354156.png",
@@ -54,8 +54,8 @@ COMPOSITING_TASKS = [
     ("modernist_10_blank", "neural_front.png", "option2/modernist_10_neural_layer.png", 385, 370, 250, "multiply", 1.1),
     
     # --- Option 3: Rebel (Peace Sign) ---
-    ("rebel_3_blank", "peace_front.png", "option3/rebel_3.png", 365, 340, 290, "multiply", 1.2),
-    ("rebel_6_blank", "peace_front.png", "option3/rebel_6.png", 385, 360, 250, "multiply", 1.2),
+    ("rebel_3_blank", "peace_front.png", "option3/rebel_3.png", 365, 340, 290, "normal", 1.2),
+    ("rebel_6_blank", "peace_front.png", "option3/rebel_6.png", 385, 360, 250, "normal", 1.2),
     
     # --- Option 4: Cyber (Robot & Binary Genesis) ---
     # Outperformed by Robot
