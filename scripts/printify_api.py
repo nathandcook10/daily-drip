@@ -62,15 +62,15 @@ class PrintifyClient:
 
     def get_blueprints(self) -> List[Dict[str, Any]]:
         """List all available product blueprints (e.g. Bella+Canvas 3001)."""
-        return self._get("blueprints.json")
+        return self._get("catalog/blueprints.json")
 
     def get_print_providers(self, blueprint_id: int) -> List[Dict[str, Any]]:
         """Get the print providers available for a specific blueprint."""
-        return self._get(f"blueprints/{blueprint_id}/print_providers.json")
+        return self._get(f"catalog/blueprints/{blueprint_id}/print_providers.json")
 
     def get_variants(self, blueprint_id: int, print_provider_id: int) -> Dict[str, Any]:
         """Retrieve variants (sizes, colors) for a blueprint and print provider."""
-        return self._get(f"blueprints/{blueprint_id}/print_providers/{print_provider_id}/variants.json")
+        return self._get(f"catalog/blueprints/{blueprint_id}/print_providers/{print_provider_id}/variants.json")
 
     def create_product(self, shop_id: int, product_data: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -86,8 +86,8 @@ class PrintifyClient:
         description: str, 
         image_id: str, 
         price_usd: float = 29.99,
-        blueprint_id: int = 382, # Bella+Canvas 3001
-        print_provider_id: int = 45, # Monster Digital (highly recommended)
+        blueprint_id: int = 12, # Bella+Canvas 3001
+        print_provider_id: int = 29, # Monster Digital (highly recommended)
         color_name: str = "Solid Black Blend"
     ) -> Dict[str, Any]:
         """

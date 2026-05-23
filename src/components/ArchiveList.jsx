@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 const ARCHIVED_PRODUCTS = [
   {
-    id: "prod_robot_012",
+    id: "69c856f897378918e2031d54",
     title: "Outperformed by a ROBOT. Again.",
     price: 29.99,
     badge: "TODAY'S DRIP #012",
@@ -14,7 +14,7 @@ const ARCHIVED_PRODUCTS = [
     sizes: ["S", "M", "L", "XL"]
   },
   {
-    id: "prod_monkey_011",
+    id: "69bb7e1e6291a03e2604a0ec",
     title: "Punch the Monkey",
     price: 29.99,
     badge: "ARCHIVE #011",
@@ -24,7 +24,7 @@ const ARCHIVED_PRODUCTS = [
     sizes: ["S", "M", "L", "XL"]
   },
   {
-    id: "prod_peace_010",
+    id: "69d1b80c2e352db3e70cf7c5",
     title: "Peace Sign and Hands T-Shirt",
     price: 29.99,
     badge: "ARCHIVE #010",
@@ -34,7 +34,7 @@ const ARCHIVED_PRODUCTS = [
     sizes: ["S", "M", "L", "XL"]
   },
   {
-    id: "prod_sage_009",
+    id: "6a1121add4d1eee5d1083056",
     title: "Sage Archives Graphic Tee",
     price: 29.99,
     badge: "VAULT #009",
@@ -44,7 +44,7 @@ const ARCHIVED_PRODUCTS = [
     sizes: ["S", "M", "L", "XL"]
   },
   {
-    id: "prod_binary_008",
+    id: "6a1121b24a67803eff0228ad",
     title: "Binary Genesis",
     price: 34.99,
     badge: "VAULT #008",
@@ -54,7 +54,7 @@ const ARCHIVED_PRODUCTS = [
     sizes: ["S", "M", "L", "XL"]
   },
   {
-    id: "prod_vapor_007",
+    id: "6a1121b7a8fde5fbe80e64b5",
     title: "Vaporwave Paradox",
     price: 29.99,
     badge: "VAULT #007",
@@ -64,7 +64,7 @@ const ARCHIVED_PRODUCTS = [
     sizes: ["S", "M", "L", "XL"]
   },
   {
-    id: "prod_neural_006",
+    id: "6a1121bc674926aa27006347",
     title: "Neural Echoes",
     price: 29.99,
     badge: "VAULT #006",
@@ -74,7 +74,7 @@ const ARCHIVED_PRODUCTS = [
     sizes: ["S", "M", "L", "XL"]
   },
   {
-    id: "prod_pixel_005",
+    id: "6a1121c14a67803eff0228bb",
     title: "Pixelated Soul",
     price: 32.99,
     badge: "VAULT #005",

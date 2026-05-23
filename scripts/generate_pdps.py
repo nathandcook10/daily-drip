@@ -10,7 +10,7 @@ MOCKUP_FILE = os.path.join(DOCS_DIR, "pdp_mockup.html")
 # All 8 products with their detailed custom content and model/theme universes
 PRODUCTS_DATA = [
     {
-        "id": "prod_robot_012",
+        "id": "69c856f897378918e2031d54",
         "filename": "pdp_outperformed_by_robot.html",
         "title": "Outperformed by a ROBOT. Again.",
         "seo_title": "Outperformed by a ROBOT. Again. Vintage Streetwear Tee",
@@ -32,7 +32,7 @@ PRODUCTS_DATA = [
         "origin": "Printify Eco-Direct Production"
     },
     {
-        "id": "prod_monkey_011",
+        "id": "69bb7e1e6291a03e2604a0ec",
         "filename": "pdp_punch_the_monkey.html",
         "title": "Punch the Monkey",
         "seo_title": "Punch the Monkey Vintage Graphic T-Shirt | Streetwear",
@@ -54,7 +54,7 @@ PRODUCTS_DATA = [
         "origin": "Printify Eco-Direct Production"
     },
     {
-        "id": "prod_peace_010",
+        "id": "69d1b80c2e352db3e70cf7c5",
         "filename": "pdp_peace_sign.html",
         "title": "Peace Sign and Hands T-Shirt",
         "seo_title": "Peace Sign and Hands Streetwear Graphic T-Shirt",
@@ -76,7 +76,7 @@ PRODUCTS_DATA = [
         "origin": "Printify Eco-Direct Production"
     },
     {
-        "id": "prod_sage_009",
+        "id": "6a1121add4d1eee5d1083056",
         "filename": "pdp_sage_archives.html",
         "title": "Sage Archives Graphic Tee",
         "seo_title": "Sage Archives Clean Streetwear Graphic Tee",
@@ -98,7 +98,7 @@ PRODUCTS_DATA = [
         "origin": "Printify Eco-Direct Production"
     },
     {
-        "id": "prod_binary_008",
+        "id": "6a1121b24a67803eff0228ad",
         "filename": "pdp_binary_genesis.html",
         "title": "Binary Genesis",
         "seo_title": "Binary Genesis Matrix Graphic Streetwear Tee",
@@ -120,7 +120,7 @@ PRODUCTS_DATA = [
         "origin": "Printify Eco-Direct Production"
     },
     {
-        "id": "prod_vapor_007",
+        "id": "6a1121b7a8fde5fbe80e64b5",
         "filename": "pdp_vaporwave_paradox.html",
         "title": "Vaporwave Paradox",
         "seo_title": "Vaporwave Paradox Glitch Art Graphic T-Shirt",
@@ -142,7 +142,7 @@ PRODUCTS_DATA = [
         "origin": "Printify Eco-Direct Production"
     },
     {
-        "id": "prod_neural_006",
+        "id": "6a1121bc674926aa27006347",
         "filename": "pdp_neural_echoes.html",
         "title": "Neural Echoes",
         "seo_title": "Neural Echoes Minimalist Graphic Streetwear Tee",
@@ -164,7 +164,7 @@ PRODUCTS_DATA = [
         "origin": "Printify Eco-Direct Production"
     },
     {
-        "id": "prod_pixel_005",
+        "id": "6a1121c14a67803eff0228bb",
         "filename": "pdp_pixelated_soul.html",
         "title": "Pixelated Soul",
         "seo_title": "Pixelated Soul 8-Bit Deconstructed Graphic Tee",
@@ -419,6 +419,19 @@ def main():
     template = load_template()
     
     for p in PRODUCTS_DATA:
+        if p["filename"] in [
+            "pdp_punch_the_monkey.html",
+            "pdp_binary_genesis.html",
+            "pdp_neural_echoes.html",
+            "pdp_outperformed_by_robot.html",
+            "pdp_peace_sign.html",
+            "pdp_pixelated_soul.html",
+            "pdp_sage_archives.html",
+            "pdp_vaporwave_paradox.html"
+        ]:
+            print(f"⏭️ Skipping customized PDP '{p['title']}' -> '{p['filename']}' to protect high-fidelity layouts...")
+            continue
+            
         out_path = os.path.join(DOCS_DIR, p["filename"])
         print(f"Generating bespoke PDP for '{p['title']}' -> '{p['filename']}'...")
         pdp_html = generate_pdp(p, template)

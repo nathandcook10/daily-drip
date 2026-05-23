@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { HelpCircle } from 'lucide-react';
 
 const PDP_MAP = {
-  prod_robot_012: "pdp_outperformed_by_robot.html",
-  prod_monkey_011: "pdp_punch_the_monkey.html",
-  prod_peace_010: "pdp_peace_sign.html",
-  prod_sage_009: "pdp_sage_archives.html",
-  prod_binary_008: "pdp_binary_genesis.html",
-  prod_vapor_007: "pdp_vaporwave_paradox.html",
-  prod_neural_006: "pdp_neural_echoes.html",
-  prod_pixel_005: "pdp_pixelated_soul.html"
+  "69c856f897378918e2031d54": "pdp_outperformed_by_robot.html",
+  "69bb7e1e6291a03e2604a0ec": "pdp_punch_the_monkey.html",
+  "69d1b80c2e352db3e70cf7c5": "pdp_peace_sign.html",
+  "6a1121add4d1eee5d1083056": "pdp_sage_archives.html",
+  "6a1121b24a67803eff0228ad": "pdp_binary_genesis.html",
+  "6a1121b7a8fde5fbe80e64b5": "pdp_vaporwave_paradox.html",
+  "6a1121bc674926aa27006347": "pdp_neural_echoes.html",
+  "6a1121c14a67803eff0228bb": "pdp_pixelated_soul.html"
 };
 
 export default function ProductCard({ product, onAddToCart }) {

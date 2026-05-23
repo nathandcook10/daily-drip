@@ -184,3 +184,50 @@ To maximize product conversion rates, implement the following specialized design
 
 ### Frictionless Cart Drawer
 *   **The Rule**: Clicking "Add to Cart" must slide out a right-side glassmorphic utility drawer containing the items. Never redirect to a standard cart page, which creates a jarring page load and increases funnel drop-offs.
+
+---
+
+## 5. Unified PDP Production & Release Sync Protocol
+
+To coordinate multi-agent automated releases and prevent incorrect design assets from reaching production/Printify, the following two-part formula must be strictly followed.
+
+### Phase 1: The Local Design & PDP Building Formula (Step-by-Step)
+This is the creative iteration phase. Keep all assets and pages **strictly local** on your computer first to maximize design agility.
+
+1. **Step 1: Define Brand Vibe, Theme & Copy**
+   * Select a layout theme matching the photoshoot styling archetypes (Curator, Modernist, Rebel, Cyber, Retro).
+   * Write high-fidelity copy: Title, Badge (`VAULTED ARCHIVE #XXX`), Narrative, and story-driven Vibe Story.
+2. **Step 2: Collect & Format Graphic Art & Photo Assets**
+   * Export the actual print-ready t-shirt graphic files (PNGs/SVGs) in their final, polished state to `/public/assets/flats/`.
+   * Gather the 3:4 aspect ratio model shots and name them following the 6-Step Visual Storyboard.
+3. **Step 3: Define Monospace Technical Specs**
+   * Define fabric metrics in `scripts/generate_pdps.py` (e.g. `240 GSM HEAVYWEIGHT`, `100% ORGANIC COTTON`, `DIRECT-TO-GARMENT`).
+4. **Step 4: Generate Local Bespoke PDP pages**
+   * Compile the local page to preview and check style layout, alignment, typography, and hover size chips:
+     ```bash
+     python3 scripts/generate_pdps.py
+     ```
+
+---
+
+### Phase 2: The Printify Sync & Release Protocol (Step-by-Step)
+Once the design is perfect, follow these rules to safely push to Printify and link the real checkout system.
+
+1. **Step 1: Delete/Archive Drafts & Incorrect Products**
+   * Clean up your Printify store/dashboard. Delete any rough drafts or incorrect designs to prevent shipping/fulfillment issues.
+2. **Step 2: Push Finalized Artwork to Printify**
+   * Run the CLI manager script or instruct your Printify Agent to push the final, high-resolution graphic files:
+     ```bash
+     python3 scripts/daily_drip_manager.py --image "your_final_design.png" --title "Design Name" --price 29.99
+     ```
+3. **Step 3: Map the Printify IDs**
+   * The script will return a real Printify Product ID and mockup URL. Ensure this maps in `scripts/printify_created_mapping.json`.
+4. **Step 4: Re-Run PDP Generation**
+   * Re-generate the PDP files so that checkout buttons and dynamic sizing are bound to the real Printify item:
+     ```bash
+     python3 scripts/generate_pdps.py
+     ```
+5. **Step 5: Visual Audit & Git Deploy**
+   * Start the dev storefront local server to verify sizing lists, variant matching, and prices.
+   * Stage, commit, and push the final production code to GitHub.
+

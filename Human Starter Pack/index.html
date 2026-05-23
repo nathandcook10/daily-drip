@@ -2628,6 +2628,66 @@ npm run dev
         <p style="font-size: 14px; opacity: 0.75;">Adding to cart must slide out a right-side glassmorphic cart drawer pairing with a dim mask layer. Standard stand-alone cart redirects break shopping momentum and drop conversion rates by up to 22%.</p>
       </div>
 
+      <!-- 5. Printify Production & Release Sync Protocol -->
+      <h3 class="pdp-section-title">5. Printify Production & Release Sync Protocol</h3>
+      <p style="font-size: 14px; opacity: 0.7; margin-bottom: 25px;">
+        To coordinate multi-agent automated releases and prevent incorrect design assets from reaching production/Printify, follow this two-part formula.
+      </p>
+      
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--color-sage);">
+        <h4 style="font-family: var(--font-display); font-weight: 800; font-size: 18px; margin-bottom: 12px; color: var(--color-sage); text-transform: uppercase; letter-spacing: 0.05em;">Phase 1: The Local Design & PDP Building Formula</h4>
+        <p style="font-size: 13px; opacity: 0.6; margin-bottom: 16px; font-style: italic;">
+          Creative iteration phase. Keep all assets and pages strictly local on the machine first to maximize design agility.
+        </p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+          <li style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="font-family: var(--font-mono); font-size: 11px; background: var(--color-accent-soft); padding: 2px 6px; border-radius: var(--border-radius-sm); color: var(--color-pine); font-weight: bold; flex-shrink: 0; margin-top: 2px;">STEP 01</span>
+            <div><strong>Define Brand Vibe, Theme & Copy:</strong> Select a layout theme (Curator, Modernist, Rebel, Cyber, Retro) and draft product titles, exclusivity badges (e.g. <code>VAULTED ARCHIVE #XXX</code>), narrative summaries, and vibe stories.</div>
+          </li>
+          <li style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="font-family: var(--font-mono); font-size: 11px; background: var(--color-accent-soft); padding: 2px 6px; border-radius: var(--border-radius-sm); color: var(--color-pine); font-weight: bold; flex-shrink: 0; margin-top: 2px;">STEP 02</span>
+            <div><strong>Format Artwork & Photo Assets:</strong> Export final print-ready t-shirt graphic artwork (PNGs/SVGs) into <code>/public/assets/flats/</code> and arrange 3:4 portrait aspect ratio model photos matching the 6-Step Visual Storyboard.</div>
+          </li>
+          <li style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="font-family: var(--font-mono); font-size: 11px; background: var(--color-accent-soft); padding: 2px 6px; border-radius: var(--border-radius-sm); color: var(--color-pine); font-weight: bold; flex-shrink: 0; margin-top: 2px;">STEP 03</span>
+            <div><strong>Set Monospace Tech Specs:</strong> Define GSM weight, cotton/fabric blends, print methods, and eco-origin metrics in the PDP compiler code.</div>
+          </li>
+          <li style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="font-family: var(--font-mono); font-size: 11px; background: var(--color-accent-soft); padding: 2px 6px; border-radius: var(--border-radius-sm); color: var(--color-pine); font-weight: bold; flex-shrink: 0; margin-top: 2px;">STEP 04</span>
+            <div><strong>Generate & Review Bespoke Pages:</strong> Run the compiler script to render and visually review styling, grid layouts, size selections, and hover states locally: <br><span class="term-box" style="display: inline-block; padding: 6px 12px; margin: 6px 0 0 0; font-size: 11px;">python3 scripts/generate_pdps.py</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-bottom: 20px; border-left: 4px solid var(--color-pine);">
+        <h4 style="font-family: var(--font-display); font-weight: 800; font-size: 18px; margin-bottom: 12px; color: var(--color-pine); text-transform: uppercase; letter-spacing: 0.05em;">Phase 2: The Printify Sync & Release Protocol</h4>
+        <p style="font-size: 13px; opacity: 0.6; margin-bottom: 16px; font-style: italic;">
+          Production publishing phase. Once the local design is perfect, execute sync rules to securely bind your Stripe/checkout funnel to the physical supplier.
+        </p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+          <li style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="font-family: var(--font-mono); font-size: 11px; background: rgba(30, 82, 52, 0.08); padding: 2px 6px; border-radius: var(--border-radius-sm); color: var(--color-pine); font-weight: bold; flex-shrink: 0; margin-top: 2px;">RULE 01</span>
+            <div><strong>Clean Merchant Dashboard:</strong> Permanently delete/archive rough drafts or incorrect product versions on Printify to prevent manufacturing or shipping errors.</div>
+          </li>
+          <li style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="font-family: var(--font-mono); font-size: 11px; background: rgba(30, 82, 52, 0.08); padding: 2px 6px; border-radius: var(--border-radius-sm); color: var(--color-pine); font-weight: bold; flex-shrink: 0; margin-top: 2px;">RULE 02</span>
+            <div><strong>Push Final High-Resolution Artwork:</strong> Use the API CLI script to register the final designs with correct scales and placements: <br><span class="term-box" style="display: inline-block; padding: 6px 12px; margin: 6px 0 0 0; font-size: 11px;">python3 scripts/daily_drip_manager.py --image "artwork.png" --title "Design Name" --price 29.99</span></div>
+          </li>
+          <li style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="font-family: var(--font-mono); font-size: 11px; background: rgba(30, 82, 52, 0.08); padding: 2px 6px; border-radius: var(--border-radius-sm); color: var(--color-pine); font-weight: bold; flex-shrink: 0; margin-top: 2px;">RULE 03</span>
+            <div><strong>Verify and Map JSON IDs:</strong> Save the returned Printify Product ID and mockup image URLs inside <code>scripts/printify_created_mapping.json</code>.</div>
+          </li>
+          <li style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="font-family: var(--font-mono); font-size: 11px; background: rgba(30, 82, 52, 0.08); padding: 2px 6px; border-radius: var(--border-radius-sm); color: var(--color-pine); font-weight: bold; flex-shrink: 0; margin-top: 2px;">RULE 04</span>
+            <div><strong>Run Final Compiler Rebuild:</strong> Compile PDP templates again to bind checkout buttons and size chips to the newly mapped live Printify products.</div>
+          </li>
+          <li style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="font-family: var(--font-mono); font-size: 11px; background: rgba(30, 82, 52, 0.08); padding: 2px 6px; border-radius: var(--border-radius-sm); color: var(--color-pine); font-weight: bold; flex-shrink: 0; margin-top: 2px;">RULE 05</span>
+            <div><strong>Audit Dev Storefront & Push:</strong> Boot up your local React/Vite storefront, double-check sizes and prices, then commit and push to GitHub.</div>
+          </li>
+        </ul>
+      </div>
+
     </section>
 
     <!-- ----------------------------------------------------

@@ -9,7 +9,7 @@
      ========================================================================== -->
   <title>Sage Archives Clean Streetwear Graphic Tee | The Daily Drip</title>
   <meta name="description" content="Vaulted Archive VAULT #009: A calm organic streetwear catalog design with intelligence. Hand-printed on heavy cotton. Recommended styling: best paired with cream-toned knitted cardigans or heavy duck canvas carpenters." />
-  <link rel="canonical" href="https://daily-drip.club/products/prod_sage_009" />
+  <link rel="canonical" href="https://daily-drip.club/products/6a1121add4d1eee5d1083056" />
   
   <!-- Open Graph / Social Sharing Tags (Best-in-class Guidelines Section 3) -->
   <meta property="og:type" content="product" />
@@ -18,7 +18,7 @@
   <meta property="og:image" content="/assets/models/option2/modernist_7_sage.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="1600" />
-  <meta property="og:url" content="https://daily-drip.club/products/prod_sage_009" />
+  <meta property="og:url" content="https://daily-drip.club/products/6a1121add4d1eee5d1083056" />
   <meta property="og:site_name" content="The Daily Drip" />
   <meta property="product:price:amount" content="29.99" />
   <meta property="product:price:currency" content="USD" />
@@ -48,7 +48,7 @@
     },
     "offers": {
       "@type": "Offer",
-      "url": "https://daily-drip.club/products/prod_sage_009",
+      "url": "https://daily-drip.club/products/6a1121add4d1eee5d1083056",
       "priceCurrency": "USD",
       "price": "29.99",
       "priceValidUntil": "2027-12-31",
@@ -478,6 +478,79 @@
       line-height: 1.6;
       color: var(--color-text-secondary);
       font-weight: 350;
+    }
+
+    /* --- Interactive Color Picker UI --- */
+    .color-picker-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .color-picker-header {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+    }
+
+    #active-color-label {
+      color: var(--color-text-primary);
+      font-weight: 800;
+      margin-left: 4px;
+    }
+
+    .color-swatches {
+      display: flex;
+      gap: 12px;
+    }
+
+    .color-swatch-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border-glass);
+      cursor: pointer;
+      position: relative;
+      transition: all var(--transition-fast);
+      outline: none;
+      background-clip: padding-box;
+    }
+
+    .color-swatch-btn::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border: 1px solid transparent;
+      border-radius: 50%;
+      transition: all var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .color-swatch-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .color-swatch-btn.color-black {
+      background-color: #0e0e0f;
+    }
+
+    .color-swatch-btn.color-white {
+      background-color: #f7f4eb; /* Premium eggshell white matching the flat blank texture */
+    }
+
+    /* Active swatch outline ring */
+    .color-swatch-btn.active::after {
+      border-color: var(--color-text-primary);
+    }
+
+    .color-swatch-btn.active {
+      transform: scale(1.05);
     }
 
     /* --- Interactive Size Selector (Soft Out-of-Stock) --- */
@@ -1006,28 +1079,52 @@
          ========================================================================== -->
       <section class="pdp-gallery" aria-label="Product Image Gallery">
         
-        <!-- Image 01: Hook On-Model (Option Fit) -->
+        <!-- Image 01: Flat-Lay Front -->
         <div class="gallery-img-wrapper">
-          <span class="gallery-badge" id="gallery-badge-1">01 // THE MODERNIST FIT</span>
-          <img src="/assets/models/option2/modernist_7_sage.png" alt="Sage Archives Graphic Tee front fit on model">
+          <span class="gallery-badge">01 // FLAT LAY FRONT</span>
+          <img src="/assets/flats/flat_sage_front.png" alt="Sage Archives Graphic Tee flat lay front" id="gallery-img-flat-front">
+        </div>
+
+        <!-- Image 02: Flat-Lay Back -->
+        <div class="gallery-img-wrapper">
+          <span class="gallery-badge">02 // FLAT LAY BACK</span>
+          <img src="/assets/flats/flat_sage_back.png" alt="Sage Archives Graphic Tee flat lay back" id="gallery-img-flat-back">
         </div>
         
-        <!-- Image 02: Styled Layering Outfit Context -->
+        <!-- Image 03: The Hook — On-Model Front -->
         <div class="gallery-img-wrapper">
-          <span class="gallery-badge" id="gallery-badge-2">02 // LAYERED STYLING</span>
-          <img src="/assets/models/option2/modernist_8_sage_layer.png" alt="Layered outfit featuring Sage Archives Graphic Tee">
+          <span class="gallery-badge">03 // THE HOOK</span>
+          <img src="/assets/models/option2/modernist_7_sage.png" alt="Sage Archives Graphic Tee on-model front hook shot" id="gallery-img-hook">
         </div>
-        
-        <!-- Image 03: Flat-Lay Front Detail -->
+
+        <!-- Image 04: The Structure — On-Model Back -->
         <div class="gallery-img-wrapper">
-          <span class="gallery-badge" id="gallery-badge-3">03 // FLAT-LAY DETAIL</span>
-          <img src="/assets/flats/flat_sage_front.png" alt="Sage Archives Graphic Tee front graphic flat-lay view">
+          <span class="gallery-badge">04 // THE STRUCTURE</span>
+          <img src="/assets/editorial/sage_archives/structure_back.png" alt="Sage Archives Graphic Tee on-model back structure shot" id="gallery-img-structure">
         </div>
-        
-        <!-- Image 04: Flat-Lay Back Detail -->
+
+        <!-- Image 05: The Style — Layered Outfit Context -->
         <div class="gallery-img-wrapper">
-          <span class="gallery-badge" id="gallery-badge-4">04 // REVERSE STRUCTURE</span>
-          <img src="/assets/flats/flat_sage_back.png" alt="Sage Archives Graphic Tee reverse side view">
+          <span class="gallery-badge">05 // THE STYLE</span>
+          <img src="/assets/models/option2/modernist_8_sage_layer.png" alt="Sage Archives Graphic Tee layered outfit styling" id="gallery-img-style">
+        </div>
+
+        <!-- Image 06: The Fabric Truss — Macro Close-Up -->
+        <div class="gallery-img-wrapper">
+          <span class="gallery-badge">06 // FABRIC TRUSS</span>
+          <img src="/assets/editorial/sage_archives/fabric_truss.png" alt="Sage Archives Graphic Tee fabric and print macro detail" id="gallery-img-fabric">
+        </div>
+
+        <!-- Image 07: The Silhouette — 3/4 Drape Angle -->
+        <div class="gallery-img-wrapper">
+          <span class="gallery-badge">07 // SILHOUETTE</span>
+          <img src="/assets/editorial/sage_archives/silhouette.png" alt="Sage Archives Graphic Tee silhouette drape profile" id="gallery-img-silhouette">
+        </div>
+
+        <!-- Image 08: The Life — Ambient Lifestyle -->
+        <div class="gallery-img-wrapper">
+          <span class="gallery-badge">08 // THE LIFE</span>
+          <img src="/assets/editorial/sage_archives/the_life.png" alt="Sage Archives Graphic Tee lifestyle ambient shot" id="gallery-img-life">
         </div>
 
       </section>
@@ -1048,6 +1145,15 @@
         <p class="product-narrative">
           A calm organic streetwear catalog design with intelligence. Hand-printed on heavy cotton. Recommended styling: best paired with cream-toned knitted cardigans or heavy duck canvas carpenters.
         </p>
+
+        <!-- Interactive Colorway Selector (Black / White) -->
+        <div class="color-picker-container">
+          <div class="color-picker-header">SELECT COLOR: <span id="active-color-label">BLACK</span></div>
+          <div class="color-swatches">
+            <button class="color-swatch-btn color-black active" aria-label="Select Black Colorway" onclick="setProductColor('black', this)"></button>
+            <button class="color-swatch-btn color-white" aria-label="Select White Colorway" onclick="setProductColor('white', this)"></button>
+          </div>
+        </div>
 
         <!-- Sizing selection module -->
         <div class="size-picker-container">
@@ -1124,14 +1230,6 @@
               </div>
             </div>
           </div>
-                  <div class="specs-row">
-                    <span>PRODUCTION // ORIGIN</span>
-                    <span>Printify Eco-Direct Production</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <!-- Accordion 3: Zero-Waste Cycle -->
           <div class="accordion-item">
@@ -1183,10 +1281,10 @@
     <div class="cart-items-list" id="cart-items-list">
       <div class="cart-item">
         <!-- Image from option model fit serves as thumbnail! -->
-        <img src="/assets/models/option2/modernist_7_sage.png" alt="Cart thumbnail" class="cart-item-img">
+        <img src="/assets/models/option2/modernist_7_sage.png" alt="Cart thumbnail" class="cart-item-img" id="cart-item-thumbnail">
         <div class="cart-item-details">
           <h4 class="cart-item-name">SAGE ARCHIVES GRAPHIC TEE</h4>
-          <span class="cart-item-meta" id="cart-item-selected-size">Size: M</span>
+          <span class="cart-item-meta" id="cart-item-selected-meta">Size: M | Color: Black</span>
           <div class="cart-item-actions">
             <div class="qty-stepper">
               <button class="qty-btn" onclick="updateQty(-1)">-</button>
@@ -1217,9 +1315,36 @@
   <script>
     // --- State Variables ---
     let selectedSize = '';
+    let selectedColor = 'black';
     let cartCount = 0;
     let qty = 1;
     const pricePerUnit = 29.99;
+
+    // --- Dynamic Color Swapping Mechanism ---
+    // Only the colorway-sensitive images update on color change:
+    // flat front, flat back, hook (front model), style (layered model)
+    // Structure, fabric truss, silhouette, and life are colorway-neutral
+    function setProductColor(color, element) {
+      selectedColor = color;
+      
+      // Update Swatches active state
+      document.querySelectorAll('.color-swatch-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+      
+      // Update label
+      document.getElementById('active-color-label').textContent = color.toUpperCase();
+      
+      // Swap colorway-sensitive gallery images (use the default ones as there are no separate files for other products)
+      document.getElementById('gallery-img-flat-front').src = `/assets/flats/flat_sage_front.png`;
+      document.getElementById('gallery-img-flat-back').src = `/assets/flats/flat_sage_back.png`;
+      document.getElementById('gallery-img-hook').src = `/assets/models/option2/modernist_7_sage.png`;
+      document.getElementById('gallery-img-style').src = `/assets/models/option2/modernist_8_sage_layer.png`;
+      
+      // Update cart drawer thumbnail proactively so if opened it's correct
+      document.getElementById('cart-item-thumbnail').src = `/assets/models/option2/modernist_7_sage.png`;
+      
+      triggerToast(`Color Switched to: ${color.toUpperCase()}`);
+    }
 
     // --- Dynamic Frosted Glass Navigation Scroll (Best Practice #16) ---
     window.addEventListener('scroll', () => {
@@ -1294,11 +1419,12 @@
         badge.classList.remove('pop');
       }, 250);
 
-      // Write size and price to drawer
-      document.getElementById('cart-item-selected-size').textContent = `Size: ${selectedSize}`;
+      // Write size, color, and price to drawer
+      document.getElementById('cart-item-selected-meta').textContent = `Size: ${selectedSize} | Color: ${selectedColor.toUpperCase()}`;
+      document.getElementById('cart-item-thumbnail').src = `/assets/models/option2/modernist_7_sage.png`;
       updateSubtotals();
 
-      triggerToast(`SUCCESS: Added SAGE ARCHIVES GRAPHIC TEE (${selectedSize}) to Bag.`);
+      triggerToast(`SUCCESS: Added SAGE ARCHIVES GRAPHIC TEE (${selectedSize}) in ${selectedColor.toUpperCase()} to Bag.`);
       
       // Open drawer instantly
       setTimeout(() => {
@@ -1328,9 +1454,28 @@
       cartCount = 0;
       qty = 1;
       selectedSize = '';
+      selectedColor = 'black';
       document.getElementById('cart-badge-count').textContent = 0;
+      
       const buttons = document.querySelectorAll('.size-btn');
       buttons.forEach(btn => btn.classList.remove('selected'));
+      
+      // Reset swatches
+      document.querySelectorAll('.color-swatch-btn').forEach(btn => btn.classList.remove('active'));
+      const defaultSwatch = document.querySelector('.color-swatch-btn.color-black');
+      if (defaultSwatch) defaultSwatch.classList.add('active');
+      
+      const label = document.getElementById('active-color-label');
+      if (label) label.textContent = 'BLACK';
+      
+      // Reset colorway-sensitive images
+      document.getElementById('gallery-img-flat-front').src = `/assets/flats/flat_sage_front.png`;
+      document.getElementById('gallery-img-flat-back').src = `/assets/flats/flat_sage_back.png`;
+      document.getElementById('gallery-img-hook').src = `/assets/models/option2/modernist_7_sage.png`;
+      document.getElementById('gallery-img-style').src = `/assets/models/option2/modernist_8_sage_layer.png`;
+      
+      document.getElementById('cart-item-thumbnail').src = `/assets/models/option2/modernist_7_sage.png`;
+
       toggleCart(false);
       triggerToast("Cart cleared and mock order routed successfully.");
     }
