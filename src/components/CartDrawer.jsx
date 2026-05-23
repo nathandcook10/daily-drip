@@ -13,13 +13,16 @@ export default function CartDrawer({
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-  const handleCheckoutClick = () => {
+  const handleCheckoutClick = async () => {
     if (cartItems.length === 0) return;
     setIsCheckoutLoading(true);
-    setTimeout(() => {
-      onCheckout(subtotal);
+    try {
+      await onCheckout(subtotal);
+    } catch (error) {
+      console.error("Checkout click handler failed:", error);
+    } finally {
       setIsCheckoutLoading(false);
-    }, 2000);
+    }
   };
 
   return (

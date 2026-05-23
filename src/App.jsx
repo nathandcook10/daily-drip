@@ -22,6 +22,24 @@ export default function App() {
     localStorage.setItem('daily_drip_cart_react', JSON.stringify(cart));
   }, [cart]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('success') === 'true') {
+      setCart([]);
+      showToast("🎉 Payment Successful! Order created sustainably.");
+      
+      // Scrub query parameters from browser URL
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.replaceState({ path: newUrl }, '', newUrl);
+    } else if (params.get('canceled') === 'true') {
+      showToast("⚠️ Payment Canceled. Cart items preserved.");
+      
+      // Scrub query parameters
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.replaceState({ path: newUrl }, '', newUrl);
+    }
+  }, []);
+
   // --- Toast Manager ---
   const showToast = (message) => {
     const id = Date.now();
@@ -75,12 +93,33 @@ export default function App() {
     showToast(`Item removed from Cart`);
   };
 
-  const handleCheckout = (total) => {
-    // Mock successful transaction alert
-    alert(`🔗 MOCK STRIPE CHECKOUT ROUTING\n\nCheckout session initiated for: $${total.toFixed(2)}.\nOrders will automatically route to Printify upon successful transaction.`);
-    setCart([]);
-    setIsCartOpen(false);
-    showToast("Transaction Completed Successfully");
+  const handleCheckout = async (total) => {
+    try {
+      showToast("Redirecting to Secure Checkout...");
+      
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items: cart }),
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || "Failed to create checkout session.");
+      }
+
+      const data = await response.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error("No checkout URL returned from server.");
+      }
+    } catch (error) {
+      console.error("Checkout failed:", error);
+      alert(`❌ CHECKOUT ERROR\n\n${error.message}`);
+    }
   };
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
