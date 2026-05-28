@@ -110,3 +110,13 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# Local T-Shirt Pipeline Staging & Outputs
+pipeline_staging/
+base_photos/
+final_pdp_assets/
+vto_env/
+*.png
+!public/assets/**/*.png
+!src/assets/**/*.png
+

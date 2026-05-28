@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HelpCircle } from 'lucide-react';
 
 const PDP_MAP = {
+  "6a12402ba8801cbf4b084231": "pdp_kane_shirt.html",
   "69c856f897378918e2031d54": "pdp_outperformed_by_robot.html",
   "69bb7e1e6291a03e2604a0ec": "pdp_punch_the_monkey.html",
   "69d1b80c2e352db3e70cf7c5": "pdp_peace_sign.html",

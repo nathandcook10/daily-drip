@@ -4,6 +4,16 @@ import { ArrowRight } from 'lucide-react';
 
 const PRODUCTS = [
   {
+    id: "6a12402ba8801cbf4b084231",
+    title: "HK9 DFB-Pokal Commemorative T-Shirt",
+    price: 34.99,
+    badge: "TODAY'S DRIP #013",
+    description: "A high-end streetwear commemorative t-shirt featuring the HK9 DFB-Pokal graphic layout.",
+    imageFront: "/assets/flats/flat_kane_black_front.png",
+    imageBack: "/assets/flats/flat_kane_black_back.png",
+    sizes: ["S", "M", "L", "XL"]
+  },
+  {
     id: "69c856f897378918e2031d54",
     title: "Outperformed by a ROBOT. Again.",
     price: 29.99,
