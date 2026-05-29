@@ -7,7 +7,8 @@ def main():
         "1_generator.py",
         "2_canvas_baker.py",
         "3_printify_sync.py",
-        "4_local_vto.py"
+        "4_local_vto.py",
+        "5_content_generator.py"
     ]
 
     print("Starting the T-Shirt Design Pipeline...")
