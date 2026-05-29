@@ -24,7 +24,7 @@ highly optimized, pure-diffusers approach that works seamlessly on Mac:
     pip install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
 
 3.  Install necessary ML libraries:
-    pip install diffusers transformers accelerate pillow scipy safetensors
+    pip install diffusers transformers accelerate pillow scipy safetensors rembg
 
 4.  Add some base photos to the `base_photos/` folder (the script will create it).
 5.  Run the script! The first run will download model weights (~10GB+).
@@ -37,6 +37,7 @@ import glob
 from PIL import Image
 import torch
 import numpy as np
+from rembg import remove
 
 # Diffusers & Transformers
 from diffusers import AutoPipelineForInpainting
@@ -117,7 +118,12 @@ def composite_graphic_for_inpainting(base_image, mask_image, graphic_path):
     WHAT it is blending into the folds and shadows.
     """
     print("[2/3] Compositing graphic onto base photo...")
-    graphic = Image.open(graphic_path).convert("RGBA")
+    
+    # Load and remove background from graphic to prevent solid boxes
+    raw_graphic = Image.open(graphic_path).convert("RGBA")
+    print("      Removing background from graphic...")
+    graphic = remove(raw_graphic)
+    
     base = base_image.copy().convert("RGBA")
     
     # Calculate dimensions
@@ -162,6 +168,12 @@ def run_vto_pipeline(base_img, mask_img, composite_img):
         variant="fp16" if device != "cpu" else None,
         use_safetensors=True
     ).to(device)
+    
+    # Fix for SDXL VAE float16 math overflow on MPS (Black Image Bug)
+    if device == "mps":
+        print("      Using fp16-fix VAE to prevent MPS NaN black images...")
+        from diffusers import AutoencoderKL
+        pipe.vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix", torch_dtype=torch.float16).to(device)
     
     # Optimizations to save memory on Mac
     if device == "mps":
@@ -221,7 +233,8 @@ def main():
     
     # 4. Save
     graphic_filename = os.path.basename(graphic_path)
-    out_path = f"final_pdp_assets/vto_result_{graphic_filename}"
+    base_filename = os.path.splitext(os.path.basename(base_path))[0]
+    out_path = f"final_pdp_assets/vto_result_{base_filename}_{graphic_filename}"
     
     final_image.save(out_path)
     print(f"\n✅ Success! Saved photorealistic VTO to: {out_path}")

@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import base64
+import time
 import requests
 
 PIPELINE_DIR = "pipeline_staging"
@@ -76,7 +77,8 @@ def main():
             sys.exit(1)
             
     # 3. Get Product ID from user
-    product_id = input("\nEnter the Printify Product ID to sync: ").strip()
+    product_id = "6a1667443cdfdafe8b0adc0e"
+    print(f"\nUsing hardcoded Printify Product ID: {product_id}")
     if not product_id:
         print("Product ID is required.")
         sys.exit(1)
@@ -197,6 +199,55 @@ def main():
     
     if put_response.status_code == 200:
         print("\nSuccess! Product successfully updated on Printify.")
+        
+        print("\nWaiting for Printify to generate mockup images...")
+        time.sleep(8) # Initial wait for rendering
+        
+        final_dir = "final_pdp_assets"
+        os.makedirs(final_dir, exist_ok=True)
+        
+        max_retries = 6
+        mockups_found = False
+        
+        for attempt in range(max_retries):
+            print(f"Polling for mockups (Attempt {attempt + 1}/{max_retries})...")
+            resp = requests.get(url, headers=headers)
+            if resp.status_code == 200:
+                updated_prod = resp.json()
+                product_images = updated_prod.get('images', [])
+                
+                # Check if we got images back
+                if product_images:
+                    print(f"Found {len(product_images)} mockup(s). Downloading...")
+                    for i, img_obj in enumerate(product_images):
+                        img_url = img_obj.get('src')
+                        is_default = img_obj.get('is_default', False)
+                        pos_str = img_obj.get('position', 'front')
+                        
+                        if img_url:
+                            # Generate a friendly filename
+                            default_str = "_default" if is_default else ""
+                            filename = f"mockup_{pos_str}_{i}{default_str}.png"
+                            filepath = os.path.join(final_dir, filename)
+                            
+                            try:
+                                img_resp = requests.get(img_url, stream=True)
+                                if img_resp.status_code == 200:
+                                    with open(filepath, 'wb') as f:
+                                        for chunk in img_resp.iter_content(8192):
+                                            f.write(chunk)
+                                    print(f" -> Saved {filename} to {final_dir}/")
+                            except Exception as e:
+                                print(f" -> Error downloading {img_url}: {e}")
+                                
+                    mockups_found = True
+                    break
+                    
+            time.sleep(5)
+            
+        if not mockups_found:
+            print("Could not retrieve mockups after multiple attempts. They might still be generating on Printify's end.")
+            
     else:
         print(f"\nFailed to update product: {put_response.status_code}")
         print(put_response.text)

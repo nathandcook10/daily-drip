@@ -110,12 +110,20 @@ def main():
                 continue
                 
             chosen_path = concept_paths[chosen_index]
-            final_path = os.path.join(PIPELINE_DIR, "approved_design.png")
             
-            # Copy the approved concept to approved_design.png
+            while True:
+                placement = input("\nIs this design for the front or the back of the shirt? (front/back): ").strip().lower()
+                if placement in ['front', 'back']:
+                    break
+                print("Please enter 'front' or 'back'.")
+                
+            final_filename = f"approved_{placement}.png"
+            final_path = os.path.join(PIPELINE_DIR, final_filename)
+            
+            # Copy the approved concept to the destination
             shutil.copy2(chosen_path, final_path)
             
-            print(f"\nSuccess! Concept {user_input} approved.")
+            print(f"\nSuccess! Concept {user_input} approved for the {placement}.")
             print(f"Final design saved to: {final_path}")
             
             # Clean up concept files
